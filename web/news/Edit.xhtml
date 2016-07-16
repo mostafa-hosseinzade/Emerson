@@ -12,24 +12,22 @@
             <h:form id="NewsEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{newsController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditNewsLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{newsController.selected.id}" title="#{bundle.EditNewsTitle_id}" required="true" requiredMessage="#{bundle.EditNewsRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.EditNewsLabel_title}" for="title" />
-                        <p:inputText id="title" value="#{newsController.selected.title}" title="#{bundle.EditNewsTitle_title}" required="true" requiredMessage="#{bundle.EditNewsRequiredMessage_title}"/>
-                        <p:outputLabel value="#{bundle.EditNewsLabel_content}" for="content" />
-                        <p:inputTextarea rows="4" cols="30" id="content" value="#{newsController.selected.content}" title="#{bundle.EditNewsTitle_content}" required="true" requiredMessage="#{bundle.EditNewsRequiredMessage_content}"/>
-                        <p:outputLabel value="#{bundle.EditNewsLabel_visit}" for="visit" />
-                        <p:inputText id="visit" value="#{newsController.selected.visit}" title="#{bundle.EditNewsTitle_visit}" required="true" requiredMessage="#{bundle.EditNewsRequiredMessage_visit}"/>
+                        <p:outputLabel value="#{bundle.EditNewsLabel_contentFa}" for="contentFa" />
+                        <p:inputTextarea rows="4" cols="30" id="contentFa" value="#{newsController.selected.contentFa}" title="#{bundle.EditNewsTitle_contentFa}" />
+                        <p:outputLabel value="#{bundle.EditNewsLabel_img}" for="img" />
+                        <p:inputText id="img" value="#{newsController.selected.img}" title="#{bundle.EditNewsTitle_img}" />
                         <p:outputLabel value="#{bundle.EditNewsLabel_meta}" for="meta" />
                         <p:inputText id="meta" value="#{newsController.selected.meta}" title="#{bundle.EditNewsTitle_meta}" />
                         <p:outputLabel value="#{bundle.EditNewsLabel_slug}" for="slug" />
-                        <p:inputText id="slug" value="#{newsController.selected.slug}" title="#{bundle.EditNewsTitle_slug}" required="true" requiredMessage="#{bundle.EditNewsRequiredMessage_slug}"/>
-                        <p:outputLabel value="#{bundle.EditNewsLabel_img}" for="img" />
-                        <p:inputText id="img" value="#{newsController.selected.img}" title="#{bundle.EditNewsTitle_img}" />
-                        <p:outputLabel value="#{bundle.EditNewsLabel_createdAt}" for="createdAt" />
-                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{newsController.selected.createdAt}" title="#{bundle.EditNewsTitle_createdAt}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditNewsLabel_updatedAt}" for="updatedAt" />
-                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{newsController.selected.updatedAt}" title="#{bundle.EditNewsTitle_updatedAt}"  showOn="button"/>
+                        <p:inputText id="slug" value="#{newsController.selected.slug}" title="#{bundle.EditNewsTitle_slug}" />
+                        <p:outputLabel value="#{bundle.EditNewsLabel_titleFa}" for="titleFa" />
+                        <p:inputText id="titleFa" value="#{newsController.selected.titleFa}" title="#{bundle.EditNewsTitle_titleFa}" />
+                        <p:outputLabel value="#{bundle.EditNewsLabel_visit}" for="visit" />
+                        <p:inputText id="visit" value="#{newsController.selected.visit}" title="#{bundle.EditNewsTitle_visit}" />
+                        <p:outputLabel value="#{bundle.EditNewsLabel_contentEn}" for="contentEn" />
+                        <p:inputTextarea rows="4" cols="30" id="contentEn" value="#{newsController.selected.contentEn}" title="#{bundle.EditNewsTitle_contentEn}" />
+                        <p:outputLabel value="#{bundle.EditNewsLabel_titleEn}" for="titleEn" />
+                        <p:inputText id="titleEn" value="#{newsController.selected.titleEn}" title="#{bundle.EditNewsTitle_titleEn}" />
                         <p:outputLabel value="#{bundle.EditNewsLabel_ctgId}" for="ctgId" />
                         <p:selectOneMenu id="ctgId" value="#{newsController.selected.ctgId}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

@@ -16,10 +16,11 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -33,13 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Page.findAll", query = "SELECT p FROM Page p"),
     @NamedQuery(name = "Page.findById", query = "SELECT p FROM Page p WHERE p.id = :id"),
-    @NamedQuery(name = "Page.findByTitle", query = "SELECT p FROM Page p WHERE p.title = :title"),
+    @NamedQuery(name = "Page.findByCraetedAt", query = "SELECT p FROM Page p WHERE p.craetedAt = :craetedAt"),
     @NamedQuery(name = "Page.findByImg", query = "SELECT p FROM Page p WHERE p.img = :img"),
-    @NamedQuery(name = "Page.findByVisit", query = "SELECT p FROM Page p WHERE p.visit = :visit"),
     @NamedQuery(name = "Page.findByMeta", query = "SELECT p FROM Page p WHERE p.meta = :meta"),
     @NamedQuery(name = "Page.findBySlug", query = "SELECT p FROM Page p WHERE p.slug = :slug"),
-    @NamedQuery(name = "Page.findByCraetedAt", query = "SELECT p FROM Page p WHERE p.craetedAt = :craetedAt"),
-    @NamedQuery(name = "Page.findByUpdatedAt", query = "SELECT p FROM Page p WHERE p.updatedAt = :updatedAt")})
+    @NamedQuery(name = "Page.findByTitleFa", query = "SELECT p FROM Page p WHERE p.titleFa = :titleFa"),
+    @NamedQuery(name = "Page.findByUpdatedAt", query = "SELECT p FROM Page p WHERE p.updatedAt = :updatedAt"),
+    @NamedQuery(name = "Page.findByVisit", query = "SELECT p FROM Page p WHERE p.visit = :visit"),
+    @NamedQuery(name = "Page.findByTitleEn", query = "SELECT p FROM Page p WHERE p.titleEn = :titleEn")})
 public class Page implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,51 +50,43 @@ public class Page implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "title")
-    private int title;
     @Lob
     @Size(max = 2147483647)
-    @Column(name = "content")
-    private String content;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 300)
-    @Column(name = "img")
-    private String img;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "visit")
-    private int visit;
-    @Size(max = 300)
-    @Column(name = "meta")
-    private String meta;
-    @Size(max = 300)
-    @Column(name = "slug")
-    private String slug;
-    @Basic(optional = false)
-    @NotNull
+    @Column(name = "content_fa")
+    private String contentFa;
     @Column(name = "craeted_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date craetedAt;
+    @Size(max = 255)
+    @Column(name = "img")
+    private String img;
+    @Size(max = 255)
+    @Column(name = "meta")
+    private String meta;
+    @Size(max = 255)
+    @Column(name = "slug")
+    private String slug;
+    @Column(name = "title_fa")
+    private Integer titleFa;
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+    @Column(name = "visit")
+    private Integer visit;
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "content_en")
+    private String contentEn;
+    @Size(max = 300)
+    @Column(name = "title_en")
+    private String titleEn;
+    private Date createdAt;
 
     public Page() {
     }
 
     public Page(Integer id) {
         this.id = id;
-    }
-
-    public Page(Integer id, int title, String img, int visit, Date craetedAt) {
-        this.id = id;
-        this.title = title;
-        this.img = img;
-        this.visit = visit;
-        this.craetedAt = craetedAt;
     }
 
     public Integer getId() {
@@ -103,20 +97,20 @@ public class Page implements Serializable {
         this.id = id;
     }
 
-    public int getTitle() {
-        return title;
+    public String getContentFa() {
+        return contentFa;
     }
 
-    public void setTitle(int title) {
-        this.title = title;
+    public void setContentFa(String contentFa) {
+        this.contentFa = contentFa;
     }
 
-    public String getContent() {
-        return content;
+    public Date getCraetedAt() {
+        return craetedAt;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setCraetedAt(Date craetedAt) {
+        this.craetedAt = craetedAt;
     }
 
     public String getImg() {
@@ -125,14 +119,6 @@ public class Page implements Serializable {
 
     public void setImg(String img) {
         this.img = img;
-    }
-
-    public int getVisit() {
-        return visit;
-    }
-
-    public void setVisit(int visit) {
-        this.visit = visit;
     }
 
     public String getMeta() {
@@ -151,12 +137,12 @@ public class Page implements Serializable {
         this.slug = slug;
     }
 
-    public Date getCraetedAt() {
-        return craetedAt;
+    public Integer getTitleFa() {
+        return titleFa;
     }
 
-    public void setCraetedAt(Date craetedAt) {
-        this.craetedAt = craetedAt;
+    public void setTitleFa(Integer titleFa) {
+        this.titleFa = titleFa;
     }
 
     public Date getUpdatedAt() {
@@ -165,6 +151,30 @@ public class Page implements Serializable {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Integer getVisit() {
+        return visit;
+    }
+
+    public void setVisit(Integer visit) {
+        this.visit = visit;
+    }
+
+    public String getContentEn() {
+        return contentEn;
+    }
+
+    public void setContentEn(String contentEn) {
+        this.contentEn = contentEn;
+    }
+
+    public String getTitleEn() {
+        return titleEn;
+    }
+
+    public void setTitleEn(String titleEn) {
+        this.titleEn = titleEn;
     }
 
     @Override
@@ -191,5 +201,14 @@ public class Page implements Serializable {
     public String toString() {
         return "Entity.Page[ id=" + id + " ]";
     }
-    
+
+    @PrePersist
+    public void PrePersisit() {
+        this.createdAt = new Date();
+    }
+
+    @PreUpdate
+    public void PreUpdate() {
+        this.updatedAt = new Date();
+    }
 }

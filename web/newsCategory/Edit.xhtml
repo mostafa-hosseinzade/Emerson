@@ -12,18 +12,16 @@
             <h:form id="NewsCategoryEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{newsCategoryController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditNewsCategoryLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{newsCategoryController.selected.id}" title="#{bundle.EditNewsCategoryTitle_id}" required="true" requiredMessage="#{bundle.EditNewsCategoryRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.EditNewsCategoryLabel_title}" for="title" />
-                        <p:inputText id="title" value="#{newsCategoryController.selected.title}" title="#{bundle.EditNewsCategoryTitle_title}" required="true" requiredMessage="#{bundle.EditNewsCategoryRequiredMessage_title}"/>
-                        <p:outputLabel value="#{bundle.EditNewsCategoryLabel_describtion}" for="describtion" />
-                        <p:inputText id="describtion" value="#{newsCategoryController.selected.describtion}" title="#{bundle.EditNewsCategoryTitle_describtion}" />
-                        <p:outputLabel value="#{bundle.EditNewsCategoryLabel_createdAt}" for="createdAt" />
-                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{newsCategoryController.selected.createdAt}" title="#{bundle.EditNewsCategoryTitle_createdAt}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditNewsCategoryLabel_updatedAt}" for="updatedAt" />
-                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{newsCategoryController.selected.updatedAt}" title="#{bundle.EditNewsCategoryTitle_updatedAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditNewsCategoryLabel_describtionFa}" for="describtionFa" />
+                        <p:inputText id="describtionFa" value="#{newsCategoryController.selected.describtionFa}" title="#{bundle.EditNewsCategoryTitle_describtionFa}" />
                         <p:outputLabel value="#{bundle.EditNewsCategoryLabel_img}" for="img" />
                         <p:inputText id="img" value="#{newsCategoryController.selected.img}" title="#{bundle.EditNewsCategoryTitle_img}" />
+                        <p:outputLabel value="#{bundle.EditNewsCategoryLabel_titleFa}" for="titleFa" />
+                        <p:inputText id="titleFa" value="#{newsCategoryController.selected.titleFa}" title="#{bundle.EditNewsCategoryTitle_titleFa}" />
+                        <p:outputLabel value="#{bundle.EditNewsCategoryLabel_describtionEn}" for="describtionEn" />
+                        <p:inputText id="describtionEn" value="#{newsCategoryController.selected.describtionEn}" title="#{bundle.EditNewsCategoryTitle_describtionEn}" />
+                        <p:outputLabel value="#{bundle.EditNewsCategoryLabel_titleEn}" for="titleEn" />
+                        <p:inputText id="titleEn" value="#{newsCategoryController.selected.titleEn}" title="#{bundle.EditNewsCategoryTitle_titleEn}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{newsCategoryController.update}" value="#{bundle.Save}" update="display,:NewsCategoryListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NewsCategoryEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="NewsCategoryEditDialog.hide()"/>

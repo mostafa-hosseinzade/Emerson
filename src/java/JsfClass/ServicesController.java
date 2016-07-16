@@ -1,9 +1,9 @@
-package JSF;
+package JsfClass;
 
-import Entity.NewsCategory;
-import JSF.util.JsfUtil;
-import JSF.util.JsfUtil.PersistAction;
-import SessionBean.NewsCategoryFacade;
+import Entity.Services;
+import JsfClass.util.JsfUtil;
+import JsfClass.util.JsfUtil.PersistAction;
+import SessionBean.ServicesFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("newsCategoryController")
+@Named("servicesController")
 @SessionScoped
-public class NewsCategoryController implements Serializable {
+public class ServicesController implements Serializable {
 
     @EJB
-    private SessionBean.NewsCategoryFacade ejbFacade;
-    private List<NewsCategory> items = null;
-    private NewsCategory selected;
+    private SessionBean.ServicesFacade ejbFacade;
+    private List<Services> items = null;
+    private Services selected;
 
-    public NewsCategoryController() {
+    public ServicesController() {
     }
 
-    public NewsCategory getSelected() {
+    public Services getSelected() {
         return selected;
     }
 
-    public void setSelected(NewsCategory selected) {
+    public void setSelected(Services selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class NewsCategoryController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private NewsCategoryFacade getFacade() {
+    private ServicesFacade getFacade() {
         return ejbFacade;
     }
 
-    public NewsCategory prepareCreate() {
-        selected = new NewsCategory();
+    public Services prepareCreate() {
+        selected = new Services();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("NewsCategoryCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ServicesCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("NewsCategoryUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ServicesUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("NewsCategoryDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ServicesDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<NewsCategory> getItems() {
+    public List<Services> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,29 +109,29 @@ public class NewsCategoryController implements Serializable {
         }
     }
 
-    public NewsCategory getNewsCategory(java.lang.Integer id) {
+    public Services getServices(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
-    public List<NewsCategory> getItemsAvailableSelectMany() {
+    public List<Services> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<NewsCategory> getItemsAvailableSelectOne() {
+    public List<Services> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = NewsCategory.class)
-    public static class NewsCategoryControllerConverter implements Converter {
+    @FacesConverter(forClass = Services.class)
+    public static class ServicesControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            NewsCategoryController controller = (NewsCategoryController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "newsCategoryController");
-            return controller.getNewsCategory(getKey(value));
+            ServicesController controller = (ServicesController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "servicesController");
+            return controller.getServices(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -151,11 +151,11 @@ public class NewsCategoryController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof NewsCategory) {
-                NewsCategory o = (NewsCategory) object;
+            if (object instanceof Services) {
+                Services o = (Services) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), NewsCategory.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Services.class.getName()});
                 return null;
             }
         }

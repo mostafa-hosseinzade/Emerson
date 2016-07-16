@@ -35,15 +35,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductTitle_title}"/>
+                                <h:outputText value="#{bundle.ListProductTitle_contentEn}"/>
                             </f:facet>
-                            <h:outputText value="#{item.title}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductTitle_content}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.content}"/>
+                            <h:outputText value="#{item.contentEn}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -55,6 +49,18 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_link}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.link}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_titleEn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleEn}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductTitle_updatedAt}"/>
                             </f:facet>
                             <h:outputText value="#{item.updatedAt}">
@@ -63,9 +69,15 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductTitle_link}"/>
+                                <h:outputText value="#{bundle.ListProductTitle_contentFa}"/>
                             </f:facet>
-                            <h:outputText value="#{item.link}"/>
+                            <h:outputText value="#{item.contentFa}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_titleFa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleFa}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

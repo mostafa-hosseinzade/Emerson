@@ -12,18 +12,12 @@
             <h:form id="ServicesCategoryEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{servicesCategoryController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditServicesCategoryLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{servicesCategoryController.selected.id}" title="#{bundle.EditServicesCategoryTitle_id}" required="true" requiredMessage="#{bundle.EditServicesCategoryRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.EditServicesCategoryLabel_title}" for="title" />
                         <p:inputText id="title" value="#{servicesCategoryController.selected.title}" title="#{bundle.EditServicesCategoryTitle_title}" required="true" requiredMessage="#{bundle.EditServicesCategoryRequiredMessage_title}"/>
                         <p:outputLabel value="#{bundle.EditServicesCategoryLabel_describtion}" for="describtion" />
                         <p:inputText id="describtion" value="#{servicesCategoryController.selected.describtion}" title="#{bundle.EditServicesCategoryTitle_describtion}" />
                         <p:outputLabel value="#{bundle.EditServicesCategoryLabel_slug}" for="slug" />
                         <p:inputText id="slug" value="#{servicesCategoryController.selected.slug}" title="#{bundle.EditServicesCategoryTitle_slug}" />
-                        <p:outputLabel value="#{bundle.EditServicesCategoryLabel_createdAt}" for="createdAt" />
-                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{servicesCategoryController.selected.createdAt}" title="#{bundle.EditServicesCategoryTitle_createdAt}" required="true" requiredMessage="#{bundle.EditServicesCategoryRequiredMessage_createdAt}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditServicesCategoryLabel_updatedAt}" for="updatedAt" />
-                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{servicesCategoryController.selected.updatedAt}" title="#{bundle.EditServicesCategoryTitle_updatedAt}"  showOn="button"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{servicesCategoryController.update}" value="#{bundle.Save}" update="display,:ServicesCategoryListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ServicesCategoryEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ServicesCategoryEditDialog.hide()"/>

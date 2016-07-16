@@ -1,9 +1,9 @@
-package JSF;
+package JsfClass;
 
-import Entity.BrandEmerson;
-import JSF.util.JsfUtil;
-import JSF.util.JsfUtil.PersistAction;
-import SessionBean.BrandEmersonFacade;
+import Entity.Page;
+import JsfClass.util.JsfUtil;
+import JsfClass.util.JsfUtil.PersistAction;
+import SessionBean.PageFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("brandEmersonController")
+@Named("pageController")
 @SessionScoped
-public class BrandEmersonController implements Serializable {
+public class PageController implements Serializable {
 
     @EJB
-    private SessionBean.BrandEmersonFacade ejbFacade;
-    private List<BrandEmerson> items = null;
-    private BrandEmerson selected;
+    private SessionBean.PageFacade ejbFacade;
+    private List<Page> items = null;
+    private Page selected;
 
-    public BrandEmersonController() {
+    public PageController() {
     }
 
-    public BrandEmerson getSelected() {
+    public Page getSelected() {
         return selected;
     }
 
-    public void setSelected(BrandEmerson selected) {
+    public void setSelected(Page selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class BrandEmersonController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private BrandEmersonFacade getFacade() {
+    private PageFacade getFacade() {
         return ejbFacade;
     }
 
-    public BrandEmerson prepareCreate() {
-        selected = new BrandEmerson();
+    public Page prepareCreate() {
+        selected = new Page();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("BrandEmersonCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("PageCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("BrandEmersonUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("PageUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("BrandEmersonDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("PageDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<BrandEmerson> getItems() {
+    public List<Page> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,29 +109,29 @@ public class BrandEmersonController implements Serializable {
         }
     }
 
-    public BrandEmerson getBrandEmerson(java.lang.Integer id) {
+    public Page getPage(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
-    public List<BrandEmerson> getItemsAvailableSelectMany() {
+    public List<Page> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<BrandEmerson> getItemsAvailableSelectOne() {
+    public List<Page> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = BrandEmerson.class)
-    public static class BrandEmersonControllerConverter implements Converter {
+    @FacesConverter(forClass = Page.class)
+    public static class PageControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            BrandEmersonController controller = (BrandEmersonController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "brandEmersonController");
-            return controller.getBrandEmerson(getKey(value));
+            PageController controller = (PageController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "pageController");
+            return controller.getPage(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -151,11 +151,11 @@ public class BrandEmersonController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof BrandEmerson) {
-                BrandEmerson o = (BrandEmerson) object;
+            if (object instanceof Page) {
+                Page o = (Page) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), BrandEmerson.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Page.class.getName()});
                 return null;
             }
         }

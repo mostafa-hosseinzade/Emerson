@@ -17,10 +17,11 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -35,11 +36,13 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "NewsCategory.findAll", query = "SELECT n FROM NewsCategory n"),
     @NamedQuery(name = "NewsCategory.findById", query = "SELECT n FROM NewsCategory n WHERE n.id = :id"),
-    @NamedQuery(name = "NewsCategory.findByTitle", query = "SELECT n FROM NewsCategory n WHERE n.title = :title"),
-    @NamedQuery(name = "NewsCategory.findByDescribtion", query = "SELECT n FROM NewsCategory n WHERE n.describtion = :describtion"),
     @NamedQuery(name = "NewsCategory.findByCreatedAt", query = "SELECT n FROM NewsCategory n WHERE n.createdAt = :createdAt"),
+    @NamedQuery(name = "NewsCategory.findByDescribtionFa", query = "SELECT n FROM NewsCategory n WHERE n.describtionFa = :describtionFa"),
+    @NamedQuery(name = "NewsCategory.findByImg", query = "SELECT n FROM NewsCategory n WHERE n.img = :img"),
+    @NamedQuery(name = "NewsCategory.findByTitleFa", query = "SELECT n FROM NewsCategory n WHERE n.titleFa = :titleFa"),
     @NamedQuery(name = "NewsCategory.findByUpdatedAt", query = "SELECT n FROM NewsCategory n WHERE n.updatedAt = :updatedAt"),
-    @NamedQuery(name = "NewsCategory.findByImg", query = "SELECT n FROM NewsCategory n WHERE n.img = :img")})
+    @NamedQuery(name = "NewsCategory.findByDescribtionEn", query = "SELECT n FROM NewsCategory n WHERE n.describtionEn = :describtionEn"),
+    @NamedQuery(name = "NewsCategory.findByTitleEn", query = "SELECT n FROM NewsCategory n WHERE n.titleEn = :titleEn")})
 public class NewsCategory implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,23 +51,27 @@ public class NewsCategory implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 400)
-    @Column(name = "title")
-    private String title;
-    @Size(max = 3000)
-    @Column(name = "describtion")
-    private String describtion;
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+    @Size(max = 3000)
+    @Column(name = "describtion_fa")
+    private String describtionFa;
+    @Size(max = 255)
+    @Column(name = "img")
+    private String img;
+    @Size(max = 255)
+    @Column(name = "title_fa")
+    private String titleFa;
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-    @Size(max = 400)
-    @Column(name = "img")
-    private String img;
+    @Size(max = 3000)
+    @Column(name = "describtion_en")
+    private String describtionEn;
+    @Size(max = 300)
+    @Column(name = "title_en")
+    private String titleEn;
     @OneToMany(mappedBy = "ctgId")
     private Collection<News> newsCollection;
 
@@ -75,33 +82,12 @@ public class NewsCategory implements Serializable {
         this.id = id;
     }
 
-    public NewsCategory(Integer id, String title) {
-        this.id = id;
-        this.title = title;
-    }
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescribtion() {
-        return describtion;
-    }
-
-    public void setDescribtion(String describtion) {
-        this.describtion = describtion;
     }
 
     public Date getCreatedAt() {
@@ -112,12 +98,12 @@ public class NewsCategory implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
-        return updatedAt;
+    public String getDescribtionFa() {
+        return describtionFa;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setDescribtionFa(String describtionFa) {
+        this.describtionFa = describtionFa;
     }
 
     public String getImg() {
@@ -126,6 +112,38 @@ public class NewsCategory implements Serializable {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public String getTitleFa() {
+        return titleFa;
+    }
+
+    public void setTitleFa(String titleFa) {
+        this.titleFa = titleFa;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getDescribtionEn() {
+        return describtionEn;
+    }
+
+    public void setDescribtionEn(String describtionEn) {
+        this.describtionEn = describtionEn;
+    }
+
+    public String getTitleEn() {
+        return titleEn;
+    }
+
+    public void setTitleEn(String titleEn) {
+        this.titleEn = titleEn;
     }
 
     @XmlTransient
@@ -161,5 +179,13 @@ public class NewsCategory implements Serializable {
     public String toString() {
         return "Entity.NewsCategory[ id=" + id + " ]";
     }
+    @PrePersist
+    public void PrePersisit(){
+        this.createdAt = new Date();
+    }
     
+    @PreUpdate
+    public void PreUpdate(){
+        this.updatedAt = new Date();
+    }    
 }

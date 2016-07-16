@@ -14,14 +14,14 @@
                     <p:panelGrid columns="2" rendered="#{servicesCategoryImgController.selected != null}">
                         <h:outputText value="#{bundle.ViewServicesCategoryImgLabel_id}"/>
                         <h:outputText value="#{servicesCategoryImgController.selected.id}" title="#{bundle.ViewServicesCategoryImgTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewServicesCategoryImgLabel_img}"/>
-                        <h:outputText value="#{servicesCategoryImgController.selected.img}" title="#{bundle.ViewServicesCategoryImgTitle_img}"/>
                         <h:outputText value="#{bundle.ViewServicesCategoryImgLabel_alt}"/>
                         <h:outputText value="#{servicesCategoryImgController.selected.alt}" title="#{bundle.ViewServicesCategoryImgTitle_alt}"/>
                         <h:outputText value="#{bundle.ViewServicesCategoryImgLabel_createdAt}"/>
                         <h:outputText value="#{servicesCategoryImgController.selected.createdAt}" title="#{bundle.ViewServicesCategoryImgTitle_createdAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewServicesCategoryImgLabel_img}"/>
+                        <h:outputText value="#{servicesCategoryImgController.selected.img}" title="#{bundle.ViewServicesCategoryImgTitle_img}"/>
                         <h:outputText value="#{bundle.ViewServicesCategoryImgLabel_updatedAt}"/>
                         <h:outputText value="#{servicesCategoryImgController.selected.updatedAt}" title="#{bundle.ViewServicesCategoryImgTitle_updatedAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />

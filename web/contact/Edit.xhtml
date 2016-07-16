@@ -12,10 +12,6 @@
             <h:form id="ContactEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{contactController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditContactLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{contactController.selected.id}" title="#{bundle.EditContactTitle_id}" required="true" requiredMessage="#{bundle.EditContactRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.EditContactLabel_createdAt}" for="createdAt" />
-                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{contactController.selected.createdAt}" title="#{bundle.EditContactTitle_createdAt}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditContactLabel_email}" for="email" />
                         <p:inputText id="email" value="#{contactController.selected.email}" title="#{bundle.EditContactTitle_email}" />
                         <p:outputLabel value="#{bundle.EditContactLabel_message}" for="message" />

@@ -12,18 +12,16 @@
             <h:form id="BrandEmersonCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{brandEmersonController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateBrandEmersonLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{brandEmersonController.selected.id}" title="#{bundle.CreateBrandEmersonTitle_id}" required="true" requiredMessage="#{bundle.CreateBrandEmersonRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.CreateBrandEmersonLabel_title}" for="title" />
-                        <p:inputText id="title" value="#{brandEmersonController.selected.title}" title="#{bundle.CreateBrandEmersonTitle_title}" required="true" requiredMessage="#{bundle.CreateBrandEmersonRequiredMessage_title}"/>
-                        <p:outputLabel value="#{bundle.CreateBrandEmersonLabel_content}" for="content" />
-                        <p:inputTextarea rows="4" cols="30" id="content" value="#{brandEmersonController.selected.content}" title="#{bundle.CreateBrandEmersonTitle_content}" />
+                        <p:outputLabel value="#{bundle.CreateBrandEmersonLabel_contentFa}" for="contentFa" />
+                        <p:inputTextarea rows="4" cols="30" id="contentFa" value="#{brandEmersonController.selected.contentFa}" title="#{bundle.CreateBrandEmersonTitle_contentFa}" />
                         <p:outputLabel value="#{bundle.CreateBrandEmersonLabel_link}" for="link" />
                         <p:inputText id="link" value="#{brandEmersonController.selected.link}" title="#{bundle.CreateBrandEmersonTitle_link}" />
-                        <p:outputLabel value="#{bundle.CreateBrandEmersonLabel_createdAt}" for="createdAt" />
-                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{brandEmersonController.selected.createdAt}" title="#{bundle.EditBrandEmersonTitle_createdAt}" required="true" requiredMessage="#{bundle.EditBrandEmersonRequiredMessage_createdAt}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateBrandEmersonLabel_updatedAt}" for="updatedAt" />
-                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{brandEmersonController.selected.updatedAt}" title="#{bundle.EditBrandEmersonTitle_updatedAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateBrandEmersonLabel_titleFa}" for="titleFa" />
+                        <p:inputText id="titleFa" value="#{brandEmersonController.selected.titleFa}" title="#{bundle.CreateBrandEmersonTitle_titleFa}" />
+                        <p:outputLabel value="#{bundle.CreateBrandEmersonLabel_contentEn}" for="contentEn" />
+                        <p:inputTextarea rows="4" cols="30" id="contentEn" value="#{brandEmersonController.selected.contentEn}" title="#{bundle.CreateBrandEmersonTitle_contentEn}" />
+                        <p:outputLabel value="#{bundle.CreateBrandEmersonLabel_titleEn}" for="titleEn" />
+                        <p:inputText id="titleEn" value="#{brandEmersonController.selected.titleEn}" title="#{bundle.CreateBrandEmersonTitle_titleEn}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{brandEmersonController.create}" value="#{bundle.Save}" update="display,:BrandEmersonListForm:datalist,:growl" oncomplete="handleSubmit(args,'BrandEmersonCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="BrandEmersonCreateDialog.hide()"/>

@@ -14,20 +14,24 @@
                     <p:panelGrid columns="2" rendered="#{brandEmersonController.selected != null}">
                         <h:outputText value="#{bundle.ViewBrandEmersonLabel_id}"/>
                         <h:outputText value="#{brandEmersonController.selected.id}" title="#{bundle.ViewBrandEmersonTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewBrandEmersonLabel_title}"/>
-                        <h:outputText value="#{brandEmersonController.selected.title}" title="#{bundle.ViewBrandEmersonTitle_title}"/>
-                        <h:outputText value="#{bundle.ViewBrandEmersonLabel_content}"/>
-                        <h:outputText value="#{brandEmersonController.selected.content}" title="#{bundle.ViewBrandEmersonTitle_content}"/>
-                        <h:outputText value="#{bundle.ViewBrandEmersonLabel_link}"/>
-                        <h:outputText value="#{brandEmersonController.selected.link}" title="#{bundle.ViewBrandEmersonTitle_link}"/>
+                        <h:outputText value="#{bundle.ViewBrandEmersonLabel_contentFa}"/>
+                        <h:outputText value="#{brandEmersonController.selected.contentFa}" title="#{bundle.ViewBrandEmersonTitle_contentFa}"/>
                         <h:outputText value="#{bundle.ViewBrandEmersonLabel_createdAt}"/>
                         <h:outputText value="#{brandEmersonController.selected.createdAt}" title="#{bundle.ViewBrandEmersonTitle_createdAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewBrandEmersonLabel_link}"/>
+                        <h:outputText value="#{brandEmersonController.selected.link}" title="#{bundle.ViewBrandEmersonTitle_link}"/>
+                        <h:outputText value="#{bundle.ViewBrandEmersonLabel_titleFa}"/>
+                        <h:outputText value="#{brandEmersonController.selected.titleFa}" title="#{bundle.ViewBrandEmersonTitle_titleFa}"/>
                         <h:outputText value="#{bundle.ViewBrandEmersonLabel_updatedAt}"/>
                         <h:outputText value="#{brandEmersonController.selected.updatedAt}" title="#{bundle.ViewBrandEmersonTitle_updatedAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewBrandEmersonLabel_contentEn}"/>
+                        <h:outputText value="#{brandEmersonController.selected.contentEn}" title="#{bundle.ViewBrandEmersonTitle_contentEn}"/>
+                        <h:outputText value="#{bundle.ViewBrandEmersonLabel_titleEn}"/>
+                        <h:outputText value="#{brandEmersonController.selected.titleEn}" title="#{bundle.ViewBrandEmersonTitle_titleEn}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="BrandEmersonViewDialog.hide()"/>
                 </h:panelGroup>

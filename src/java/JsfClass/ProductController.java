@@ -1,9 +1,9 @@
-package JSF;
+package JsfClass;
 
-import Entity.ServicesCategory;
-import JSF.util.JsfUtil;
-import JSF.util.JsfUtil.PersistAction;
-import SessionBean.ServicesCategoryFacade;
+import Entity.Product;
+import JsfClass.util.JsfUtil;
+import JsfClass.util.JsfUtil.PersistAction;
+import SessionBean.ProductFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("servicesCategoryController")
+@Named("productController")
 @SessionScoped
-public class ServicesCategoryController implements Serializable {
+public class ProductController implements Serializable {
 
     @EJB
-    private SessionBean.ServicesCategoryFacade ejbFacade;
-    private List<ServicesCategory> items = null;
-    private ServicesCategory selected;
+    private SessionBean.ProductFacade ejbFacade;
+    private List<Product> items = null;
+    private Product selected;
 
-    public ServicesCategoryController() {
+    public ProductController() {
     }
 
-    public ServicesCategory getSelected() {
+    public Product getSelected() {
         return selected;
     }
 
-    public void setSelected(ServicesCategory selected) {
+    public void setSelected(Product selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class ServicesCategoryController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private ServicesCategoryFacade getFacade() {
+    private ProductFacade getFacade() {
         return ejbFacade;
     }
 
-    public ServicesCategory prepareCreate() {
-        selected = new ServicesCategory();
+    public Product prepareCreate() {
+        selected = new Product();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ServicesCategoryCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ProductCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ServicesCategoryUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ProductUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ServicesCategoryDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ProductDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<ServicesCategory> getItems() {
+    public List<Product> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,29 +109,29 @@ public class ServicesCategoryController implements Serializable {
         }
     }
 
-    public ServicesCategory getServicesCategory(java.lang.Integer id) {
+    public Product getProduct(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
-    public List<ServicesCategory> getItemsAvailableSelectMany() {
+    public List<Product> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<ServicesCategory> getItemsAvailableSelectOne() {
+    public List<Product> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = ServicesCategory.class)
-    public static class ServicesCategoryControllerConverter implements Converter {
+    @FacesConverter(forClass = Product.class)
+    public static class ProductControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ServicesCategoryController controller = (ServicesCategoryController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "servicesCategoryController");
-            return controller.getServicesCategory(getKey(value));
+            ProductController controller = (ProductController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "productController");
+            return controller.getProduct(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -151,11 +151,11 @@ public class ServicesCategoryController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof ServicesCategory) {
-                ServicesCategory o = (ServicesCategory) object;
+            if (object instanceof Product) {
+                Product o = (Product) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), ServicesCategory.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Product.class.getName()});
                 return null;
             }
         }

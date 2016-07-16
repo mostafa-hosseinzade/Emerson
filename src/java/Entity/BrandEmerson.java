@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,10 +18,11 @@ import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -37,10 +37,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "BrandEmerson.findAll", query = "SELECT b FROM BrandEmerson b"),
     @NamedQuery(name = "BrandEmerson.findById", query = "SELECT b FROM BrandEmerson b WHERE b.id = :id"),
-    @NamedQuery(name = "BrandEmerson.findByTitle", query = "SELECT b FROM BrandEmerson b WHERE b.title = :title"),
-    @NamedQuery(name = "BrandEmerson.findByLink", query = "SELECT b FROM BrandEmerson b WHERE b.link = :link"),
     @NamedQuery(name = "BrandEmerson.findByCreatedAt", query = "SELECT b FROM BrandEmerson b WHERE b.createdAt = :createdAt"),
-    @NamedQuery(name = "BrandEmerson.findByUpdatedAt", query = "SELECT b FROM BrandEmerson b WHERE b.updatedAt = :updatedAt")})
+    @NamedQuery(name = "BrandEmerson.findByLink", query = "SELECT b FROM BrandEmerson b WHERE b.link = :link"),
+    @NamedQuery(name = "BrandEmerson.findByTitleFa", query = "SELECT b FROM BrandEmerson b WHERE b.titleFa = :titleFa"),
+    @NamedQuery(name = "BrandEmerson.findByUpdatedAt", query = "SELECT b FROM BrandEmerson b WHERE b.updatedAt = :updatedAt"),
+    @NamedQuery(name = "BrandEmerson.findByTitleEn", query = "SELECT b FROM BrandEmerson b WHERE b.titleEn = :titleEn")})
 public class BrandEmerson implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,27 +50,30 @@ public class BrandEmerson implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 300)
-    @Column(name = "title")
-    private String title;
     @Lob
     @Size(max = 2147483647)
-    @Column(name = "content")
-    private String content;
-    @Size(max = 300)
-    @Column(name = "link")
-    private String link;
-    @Basic(optional = false)
-    @NotNull
+    @Column(name = "content_fa")
+    private String contentFa;
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+    @Size(max = 255)
+    @Column(name = "link")
+    private String link;
+    @Size(max = 255)
+    @Column(name = "title_fa")
+    private String titleFa;
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "brandId")
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "content_en")
+    private String contentEn;
+    @Size(max = 300)
+    @Column(name = "title_en")
+    private String titleEn;
+    @OneToMany(mappedBy = "brandId")
     private Collection<Product> productCollection;
 
     public BrandEmerson() {
@@ -77,12 +81,6 @@ public class BrandEmerson implements Serializable {
 
     public BrandEmerson(Integer id) {
         this.id = id;
-    }
-
-    public BrandEmerson(Integer id, String title, Date createdAt) {
-        this.id = id;
-        this.title = title;
-        this.createdAt = createdAt;
     }
 
     public Integer getId() {
@@ -93,28 +91,12 @@ public class BrandEmerson implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getContentFa() {
+        return contentFa;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
+    public void setContentFa(String contentFa) {
+        this.contentFa = contentFa;
     }
 
     public Date getCreatedAt() {
@@ -125,12 +107,44 @@ public class BrandEmerson implements Serializable {
         this.createdAt = createdAt;
     }
 
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getTitleFa() {
+        return titleFa;
+    }
+
+    public void setTitleFa(String titleFa) {
+        this.titleFa = titleFa;
+    }
+
     public Date getUpdatedAt() {
         return updatedAt;
     }
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getContentEn() {
+        return contentEn;
+    }
+
+    public void setContentEn(String contentEn) {
+        this.contentEn = contentEn;
+    }
+
+    public String getTitleEn() {
+        return titleEn;
+    }
+
+    public void setTitleEn(String titleEn) {
+        this.titleEn = titleEn;
     }
 
     @XmlTransient
@@ -167,4 +181,13 @@ public class BrandEmerson implements Serializable {
         return "Entity.BrandEmerson[ id=" + id + " ]";
     }
     
+    @PrePersist
+    public void PrePersisit(){
+        this.createdAt = new Date();
+    }
+    
+    @PreUpdate
+    public void PreUpdate(){
+        this.updatedAt = new Date();
+    }
 }

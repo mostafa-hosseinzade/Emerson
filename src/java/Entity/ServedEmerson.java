@@ -16,10 +16,11 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -33,10 +34,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "ServedEmerson.findAll", query = "SELECT s FROM ServedEmerson s"),
     @NamedQuery(name = "ServedEmerson.findById", query = "SELECT s FROM ServedEmerson s WHERE s.id = :id"),
-    @NamedQuery(name = "ServedEmerson.findByTitle", query = "SELECT s FROM ServedEmerson s WHERE s.title = :title"),
-    @NamedQuery(name = "ServedEmerson.findByImg", query = "SELECT s FROM ServedEmerson s WHERE s.img = :img"),
     @NamedQuery(name = "ServedEmerson.findByCreatedAt", query = "SELECT s FROM ServedEmerson s WHERE s.createdAt = :createdAt"),
-    @NamedQuery(name = "ServedEmerson.findByUpdatedAt", query = "SELECT s FROM ServedEmerson s WHERE s.updatedAt = :updatedAt")})
+    @NamedQuery(name = "ServedEmerson.findByImg", query = "SELECT s FROM ServedEmerson s WHERE s.img = :img"),
+    @NamedQuery(name = "ServedEmerson.findByTitleFa", query = "SELECT s FROM ServedEmerson s WHERE s.titleFa = :titleFa"),
+    @NamedQuery(name = "ServedEmerson.findByUpdatedAt", query = "SELECT s FROM ServedEmerson s WHERE s.updatedAt = :updatedAt"),
+    @NamedQuery(name = "ServedEmerson.findByTitleEn", query = "SELECT s FROM ServedEmerson s WHERE s.titleEn = :titleEn")})
 public class ServedEmerson implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,38 +47,35 @@ public class ServedEmerson implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 300)
-    @Column(name = "title")
-    private String title;
     @Lob
     @Size(max = 2147483647)
-    @Column(name = "content")
-    private String content;
-    @Size(max = 300)
-    @Column(name = "img")
-    private String img;
-    @Basic(optional = false)
-    @NotNull
+    @Column(name = "content_fa")
+    private String contentFa;
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+    @Size(max = 255)
+    @Column(name = "img")
+    private String img;
+    @Size(max = 255)
+    @Column(name = "title_fa")
+    private String titleFa;
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "content_en")
+    private String contentEn;
+    @Size(max = 300)
+    @Column(name = "title_en")
+    private String titleEn;
 
     public ServedEmerson() {
     }
 
     public ServedEmerson(Integer id) {
         this.id = id;
-    }
-
-    public ServedEmerson(Integer id, String title, Date createdAt) {
-        this.id = id;
-        this.title = title;
-        this.createdAt = createdAt;
     }
 
     public Integer getId() {
@@ -87,28 +86,12 @@ public class ServedEmerson implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getContentFa() {
+        return contentFa;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
+    public void setContentFa(String contentFa) {
+        this.contentFa = contentFa;
     }
 
     public Date getCreatedAt() {
@@ -119,12 +102,44 @@ public class ServedEmerson implements Serializable {
         this.createdAt = createdAt;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getTitleFa() {
+        return titleFa;
+    }
+
+    public void setTitleFa(String titleFa) {
+        this.titleFa = titleFa;
+    }
+
     public Date getUpdatedAt() {
         return updatedAt;
     }
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getContentEn() {
+        return contentEn;
+    }
+
+    public void setContentEn(String contentEn) {
+        this.contentEn = contentEn;
+    }
+
+    public String getTitleEn() {
+        return titleEn;
+    }
+
+    public void setTitleEn(String titleEn) {
+        this.titleEn = titleEn;
     }
 
     @Override
@@ -152,4 +167,13 @@ public class ServedEmerson implements Serializable {
         return "Entity.ServedEmerson[ id=" + id + " ]";
     }
     
+        @PrePersist
+    public void PrePersisit(){
+        this.createdAt = new Date();
+    }
+    
+    @PreUpdate
+    public void PreUpdate(){
+        this.updatedAt = new Date();
+    }
 }

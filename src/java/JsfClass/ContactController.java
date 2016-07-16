@@ -1,8 +1,8 @@
-package JSF;
+package JsfClass;
 
 import Entity.Contact;
-import JSF.util.JsfUtil;
-import JSF.util.JsfUtil.PersistAction;
+import JsfClass.util.JsfUtil;
+import JsfClass.util.JsfUtil.PersistAction;
 import SessionBean.ContactFacade;
 
 import java.io.Serializable;

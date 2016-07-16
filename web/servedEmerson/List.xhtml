@@ -35,21 +35,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListServedEmersonTitle_title}"/>
+                                <h:outputText value="#{bundle.ListServedEmersonTitle_contentFa}"/>
                             </f:facet>
-                            <h:outputText value="#{item.title}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListServedEmersonTitle_content}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.content}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListServedEmersonTitle_img}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.img}"/>
+                            <h:outputText value="#{item.contentFa}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -61,11 +49,35 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListServedEmersonTitle_img}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.img}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListServedEmersonTitle_titleFa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleFa}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListServedEmersonTitle_updatedAt}"/>
                             </f:facet>
                             <h:outputText value="#{item.updatedAt}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                             </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListServedEmersonTitle_contentEn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contentEn}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListServedEmersonTitle_titleEn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleEn}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{servedEmersonController.prepareCreate}" update=":ServedEmersonCreateForm" oncomplete="PF('ServedEmersonCreateDialog').show()"/>

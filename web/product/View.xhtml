@@ -14,20 +14,24 @@
                     <p:panelGrid columns="2" rendered="#{productController.selected != null}">
                         <h:outputText value="#{bundle.ViewProductLabel_id}"/>
                         <h:outputText value="#{productController.selected.id}" title="#{bundle.ViewProductTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewProductLabel_title}"/>
-                        <h:outputText value="#{productController.selected.title}" title="#{bundle.ViewProductTitle_title}"/>
-                        <h:outputText value="#{bundle.ViewProductLabel_content}"/>
-                        <h:outputText value="#{productController.selected.content}" title="#{bundle.ViewProductTitle_content}"/>
+                        <h:outputText value="#{bundle.ViewProductLabel_contentEn}"/>
+                        <h:outputText value="#{productController.selected.contentEn}" title="#{bundle.ViewProductTitle_contentEn}"/>
                         <h:outputText value="#{bundle.ViewProductLabel_createdAt}"/>
                         <h:outputText value="#{productController.selected.createdAt}" title="#{bundle.ViewProductTitle_createdAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewProductLabel_link}"/>
+                        <h:outputText value="#{productController.selected.link}" title="#{bundle.ViewProductTitle_link}"/>
+                        <h:outputText value="#{bundle.ViewProductLabel_titleEn}"/>
+                        <h:outputText value="#{productController.selected.titleEn}" title="#{bundle.ViewProductTitle_titleEn}"/>
                         <h:outputText value="#{bundle.ViewProductLabel_updatedAt}"/>
                         <h:outputText value="#{productController.selected.updatedAt}" title="#{bundle.ViewProductTitle_updatedAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewProductLabel_link}"/>
-                        <h:outputText value="#{productController.selected.link}" title="#{bundle.ViewProductTitle_link}"/>
+                        <h:outputText value="#{bundle.ViewProductLabel_contentFa}"/>
+                        <h:outputText value="#{productController.selected.contentFa}" title="#{bundle.ViewProductTitle_contentFa}"/>
+                        <h:outputText value="#{bundle.ViewProductLabel_titleFa}"/>
+                        <h:outputText value="#{productController.selected.titleFa}" title="#{bundle.ViewProductTitle_titleFa}"/>
                         <h:outputText value="#{bundle.ViewProductLabel_brandId}"/>
                         <h:outputText value="#{productController.selected.brandId}" title="#{bundle.ViewProductTitle_brandId}"/>
                     </p:panelGrid>

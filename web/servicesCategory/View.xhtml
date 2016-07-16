@@ -14,20 +14,24 @@
                     <p:panelGrid columns="2" rendered="#{servicesCategoryController.selected != null}">
                         <h:outputText value="#{bundle.ViewServicesCategoryLabel_id}"/>
                         <h:outputText value="#{servicesCategoryController.selected.id}" title="#{bundle.ViewServicesCategoryTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewServicesCategoryLabel_title}"/>
-                        <h:outputText value="#{servicesCategoryController.selected.title}" title="#{bundle.ViewServicesCategoryTitle_title}"/>
-                        <h:outputText value="#{bundle.ViewServicesCategoryLabel_describtion}"/>
-                        <h:outputText value="#{servicesCategoryController.selected.describtion}" title="#{bundle.ViewServicesCategoryTitle_describtion}"/>
-                        <h:outputText value="#{bundle.ViewServicesCategoryLabel_slug}"/>
-                        <h:outputText value="#{servicesCategoryController.selected.slug}" title="#{bundle.ViewServicesCategoryTitle_slug}"/>
                         <h:outputText value="#{bundle.ViewServicesCategoryLabel_createdAt}"/>
                         <h:outputText value="#{servicesCategoryController.selected.createdAt}" title="#{bundle.ViewServicesCategoryTitle_createdAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewServicesCategoryLabel_describtionFa}"/>
+                        <h:outputText value="#{servicesCategoryController.selected.describtionFa}" title="#{bundle.ViewServicesCategoryTitle_describtionFa}"/>
+                        <h:outputText value="#{bundle.ViewServicesCategoryLabel_slug}"/>
+                        <h:outputText value="#{servicesCategoryController.selected.slug}" title="#{bundle.ViewServicesCategoryTitle_slug}"/>
+                        <h:outputText value="#{bundle.ViewServicesCategoryLabel_titleFa}"/>
+                        <h:outputText value="#{servicesCategoryController.selected.titleFa}" title="#{bundle.ViewServicesCategoryTitle_titleFa}"/>
                         <h:outputText value="#{bundle.ViewServicesCategoryLabel_updatedAt}"/>
                         <h:outputText value="#{servicesCategoryController.selected.updatedAt}" title="#{bundle.ViewServicesCategoryTitle_updatedAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewServicesCategoryLabel_decribtionEn}"/>
+                        <h:outputText value="#{servicesCategoryController.selected.decribtionEn}" title="#{bundle.ViewServicesCategoryTitle_decribtionEn}"/>
+                        <h:outputText value="#{bundle.ViewServicesCategoryLabel_titleEn}"/>
+                        <h:outputText value="#{servicesCategoryController.selected.titleEn}" title="#{bundle.ViewServicesCategoryTitle_titleEn}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ServicesCategoryViewDialog.hide()"/>
                 </h:panelGroup>

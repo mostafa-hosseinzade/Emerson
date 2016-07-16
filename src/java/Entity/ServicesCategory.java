@@ -17,10 +17,11 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -35,11 +36,13 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "ServicesCategory.findAll", query = "SELECT s FROM ServicesCategory s"),
     @NamedQuery(name = "ServicesCategory.findById", query = "SELECT s FROM ServicesCategory s WHERE s.id = :id"),
-    @NamedQuery(name = "ServicesCategory.findByTitle", query = "SELECT s FROM ServicesCategory s WHERE s.title = :title"),
-    @NamedQuery(name = "ServicesCategory.findByDescribtion", query = "SELECT s FROM ServicesCategory s WHERE s.describtion = :describtion"),
-    @NamedQuery(name = "ServicesCategory.findBySlug", query = "SELECT s FROM ServicesCategory s WHERE s.slug = :slug"),
     @NamedQuery(name = "ServicesCategory.findByCreatedAt", query = "SELECT s FROM ServicesCategory s WHERE s.createdAt = :createdAt"),
-    @NamedQuery(name = "ServicesCategory.findByUpdatedAt", query = "SELECT s FROM ServicesCategory s WHERE s.updatedAt = :updatedAt")})
+    @NamedQuery(name = "ServicesCategory.findByDescribtionFa", query = "SELECT s FROM ServicesCategory s WHERE s.describtionFa = :describtionFa"),
+    @NamedQuery(name = "ServicesCategory.findBySlug", query = "SELECT s FROM ServicesCategory s WHERE s.slug = :slug"),
+    @NamedQuery(name = "ServicesCategory.findByTitleFa", query = "SELECT s FROM ServicesCategory s WHERE s.titleFa = :titleFa"),
+    @NamedQuery(name = "ServicesCategory.findByUpdatedAt", query = "SELECT s FROM ServicesCategory s WHERE s.updatedAt = :updatedAt"),
+    @NamedQuery(name = "ServicesCategory.findByDecribtionEn", query = "SELECT s FROM ServicesCategory s WHERE s.decribtionEn = :decribtionEn"),
+    @NamedQuery(name = "ServicesCategory.findByTitleEn", query = "SELECT s FROM ServicesCategory s WHERE s.titleEn = :titleEn")})
 public class ServicesCategory implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,25 +51,27 @@ public class ServicesCategory implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 300)
-    @Column(name = "title")
-    private String title;
-    @Size(max = 3000)
-    @Column(name = "describtion")
-    private String describtion;
-    @Size(max = 300)
-    @Column(name = "slug")
-    private String slug;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+    @Size(max = 3000)
+    @Column(name = "describtion_fa")
+    private String describtionFa;
+    @Size(max = 255)
+    @Column(name = "slug")
+    private String slug;
+    @Size(max = 255)
+    @Column(name = "title_fa")
+    private String titleFa;
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+    @Size(max = 3000)
+    @Column(name = "decribtion_en")
+    private String decribtionEn;
+    @Size(max = 300)
+    @Column(name = "title_en")
+    private String titleEn;
     @OneToMany(mappedBy = "servicesCategoryId")
     private Collection<ServicesCategoryImg> servicesCategoryImgCollection;
     @OneToMany(mappedBy = "ctgId")
@@ -79,42 +84,12 @@ public class ServicesCategory implements Serializable {
         this.id = id;
     }
 
-    public ServicesCategory(Integer id, String title, Date createdAt) {
-        this.id = id;
-        this.title = title;
-        this.createdAt = createdAt;
-    }
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescribtion() {
-        return describtion;
-    }
-
-    public void setDescribtion(String describtion) {
-        this.describtion = describtion;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
     }
 
     public Date getCreatedAt() {
@@ -125,12 +100,52 @@ public class ServicesCategory implements Serializable {
         this.createdAt = createdAt;
     }
 
+    public String getDescribtionFa() {
+        return describtionFa;
+    }
+
+    public void setDescribtionFa(String describtionFa) {
+        this.describtionFa = describtionFa;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public String getTitleFa() {
+        return titleFa;
+    }
+
+    public void setTitleFa(String titleFa) {
+        this.titleFa = titleFa;
+    }
+
     public Date getUpdatedAt() {
         return updatedAt;
     }
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getDecribtionEn() {
+        return decribtionEn;
+    }
+
+    public void setDecribtionEn(String decribtionEn) {
+        this.decribtionEn = decribtionEn;
+    }
+
+    public String getTitleEn() {
+        return titleEn;
+    }
+
+    public void setTitleEn(String titleEn) {
+        this.titleEn = titleEn;
     }
 
     @XmlTransient
@@ -176,4 +191,13 @@ public class ServicesCategory implements Serializable {
         return "Entity.ServicesCategory[ id=" + id + " ]";
     }
     
+    @PrePersist
+    public void PrePersisit(){
+        this.createdAt = new Date();
+    }
+    
+    @PreUpdate
+    public void PreUpdate(){
+        this.updatedAt = new Date();
+    }    
 }

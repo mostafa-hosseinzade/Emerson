@@ -12,18 +12,16 @@
             <h:form id="ServedEmersonEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{servedEmersonController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditServedEmersonLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{servedEmersonController.selected.id}" title="#{bundle.EditServedEmersonTitle_id}" required="true" requiredMessage="#{bundle.EditServedEmersonRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.EditServedEmersonLabel_title}" for="title" />
-                        <p:inputText id="title" value="#{servedEmersonController.selected.title}" title="#{bundle.EditServedEmersonTitle_title}" required="true" requiredMessage="#{bundle.EditServedEmersonRequiredMessage_title}"/>
-                        <p:outputLabel value="#{bundle.EditServedEmersonLabel_content}" for="content" />
-                        <p:inputTextarea rows="4" cols="30" id="content" value="#{servedEmersonController.selected.content}" title="#{bundle.EditServedEmersonTitle_content}" />
+                        <p:outputLabel value="#{bundle.EditServedEmersonLabel_contentFa}" for="contentFa" />
+                        <p:inputTextarea rows="4" cols="30" id="contentFa" value="#{servedEmersonController.selected.contentFa}" title="#{bundle.EditServedEmersonTitle_contentFa}" />
                         <p:outputLabel value="#{bundle.EditServedEmersonLabel_img}" for="img" />
                         <p:inputText id="img" value="#{servedEmersonController.selected.img}" title="#{bundle.EditServedEmersonTitle_img}" />
-                        <p:outputLabel value="#{bundle.EditServedEmersonLabel_createdAt}" for="createdAt" />
-                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{servedEmersonController.selected.createdAt}" title="#{bundle.EditServedEmersonTitle_createdAt}" required="true" requiredMessage="#{bundle.EditServedEmersonRequiredMessage_createdAt}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditServedEmersonLabel_updatedAt}" for="updatedAt" />
-                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{servedEmersonController.selected.updatedAt}" title="#{bundle.EditServedEmersonTitle_updatedAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditServedEmersonLabel_titleFa}" for="titleFa" />
+                        <p:inputText id="titleFa" value="#{servedEmersonController.selected.titleFa}" title="#{bundle.EditServedEmersonTitle_titleFa}" />
+                        <p:outputLabel value="#{bundle.EditServedEmersonLabel_contentEn}" for="contentEn" />
+                        <p:inputTextarea rows="4" cols="30" id="contentEn" value="#{servedEmersonController.selected.contentEn}" title="#{bundle.EditServedEmersonTitle_contentEn}" />
+                        <p:outputLabel value="#{bundle.EditServedEmersonLabel_titleEn}" for="titleEn" />
+                        <p:inputText id="titleEn" value="#{servedEmersonController.selected.titleEn}" title="#{bundle.EditServedEmersonTitle_titleEn}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{servedEmersonController.update}" value="#{bundle.Save}" update="display,:ServedEmersonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ServedEmersonEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ServedEmersonEditDialog.hide()"/>

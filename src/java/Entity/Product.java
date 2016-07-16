@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,10 +20,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -39,10 +39,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
     @NamedQuery(name = "Product.findById", query = "SELECT p FROM Product p WHERE p.id = :id"),
-    @NamedQuery(name = "Product.findByTitle", query = "SELECT p FROM Product p WHERE p.title = :title"),
     @NamedQuery(name = "Product.findByCreatedAt", query = "SELECT p FROM Product p WHERE p.createdAt = :createdAt"),
+    @NamedQuery(name = "Product.findByLink", query = "SELECT p FROM Product p WHERE p.link = :link"),
+    @NamedQuery(name = "Product.findByTitleEn", query = "SELECT p FROM Product p WHERE p.titleEn = :titleEn"),
     @NamedQuery(name = "Product.findByUpdatedAt", query = "SELECT p FROM Product p WHERE p.updatedAt = :updatedAt"),
-    @NamedQuery(name = "Product.findByLink", query = "SELECT p FROM Product p WHERE p.link = :link")})
+    @NamedQuery(name = "Product.findByTitleFa", query = "SELECT p FROM Product p WHERE p.titleFa = :titleFa")})
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,30 +52,33 @@ public class Product implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 300)
-    @Column(name = "title")
-    private String title;
     @Lob
     @Size(max = 2147483647)
-    @Column(name = "content")
-    private String content;
-    @Basic(optional = false)
-    @NotNull
+    @Column(name = "content_en")
+    private String contentEn;
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
-    @Column(name = "updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
     @Size(max = 255)
     @Column(name = "link")
     private String link;
+    @Size(max = 255)
+    @Column(name = "title_en")
+    private String titleEn;
+    @Column(name = "updated_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedAt;
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "content_fa")
+    private String contentFa;
+    @Size(max = 300)
+    @Column(name = "title_fa")
+    private String titleFa;
     @JoinColumn(name = "brand_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private BrandEmerson brandId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+    @OneToMany(mappedBy = "productId")
     private Collection<ProductImg> productImgCollection;
 
     public Product() {
@@ -82,12 +86,6 @@ public class Product implements Serializable {
 
     public Product(Integer id) {
         this.id = id;
-    }
-
-    public Product(Integer id, String title, Date createdAt) {
-        this.id = id;
-        this.title = title;
-        this.createdAt = createdAt;
     }
 
     public Integer getId() {
@@ -98,20 +96,12 @@ public class Product implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getContentEn() {
+        return contentEn;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+    public void setContentEn(String contentEn) {
+        this.contentEn = contentEn;
     }
 
     public Date getCreatedAt() {
@@ -122,6 +112,22 @@ public class Product implements Serializable {
         this.createdAt = createdAt;
     }
 
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getTitleEn() {
+        return titleEn;
+    }
+
+    public void setTitleEn(String titleEn) {
+        this.titleEn = titleEn;
+    }
+
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -130,12 +136,20 @@ public class Product implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public String getLink() {
-        return link;
+    public String getContentFa() {
+        return contentFa;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setContentFa(String contentFa) {
+        this.contentFa = contentFa;
+    }
+
+    public String getTitleFa() {
+        return titleFa;
+    }
+
+    public void setTitleFa(String titleFa) {
+        this.titleFa = titleFa;
     }
 
     public BrandEmerson getBrandId() {
@@ -179,5 +193,14 @@ public class Product implements Serializable {
     public String toString() {
         return "Entity.Product[ id=" + id + " ]";
     }
-    
+
+    @PrePersist
+    public void PrePersisit() {
+        this.createdAt = new Date();
+    }
+
+    @PreUpdate
+    public void PreUpdate() {
+        this.updatedAt = new Date();
+    }
 }

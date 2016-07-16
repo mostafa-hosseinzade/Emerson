@@ -1,9 +1,9 @@
-package JSF;
+package JsfClass;
 
-import Entity.Page;
-import JSF.util.JsfUtil;
-import JSF.util.JsfUtil.PersistAction;
-import SessionBean.PageFacade;
+import Entity.NewsCategory;
+import JsfClass.util.JsfUtil;
+import JsfClass.util.JsfUtil.PersistAction;
+import SessionBean.NewsCategoryFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("pageController")
+@Named("newsCategoryController")
 @SessionScoped
-public class PageController implements Serializable {
+public class NewsCategoryController implements Serializable {
 
     @EJB
-    private SessionBean.PageFacade ejbFacade;
-    private List<Page> items = null;
-    private Page selected;
+    private SessionBean.NewsCategoryFacade ejbFacade;
+    private List<NewsCategory> items = null;
+    private NewsCategory selected;
 
-    public PageController() {
+    public NewsCategoryController() {
     }
 
-    public Page getSelected() {
+    public NewsCategory getSelected() {
         return selected;
     }
 
-    public void setSelected(Page selected) {
+    public void setSelected(NewsCategory selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class PageController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private PageFacade getFacade() {
+    private NewsCategoryFacade getFacade() {
         return ejbFacade;
     }
 
-    public Page prepareCreate() {
-        selected = new Page();
+    public NewsCategory prepareCreate() {
+        selected = new NewsCategory();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("PageCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("NewsCategoryCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("PageUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("NewsCategoryUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("PageDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("NewsCategoryDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Page> getItems() {
+    public List<NewsCategory> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,29 +109,29 @@ public class PageController implements Serializable {
         }
     }
 
-    public Page getPage(java.lang.Integer id) {
+    public NewsCategory getNewsCategory(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
-    public List<Page> getItemsAvailableSelectMany() {
+    public List<NewsCategory> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Page> getItemsAvailableSelectOne() {
+    public List<NewsCategory> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Page.class)
-    public static class PageControllerConverter implements Converter {
+    @FacesConverter(forClass = NewsCategory.class)
+    public static class NewsCategoryControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            PageController controller = (PageController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "pageController");
-            return controller.getPage(getKey(value));
+            NewsCategoryController controller = (NewsCategoryController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "newsCategoryController");
+            return controller.getNewsCategory(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -151,11 +151,11 @@ public class PageController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Page) {
-                Page o = (Page) object;
+            if (object instanceof NewsCategory) {
+                NewsCategory o = (NewsCategory) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Page.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), NewsCategory.class.getName()});
                 return null;
             }
         }

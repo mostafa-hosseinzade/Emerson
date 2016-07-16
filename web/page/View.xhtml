@@ -14,26 +14,30 @@
                     <p:panelGrid columns="2" rendered="#{pageController.selected != null}">
                         <h:outputText value="#{bundle.ViewPageLabel_id}"/>
                         <h:outputText value="#{pageController.selected.id}" title="#{bundle.ViewPageTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewPageLabel_title}"/>
-                        <h:outputText value="#{pageController.selected.title}" title="#{bundle.ViewPageTitle_title}"/>
-                        <h:outputText value="#{bundle.ViewPageLabel_content}"/>
-                        <h:outputText value="#{pageController.selected.content}" title="#{bundle.ViewPageTitle_content}"/>
-                        <h:outputText value="#{bundle.ViewPageLabel_img}"/>
-                        <h:outputText value="#{pageController.selected.img}" title="#{bundle.ViewPageTitle_img}"/>
-                        <h:outputText value="#{bundle.ViewPageLabel_visit}"/>
-                        <h:outputText value="#{pageController.selected.visit}" title="#{bundle.ViewPageTitle_visit}"/>
-                        <h:outputText value="#{bundle.ViewPageLabel_meta}"/>
-                        <h:outputText value="#{pageController.selected.meta}" title="#{bundle.ViewPageTitle_meta}"/>
-                        <h:outputText value="#{bundle.ViewPageLabel_slug}"/>
-                        <h:outputText value="#{pageController.selected.slug}" title="#{bundle.ViewPageTitle_slug}"/>
+                        <h:outputText value="#{bundle.ViewPageLabel_contentFa}"/>
+                        <h:outputText value="#{pageController.selected.contentFa}" title="#{bundle.ViewPageTitle_contentFa}"/>
                         <h:outputText value="#{bundle.ViewPageLabel_craetedAt}"/>
                         <h:outputText value="#{pageController.selected.craetedAt}" title="#{bundle.ViewPageTitle_craetedAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewPageLabel_img}"/>
+                        <h:outputText value="#{pageController.selected.img}" title="#{bundle.ViewPageTitle_img}"/>
+                        <h:outputText value="#{bundle.ViewPageLabel_meta}"/>
+                        <h:outputText value="#{pageController.selected.meta}" title="#{bundle.ViewPageTitle_meta}"/>
+                        <h:outputText value="#{bundle.ViewPageLabel_slug}"/>
+                        <h:outputText value="#{pageController.selected.slug}" title="#{bundle.ViewPageTitle_slug}"/>
+                        <h:outputText value="#{bundle.ViewPageLabel_titleFa}"/>
+                        <h:outputText value="#{pageController.selected.titleFa}" title="#{bundle.ViewPageTitle_titleFa}"/>
                         <h:outputText value="#{bundle.ViewPageLabel_updatedAt}"/>
                         <h:outputText value="#{pageController.selected.updatedAt}" title="#{bundle.ViewPageTitle_updatedAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewPageLabel_visit}"/>
+                        <h:outputText value="#{pageController.selected.visit}" title="#{bundle.ViewPageTitle_visit}"/>
+                        <h:outputText value="#{bundle.ViewPageLabel_contentEn}"/>
+                        <h:outputText value="#{pageController.selected.contentEn}" title="#{bundle.ViewPageTitle_contentEn}"/>
+                        <h:outputText value="#{bundle.ViewPageLabel_titleEn}"/>
+                        <h:outputText value="#{pageController.selected.titleEn}" title="#{bundle.ViewPageTitle_titleEn}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="PageViewDialog.hide()"/>
                 </h:panelGroup>

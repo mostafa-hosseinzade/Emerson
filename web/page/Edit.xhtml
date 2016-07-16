@@ -12,24 +12,22 @@
             <h:form id="PageEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{pageController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditPageLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{pageController.selected.id}" title="#{bundle.EditPageTitle_id}" required="true" requiredMessage="#{bundle.EditPageRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.EditPageLabel_title}" for="title" />
-                        <p:inputText id="title" value="#{pageController.selected.title}" title="#{bundle.EditPageTitle_title}" required="true" requiredMessage="#{bundle.EditPageRequiredMessage_title}"/>
-                        <p:outputLabel value="#{bundle.EditPageLabel_content}" for="content" />
-                        <p:inputTextarea rows="4" cols="30" id="content" value="#{pageController.selected.content}" title="#{bundle.EditPageTitle_content}" />
+                        <p:outputLabel value="#{bundle.EditPageLabel_contentFa}" for="contentFa" />
+                        <p:inputTextarea rows="4" cols="30" id="contentFa" value="#{pageController.selected.contentFa}" title="#{bundle.EditPageTitle_contentFa}" />
                         <p:outputLabel value="#{bundle.EditPageLabel_img}" for="img" />
-                        <p:inputText id="img" value="#{pageController.selected.img}" title="#{bundle.EditPageTitle_img}" required="true" requiredMessage="#{bundle.EditPageRequiredMessage_img}"/>
-                        <p:outputLabel value="#{bundle.EditPageLabel_visit}" for="visit" />
-                        <p:inputText id="visit" value="#{pageController.selected.visit}" title="#{bundle.EditPageTitle_visit}" required="true" requiredMessage="#{bundle.EditPageRequiredMessage_visit}"/>
+                        <p:inputText id="img" value="#{pageController.selected.img}" title="#{bundle.EditPageTitle_img}" />
                         <p:outputLabel value="#{bundle.EditPageLabel_meta}" for="meta" />
                         <p:inputText id="meta" value="#{pageController.selected.meta}" title="#{bundle.EditPageTitle_meta}" />
                         <p:outputLabel value="#{bundle.EditPageLabel_slug}" for="slug" />
                         <p:inputText id="slug" value="#{pageController.selected.slug}" title="#{bundle.EditPageTitle_slug}" />
-                        <p:outputLabel value="#{bundle.EditPageLabel_craetedAt}" for="craetedAt" />
-                        <p:calendar id="craetedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{pageController.selected.craetedAt}" title="#{bundle.EditPageTitle_craetedAt}" required="true" requiredMessage="#{bundle.EditPageRequiredMessage_craetedAt}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditPageLabel_updatedAt}" for="updatedAt" />
-                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{pageController.selected.updatedAt}" title="#{bundle.EditPageTitle_updatedAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPageLabel_titleFa}" for="titleFa" />
+                        <p:inputText id="titleFa" value="#{pageController.selected.titleFa}" title="#{bundle.EditPageTitle_titleFa}" />
+                        <p:outputLabel value="#{bundle.EditPageLabel_visit}" for="visit" />
+                        <p:inputText id="visit" value="#{pageController.selected.visit}" title="#{bundle.EditPageTitle_visit}" />
+                        <p:outputLabel value="#{bundle.EditPageLabel_contentEn}" for="contentEn" />
+                        <p:inputTextarea rows="4" cols="30" id="contentEn" value="#{pageController.selected.contentEn}" title="#{bundle.EditPageTitle_contentEn}" />
+                        <p:outputLabel value="#{bundle.EditPageLabel_titleEn}" for="titleEn" />
+                        <p:inputText id="titleEn" value="#{pageController.selected.titleEn}" title="#{bundle.EditPageTitle_titleEn}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{pageController.update}" value="#{bundle.Save}" update="display,:PageListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PageEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="PageEditDialog.hide()"/>

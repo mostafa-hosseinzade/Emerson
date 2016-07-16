@@ -12,18 +12,16 @@
             <h:form id="ServicesCategoryCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{servicesCategoryController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateServicesCategoryLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{servicesCategoryController.selected.id}" title="#{bundle.CreateServicesCategoryTitle_id}" required="true" requiredMessage="#{bundle.CreateServicesCategoryRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.CreateServicesCategoryLabel_title}" for="title" />
-                        <p:inputText id="title" value="#{servicesCategoryController.selected.title}" title="#{bundle.CreateServicesCategoryTitle_title}" required="true" requiredMessage="#{bundle.CreateServicesCategoryRequiredMessage_title}"/>
-                        <p:outputLabel value="#{bundle.CreateServicesCategoryLabel_describtion}" for="describtion" />
-                        <p:inputText id="describtion" value="#{servicesCategoryController.selected.describtion}" title="#{bundle.CreateServicesCategoryTitle_describtion}" />
+                        <p:outputLabel value="#{bundle.CreateServicesCategoryLabel_createdAt}" for="createdAt" />
+                        <p:inputText id="describtionFa" value="#{servicesCategoryController.selected.describtionFa}" title="#{bundle.CreateServicesCategoryTitle_describtionFa}" />
                         <p:outputLabel value="#{bundle.CreateServicesCategoryLabel_slug}" for="slug" />
                         <p:inputText id="slug" value="#{servicesCategoryController.selected.slug}" title="#{bundle.CreateServicesCategoryTitle_slug}" />
-                        <p:outputLabel value="#{bundle.CreateServicesCategoryLabel_createdAt}" for="createdAt" />
-                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{servicesCategoryController.selected.createdAt}" title="#{bundle.EditServicesCategoryTitle_createdAt}" required="true" requiredMessage="#{bundle.EditServicesCategoryRequiredMessage_createdAt}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateServicesCategoryLabel_updatedAt}" for="updatedAt" />
-                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{servicesCategoryController.selected.updatedAt}" title="#{bundle.EditServicesCategoryTitle_updatedAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateServicesCategoryLabel_titleFa}" for="titleFa" />
+                        <p:inputText id="titleFa" value="#{servicesCategoryController.selected.titleFa}" title="#{bundle.CreateServicesCategoryTitle_titleFa}" />
+                        <p:outputLabel value="#{bundle.CreateServicesCategoryLabel_decribtionEn}" for="decribtionEn" />
+                        <p:inputText id="decribtionEn" value="#{servicesCategoryController.selected.decribtionEn}" title="#{bundle.CreateServicesCategoryTitle_decribtionEn}" />
+                        <p:outputLabel value="#{bundle.CreateServicesCategoryLabel_titleEn}" for="titleEn" />
+                        <p:inputText id="titleEn" value="#{servicesCategoryController.selected.titleEn}" title="#{bundle.CreateServicesCategoryTitle_titleEn}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{servicesCategoryController.create}" value="#{bundle.Save}" update="display,:ServicesCategoryListForm:datalist,:growl" oncomplete="handleSubmit(args,'ServicesCategoryCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ServicesCategoryCreateDialog.hide()"/>

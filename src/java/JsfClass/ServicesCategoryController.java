@@ -1,9 +1,9 @@
-package JSF;
+package JsfClass;
 
-import Entity.ServicesCategoryImg;
-import JSF.util.JsfUtil;
-import JSF.util.JsfUtil.PersistAction;
-import SessionBean.ServicesCategoryImgFacade;
+import Entity.ServicesCategory;
+import JsfClass.util.JsfUtil;
+import JsfClass.util.JsfUtil.PersistAction;
+import SessionBean.ServicesCategoryFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("servicesCategoryImgController")
+@Named("servicesCategoryController")
 @SessionScoped
-public class ServicesCategoryImgController implements Serializable {
+public class ServicesCategoryController implements Serializable {
 
     @EJB
-    private SessionBean.ServicesCategoryImgFacade ejbFacade;
-    private List<ServicesCategoryImg> items = null;
-    private ServicesCategoryImg selected;
+    private SessionBean.ServicesCategoryFacade ejbFacade;
+    private List<ServicesCategory> items = null;
+    private ServicesCategory selected;
 
-    public ServicesCategoryImgController() {
+    public ServicesCategoryController() {
     }
 
-    public ServicesCategoryImg getSelected() {
+    public ServicesCategory getSelected() {
         return selected;
     }
 
-    public void setSelected(ServicesCategoryImg selected) {
+    public void setSelected(ServicesCategory selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class ServicesCategoryImgController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private ServicesCategoryImgFacade getFacade() {
+    private ServicesCategoryFacade getFacade() {
         return ejbFacade;
     }
 
-    public ServicesCategoryImg prepareCreate() {
-        selected = new ServicesCategoryImg();
+    public ServicesCategory prepareCreate() {
+        selected = new ServicesCategory();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ServicesCategoryImgCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ServicesCategoryCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ServicesCategoryImgUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ServicesCategoryUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ServicesCategoryImgDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ServicesCategoryDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<ServicesCategoryImg> getItems() {
+    public List<ServicesCategory> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,29 +109,29 @@ public class ServicesCategoryImgController implements Serializable {
         }
     }
 
-    public ServicesCategoryImg getServicesCategoryImg(java.lang.Integer id) {
+    public ServicesCategory getServicesCategory(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
-    public List<ServicesCategoryImg> getItemsAvailableSelectMany() {
+    public List<ServicesCategory> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<ServicesCategoryImg> getItemsAvailableSelectOne() {
+    public List<ServicesCategory> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = ServicesCategoryImg.class)
-    public static class ServicesCategoryImgControllerConverter implements Converter {
+    @FacesConverter(forClass = ServicesCategory.class)
+    public static class ServicesCategoryControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ServicesCategoryImgController controller = (ServicesCategoryImgController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "servicesCategoryImgController");
-            return controller.getServicesCategoryImg(getKey(value));
+            ServicesCategoryController controller = (ServicesCategoryController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "servicesCategoryController");
+            return controller.getServicesCategory(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -151,11 +151,11 @@ public class ServicesCategoryImgController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof ServicesCategoryImg) {
-                ServicesCategoryImg o = (ServicesCategoryImg) object;
+            if (object instanceof ServicesCategory) {
+                ServicesCategory o = (ServicesCategory) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), ServicesCategoryImg.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), ServicesCategory.class.getName()});
                 return null;
             }
         }

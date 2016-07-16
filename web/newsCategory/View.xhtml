@@ -14,20 +14,24 @@
                     <p:panelGrid columns="2" rendered="#{newsCategoryController.selected != null}">
                         <h:outputText value="#{bundle.ViewNewsCategoryLabel_id}"/>
                         <h:outputText value="#{newsCategoryController.selected.id}" title="#{bundle.ViewNewsCategoryTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewNewsCategoryLabel_title}"/>
-                        <h:outputText value="#{newsCategoryController.selected.title}" title="#{bundle.ViewNewsCategoryTitle_title}"/>
-                        <h:outputText value="#{bundle.ViewNewsCategoryLabel_describtion}"/>
-                        <h:outputText value="#{newsCategoryController.selected.describtion}" title="#{bundle.ViewNewsCategoryTitle_describtion}"/>
                         <h:outputText value="#{bundle.ViewNewsCategoryLabel_createdAt}"/>
                         <h:outputText value="#{newsCategoryController.selected.createdAt}" title="#{bundle.ViewNewsCategoryTitle_createdAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewNewsCategoryLabel_describtionFa}"/>
+                        <h:outputText value="#{newsCategoryController.selected.describtionFa}" title="#{bundle.ViewNewsCategoryTitle_describtionFa}"/>
+                        <h:outputText value="#{bundle.ViewNewsCategoryLabel_img}"/>
+                        <h:outputText value="#{newsCategoryController.selected.img}" title="#{bundle.ViewNewsCategoryTitle_img}"/>
+                        <h:outputText value="#{bundle.ViewNewsCategoryLabel_titleFa}"/>
+                        <h:outputText value="#{newsCategoryController.selected.titleFa}" title="#{bundle.ViewNewsCategoryTitle_titleFa}"/>
                         <h:outputText value="#{bundle.ViewNewsCategoryLabel_updatedAt}"/>
                         <h:outputText value="#{newsCategoryController.selected.updatedAt}" title="#{bundle.ViewNewsCategoryTitle_updatedAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewNewsCategoryLabel_img}"/>
-                        <h:outputText value="#{newsCategoryController.selected.img}" title="#{bundle.ViewNewsCategoryTitle_img}"/>
+                        <h:outputText value="#{bundle.ViewNewsCategoryLabel_describtionEn}"/>
+                        <h:outputText value="#{newsCategoryController.selected.describtionEn}" title="#{bundle.ViewNewsCategoryTitle_describtionEn}"/>
+                        <h:outputText value="#{bundle.ViewNewsCategoryLabel_titleEn}"/>
+                        <h:outputText value="#{newsCategoryController.selected.titleEn}" title="#{bundle.ViewNewsCategoryTitle_titleEn}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="NewsCategoryViewDialog.hide()"/>
                 </h:panelGroup>

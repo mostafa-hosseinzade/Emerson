@@ -35,27 +35,23 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPageTitle_title}"/>
+                                <h:outputText value="#{bundle.ListPageTitle_contentFa}"/>
                             </f:facet>
-                            <h:outputText value="#{item.title}"/>
+                            <h:outputText value="#{item.contentFa}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPageTitle_content}"/>
+                                <h:outputText value="#{bundle.ListPageTitle_craetedAt}"/>
                             </f:facet>
-                            <h:outputText value="#{item.content}"/>
+                            <h:outputText value="#{item.craetedAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPageTitle_img}"/>
                             </f:facet>
                             <h:outputText value="#{item.img}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPageTitle_visit}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.visit}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -71,11 +67,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPageTitle_craetedAt}"/>
+                                <h:outputText value="#{bundle.ListPageTitle_titleFa}"/>
                             </f:facet>
-                            <h:outputText value="#{item.craetedAt}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
+                            <h:outputText value="#{item.titleFa}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -84,6 +78,24 @@
                             <h:outputText value="#{item.updatedAt}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                             </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPageTitle_visit}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.visit}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPageTitle_contentEn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contentEn}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPageTitle_titleEn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleEn}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{pageController.prepareCreate}" update=":PageCreateForm" oncomplete="PF('PageCreateDialog').show()"/>

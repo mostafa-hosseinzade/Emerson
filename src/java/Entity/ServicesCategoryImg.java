@@ -17,10 +17,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -34,9 +35,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "ServicesCategoryImg.findAll", query = "SELECT s FROM ServicesCategoryImg s"),
     @NamedQuery(name = "ServicesCategoryImg.findById", query = "SELECT s FROM ServicesCategoryImg s WHERE s.id = :id"),
-    @NamedQuery(name = "ServicesCategoryImg.findByImg", query = "SELECT s FROM ServicesCategoryImg s WHERE s.img = :img"),
     @NamedQuery(name = "ServicesCategoryImg.findByAlt", query = "SELECT s FROM ServicesCategoryImg s WHERE s.alt = :alt"),
     @NamedQuery(name = "ServicesCategoryImg.findByCreatedAt", query = "SELECT s FROM ServicesCategoryImg s WHERE s.createdAt = :createdAt"),
+    @NamedQuery(name = "ServicesCategoryImg.findByImg", query = "SELECT s FROM ServicesCategoryImg s WHERE s.img = :img"),
     @NamedQuery(name = "ServicesCategoryImg.findByUpdatedAt", query = "SELECT s FROM ServicesCategoryImg s WHERE s.updatedAt = :updatedAt")})
 public class ServicesCategoryImg implements Serializable {
 
@@ -46,19 +47,15 @@ public class ServicesCategoryImg implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 300)
-    @Column(name = "img")
-    private String img;
-    @Size(max = 300)
+    @Size(max = 255)
     @Column(name = "alt")
     private String alt;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+    @Size(max = 255)
+    @Column(name = "img")
+    private String img;
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
@@ -73,26 +70,12 @@ public class ServicesCategoryImg implements Serializable {
         this.id = id;
     }
 
-    public ServicesCategoryImg(Integer id, String img, Date createdAt) {
-        this.id = id;
-        this.img = img;
-        this.createdAt = createdAt;
-    }
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
     }
 
     public String getAlt() {
@@ -109,6 +92,14 @@ public class ServicesCategoryImg implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public Date getUpdatedAt() {
@@ -152,4 +143,13 @@ public class ServicesCategoryImg implements Serializable {
         return "Entity.ServicesCategoryImg[ id=" + id + " ]";
     }
     
+    @PrePersist
+    public void PrePersisit(){
+        this.createdAt = new Date();
+    }
+    
+    @PreUpdate
+    public void PreUpdate(){
+        this.updatedAt = new Date();
+    }    
 }

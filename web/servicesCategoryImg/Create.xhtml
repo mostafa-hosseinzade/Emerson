@@ -12,16 +12,10 @@
             <h:form id="ServicesCategoryImgCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{servicesCategoryImgController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateServicesCategoryImgLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{servicesCategoryImgController.selected.id}" title="#{bundle.CreateServicesCategoryImgTitle_id}" required="true" requiredMessage="#{bundle.CreateServicesCategoryImgRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.CreateServicesCategoryImgLabel_img}" for="img" />
-                        <p:inputText id="img" value="#{servicesCategoryImgController.selected.img}" title="#{bundle.CreateServicesCategoryImgTitle_img}" required="true" requiredMessage="#{bundle.CreateServicesCategoryImgRequiredMessage_img}"/>
                         <p:outputLabel value="#{bundle.CreateServicesCategoryImgLabel_alt}" for="alt" />
                         <p:inputText id="alt" value="#{servicesCategoryImgController.selected.alt}" title="#{bundle.CreateServicesCategoryImgTitle_alt}" />
-                        <p:outputLabel value="#{bundle.CreateServicesCategoryImgLabel_createdAt}" for="createdAt" />
-                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{servicesCategoryImgController.selected.createdAt}" title="#{bundle.EditServicesCategoryImgTitle_createdAt}" required="true" requiredMessage="#{bundle.EditServicesCategoryImgRequiredMessage_createdAt}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateServicesCategoryImgLabel_updatedAt}" for="updatedAt" />
-                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{servicesCategoryImgController.selected.updatedAt}" title="#{bundle.EditServicesCategoryImgTitle_updatedAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateServicesCategoryImgLabel_img}" for="img" />
+                        <p:inputText id="img" value="#{servicesCategoryImgController.selected.img}" title="#{bundle.CreateServicesCategoryImgTitle_img}" />
                         <p:outputLabel value="#{bundle.CreateServicesCategoryImgLabel_servicesCategoryId}" for="servicesCategoryId" />
                         <p:selectOneMenu id="servicesCategoryId" value="#{servicesCategoryImgController.selected.servicesCategoryId}" >
                             <f:selectItems value="#{servicesCategoryController.itemsAvailableSelectOne}"

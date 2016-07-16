@@ -17,10 +17,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -34,9 +35,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "ProductImg.findAll", query = "SELECT p FROM ProductImg p"),
     @NamedQuery(name = "ProductImg.findById", query = "SELECT p FROM ProductImg p WHERE p.id = :id"),
-    @NamedQuery(name = "ProductImg.findByImg", query = "SELECT p FROM ProductImg p WHERE p.img = :img"),
     @NamedQuery(name = "ProductImg.findByAlt", query = "SELECT p FROM ProductImg p WHERE p.alt = :alt"),
     @NamedQuery(name = "ProductImg.findByCreatedAt", query = "SELECT p FROM ProductImg p WHERE p.createdAt = :createdAt"),
+    @NamedQuery(name = "ProductImg.findByImg", query = "SELECT p FROM ProductImg p WHERE p.img = :img"),
     @NamedQuery(name = "ProductImg.findByUpdatedAt", query = "SELECT p FROM ProductImg p WHERE p.updatedAt = :updatedAt")})
 public class ProductImg implements Serializable {
 
@@ -46,24 +47,20 @@ public class ProductImg implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 300)
-    @Column(name = "img")
-    private String img;
-    @Size(max = 300)
+    @Size(max = 255)
     @Column(name = "alt")
     private String alt;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+    @Size(max = 255)
+    @Column(name = "img")
+    private String img;
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
     @JoinColumn(name = "product_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Product productId;
 
     public ProductImg() {
@@ -73,26 +70,12 @@ public class ProductImg implements Serializable {
         this.id = id;
     }
 
-    public ProductImg(Integer id, String img, Date createdAt) {
-        this.id = id;
-        this.img = img;
-        this.createdAt = createdAt;
-    }
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
     }
 
     public String getAlt() {
@@ -109,6 +92,14 @@ public class ProductImg implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public Date getUpdatedAt() {
@@ -151,5 +142,14 @@ public class ProductImg implements Serializable {
     public String toString() {
         return "Entity.ProductImg[ id=" + id + " ]";
     }
-    
+
+    @PrePersist
+    public void PrePersisit() {
+        this.createdAt = new Date();
+    }
+
+    @PreUpdate
+    public void PreUpdate() {
+        this.updatedAt = new Date();
+    }
 }

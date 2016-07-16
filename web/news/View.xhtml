@@ -14,26 +14,30 @@
                     <p:panelGrid columns="2" rendered="#{newsController.selected != null}">
                         <h:outputText value="#{bundle.ViewNewsLabel_id}"/>
                         <h:outputText value="#{newsController.selected.id}" title="#{bundle.ViewNewsTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewNewsLabel_title}"/>
-                        <h:outputText value="#{newsController.selected.title}" title="#{bundle.ViewNewsTitle_title}"/>
-                        <h:outputText value="#{bundle.ViewNewsLabel_content}"/>
-                        <h:outputText value="#{newsController.selected.content}" title="#{bundle.ViewNewsTitle_content}"/>
-                        <h:outputText value="#{bundle.ViewNewsLabel_visit}"/>
-                        <h:outputText value="#{newsController.selected.visit}" title="#{bundle.ViewNewsTitle_visit}"/>
-                        <h:outputText value="#{bundle.ViewNewsLabel_meta}"/>
-                        <h:outputText value="#{newsController.selected.meta}" title="#{bundle.ViewNewsTitle_meta}"/>
-                        <h:outputText value="#{bundle.ViewNewsLabel_slug}"/>
-                        <h:outputText value="#{newsController.selected.slug}" title="#{bundle.ViewNewsTitle_slug}"/>
-                        <h:outputText value="#{bundle.ViewNewsLabel_img}"/>
-                        <h:outputText value="#{newsController.selected.img}" title="#{bundle.ViewNewsTitle_img}"/>
+                        <h:outputText value="#{bundle.ViewNewsLabel_contentFa}"/>
+                        <h:outputText value="#{newsController.selected.contentFa}" title="#{bundle.ViewNewsTitle_contentFa}"/>
                         <h:outputText value="#{bundle.ViewNewsLabel_createdAt}"/>
                         <h:outputText value="#{newsController.selected.createdAt}" title="#{bundle.ViewNewsTitle_createdAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewNewsLabel_img}"/>
+                        <h:outputText value="#{newsController.selected.img}" title="#{bundle.ViewNewsTitle_img}"/>
+                        <h:outputText value="#{bundle.ViewNewsLabel_meta}"/>
+                        <h:outputText value="#{newsController.selected.meta}" title="#{bundle.ViewNewsTitle_meta}"/>
+                        <h:outputText value="#{bundle.ViewNewsLabel_slug}"/>
+                        <h:outputText value="#{newsController.selected.slug}" title="#{bundle.ViewNewsTitle_slug}"/>
+                        <h:outputText value="#{bundle.ViewNewsLabel_titleFa}"/>
+                        <h:outputText value="#{newsController.selected.titleFa}" title="#{bundle.ViewNewsTitle_titleFa}"/>
                         <h:outputText value="#{bundle.ViewNewsLabel_updatedAt}"/>
                         <h:outputText value="#{newsController.selected.updatedAt}" title="#{bundle.ViewNewsTitle_updatedAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewNewsLabel_visit}"/>
+                        <h:outputText value="#{newsController.selected.visit}" title="#{bundle.ViewNewsTitle_visit}"/>
+                        <h:outputText value="#{bundle.ViewNewsLabel_contentEn}"/>
+                        <h:outputText value="#{newsController.selected.contentEn}" title="#{bundle.ViewNewsTitle_contentEn}"/>
+                        <h:outputText value="#{bundle.ViewNewsLabel_titleEn}"/>
+                        <h:outputText value="#{newsController.selected.titleEn}" title="#{bundle.ViewNewsTitle_titleEn}"/>
                         <h:outputText value="#{bundle.ViewNewsLabel_ctgId}"/>
                         <h:outputText value="#{newsController.selected.ctgId}" title="#{bundle.ViewNewsTitle_ctgId}"/>
                     </p:panelGrid>

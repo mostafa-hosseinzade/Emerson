@@ -14,14 +14,14 @@
                     <p:panelGrid columns="2" rendered="#{productImgController.selected != null}">
                         <h:outputText value="#{bundle.ViewProductImgLabel_id}"/>
                         <h:outputText value="#{productImgController.selected.id}" title="#{bundle.ViewProductImgTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewProductImgLabel_img}"/>
-                        <h:outputText value="#{productImgController.selected.img}" title="#{bundle.ViewProductImgTitle_img}"/>
                         <h:outputText value="#{bundle.ViewProductImgLabel_alt}"/>
                         <h:outputText value="#{productImgController.selected.alt}" title="#{bundle.ViewProductImgTitle_alt}"/>
                         <h:outputText value="#{bundle.ViewProductImgLabel_createdAt}"/>
                         <h:outputText value="#{productImgController.selected.createdAt}" title="#{bundle.ViewProductImgTitle_createdAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewProductImgLabel_img}"/>
+                        <h:outputText value="#{productImgController.selected.img}" title="#{bundle.ViewProductImgTitle_img}"/>
                         <h:outputText value="#{bundle.ViewProductImgLabel_updatedAt}"/>
                         <h:outputText value="#{productImgController.selected.updatedAt}" title="#{bundle.ViewProductImgTitle_updatedAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />

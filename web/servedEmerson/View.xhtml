@@ -14,20 +14,24 @@
                     <p:panelGrid columns="2" rendered="#{servedEmersonController.selected != null}">
                         <h:outputText value="#{bundle.ViewServedEmersonLabel_id}"/>
                         <h:outputText value="#{servedEmersonController.selected.id}" title="#{bundle.ViewServedEmersonTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewServedEmersonLabel_title}"/>
-                        <h:outputText value="#{servedEmersonController.selected.title}" title="#{bundle.ViewServedEmersonTitle_title}"/>
-                        <h:outputText value="#{bundle.ViewServedEmersonLabel_content}"/>
-                        <h:outputText value="#{servedEmersonController.selected.content}" title="#{bundle.ViewServedEmersonTitle_content}"/>
-                        <h:outputText value="#{bundle.ViewServedEmersonLabel_img}"/>
-                        <h:outputText value="#{servedEmersonController.selected.img}" title="#{bundle.ViewServedEmersonTitle_img}"/>
+                        <h:outputText value="#{bundle.ViewServedEmersonLabel_contentFa}"/>
+                        <h:outputText value="#{servedEmersonController.selected.contentFa}" title="#{bundle.ViewServedEmersonTitle_contentFa}"/>
                         <h:outputText value="#{bundle.ViewServedEmersonLabel_createdAt}"/>
                         <h:outputText value="#{servedEmersonController.selected.createdAt}" title="#{bundle.ViewServedEmersonTitle_createdAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewServedEmersonLabel_img}"/>
+                        <h:outputText value="#{servedEmersonController.selected.img}" title="#{bundle.ViewServedEmersonTitle_img}"/>
+                        <h:outputText value="#{bundle.ViewServedEmersonLabel_titleFa}"/>
+                        <h:outputText value="#{servedEmersonController.selected.titleFa}" title="#{bundle.ViewServedEmersonTitle_titleFa}"/>
                         <h:outputText value="#{bundle.ViewServedEmersonLabel_updatedAt}"/>
                         <h:outputText value="#{servedEmersonController.selected.updatedAt}" title="#{bundle.ViewServedEmersonTitle_updatedAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewServedEmersonLabel_contentEn}"/>
+                        <h:outputText value="#{servedEmersonController.selected.contentEn}" title="#{bundle.ViewServedEmersonTitle_contentEn}"/>
+                        <h:outputText value="#{bundle.ViewServedEmersonLabel_titleEn}"/>
+                        <h:outputText value="#{servedEmersonController.selected.titleEn}" title="#{bundle.ViewServedEmersonTitle_titleEn}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ServedEmersonViewDialog.hide()"/>
                 </h:panelGroup>

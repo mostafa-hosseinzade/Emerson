@@ -12,26 +12,24 @@
             <h:form id="ServicesCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{servicesController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateServicesLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{servicesController.selected.id}" title="#{bundle.CreateServicesTitle_id}" required="true" requiredMessage="#{bundle.CreateServicesRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.CreateServicesLabel_title}" for="title" />
-                        <p:inputText id="title" value="#{servicesController.selected.title}" title="#{bundle.CreateServicesTitle_title}" required="true" requiredMessage="#{bundle.CreateServicesRequiredMessage_title}"/>
-                        <p:outputLabel value="#{bundle.CreateServicesLabel_content}" for="content" />
-                        <p:inputTextarea rows="4" cols="30" id="content" value="#{servicesController.selected.content}" title="#{bundle.CreateServicesTitle_content}" />
+                        <p:outputLabel value="#{bundle.CreateServicesLabel_contentFa}" for="contentFa" />
+                        <p:inputTextarea rows="4" cols="30" id="contentFa" value="#{servicesController.selected.contentFa}" title="#{bundle.CreateServicesTitle_contentFa}" />
                         <p:outputLabel value="#{bundle.CreateServicesLabel_img}" for="img" />
                         <p:inputText id="img" value="#{servicesController.selected.img}" title="#{bundle.CreateServicesTitle_img}" />
-                        <p:outputLabel value="#{bundle.CreateServicesLabel_visit}" for="visit" />
-                        <p:inputText id="visit" value="#{servicesController.selected.visit}" title="#{bundle.CreateServicesTitle_visit}" required="true" requiredMessage="#{bundle.CreateServicesRequiredMessage_visit}"/>
                         <p:outputLabel value="#{bundle.CreateServicesLabel_meta}" for="meta" />
                         <p:inputText id="meta" value="#{servicesController.selected.meta}" title="#{bundle.CreateServicesTitle_meta}" />
-                        <p:outputLabel value="#{bundle.CreateServicesLabel_slug}" for="slug" />
-                        <p:inputText id="slug" value="#{servicesController.selected.slug}" title="#{bundle.CreateServicesTitle_slug}" />
                         <p:outputLabel value="#{bundle.CreateServicesLabel_pdf}" for="pdf" />
                         <p:inputText id="pdf" value="#{servicesController.selected.pdf}" title="#{bundle.CreateServicesTitle_pdf}" />
-                        <p:outputLabel value="#{bundle.CreateServicesLabel_createdAt}" for="createdAt" />
-                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{servicesController.selected.createdAt}" title="#{bundle.EditServicesTitle_createdAt}" required="true" requiredMessage="#{bundle.EditServicesRequiredMessage_createdAt}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateServicesLabel_updatedAt}" for="updatedAt" />
-                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{servicesController.selected.updatedAt}" title="#{bundle.EditServicesTitle_updatedAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateServicesLabel_slug}" for="slug" />
+                        <p:inputText id="slug" value="#{servicesController.selected.slug}" title="#{bundle.CreateServicesTitle_slug}" />
+                        <p:outputLabel value="#{bundle.CreateServicesLabel_titleFa}" for="titleFa" />
+                        <p:inputText id="titleFa" value="#{servicesController.selected.titleFa}" title="#{bundle.CreateServicesTitle_titleFa}" />
+                        <p:outputLabel value="#{bundle.CreateServicesLabel_visit}" for="visit" />
+                        <p:inputText id="visit" value="#{servicesController.selected.visit}" title="#{bundle.CreateServicesTitle_visit}" />
+                        <p:outputLabel value="#{bundle.CreateServicesLabel_contentEn}" for="contentEn" />
+                        <p:inputTextarea rows="4" cols="30" id="contentEn" value="#{servicesController.selected.contentEn}" title="#{bundle.CreateServicesTitle_contentEn}" />
+                        <p:outputLabel value="#{bundle.CreateServicesLabel_titleEn}" for="titleEn" />
+                        <p:inputText id="titleEn" value="#{servicesController.selected.titleEn}" title="#{bundle.CreateServicesTitle_titleEn}" />
                         <p:outputLabel value="#{bundle.CreateServicesLabel_ctgId}" for="ctgId" />
                         <p:selectOneMenu id="ctgId" value="#{servicesController.selected.ctgId}" >
                             <f:selectItems value="#{servicesCategoryController.itemsAvailableSelectOne}"

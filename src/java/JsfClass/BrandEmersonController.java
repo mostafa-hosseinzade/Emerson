@@ -1,9 +1,9 @@
-package JSF;
+package JsfClass;
 
-import Entity.ProductImg;
-import JSF.util.JsfUtil;
-import JSF.util.JsfUtil.PersistAction;
-import SessionBean.ProductImgFacade;
+import Entity.BrandEmerson;
+import JsfClass.util.JsfUtil;
+import JsfClass.util.JsfUtil.PersistAction;
+import SessionBean.BrandEmersonFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("productImgController")
+@Named("brandEmersonController")
 @SessionScoped
-public class ProductImgController implements Serializable {
+public class BrandEmersonController implements Serializable {
 
     @EJB
-    private SessionBean.ProductImgFacade ejbFacade;
-    private List<ProductImg> items = null;
-    private ProductImg selected;
+    private SessionBean.BrandEmersonFacade ejbFacade;
+    private List<BrandEmerson> items = null;
+    private BrandEmerson selected;
 
-    public ProductImgController() {
+    public BrandEmersonController() {
     }
 
-    public ProductImg getSelected() {
+    public BrandEmerson getSelected() {
         return selected;
     }
 
-    public void setSelected(ProductImg selected) {
+    public void setSelected(BrandEmerson selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class ProductImgController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private ProductImgFacade getFacade() {
+    private BrandEmersonFacade getFacade() {
         return ejbFacade;
     }
 
-    public ProductImg prepareCreate() {
-        selected = new ProductImg();
+    public BrandEmerson prepareCreate() {
+        selected = new BrandEmerson();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ProductImgCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("BrandEmersonCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ProductImgUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("BrandEmersonUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ProductImgDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("BrandEmersonDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<ProductImg> getItems() {
+    public List<BrandEmerson> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,29 +109,29 @@ public class ProductImgController implements Serializable {
         }
     }
 
-    public ProductImg getProductImg(java.lang.Integer id) {
+    public BrandEmerson getBrandEmerson(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
-    public List<ProductImg> getItemsAvailableSelectMany() {
+    public List<BrandEmerson> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<ProductImg> getItemsAvailableSelectOne() {
+    public List<BrandEmerson> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = ProductImg.class)
-    public static class ProductImgControllerConverter implements Converter {
+    @FacesConverter(forClass = BrandEmerson.class)
+    public static class BrandEmersonControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ProductImgController controller = (ProductImgController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "productImgController");
-            return controller.getProductImg(getKey(value));
+            BrandEmersonController controller = (BrandEmersonController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "brandEmersonController");
+            return controller.getBrandEmerson(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -151,11 +151,11 @@ public class ProductImgController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof ProductImg) {
-                ProductImg o = (ProductImg) object;
+            if (object instanceof BrandEmerson) {
+                BrandEmerson o = (BrandEmerson) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), ProductImg.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), BrandEmerson.class.getName()});
                 return null;
             }
         }

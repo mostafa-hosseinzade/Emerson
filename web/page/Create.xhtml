@@ -12,24 +12,22 @@
             <h:form id="PageCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{pageController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreatePageLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{pageController.selected.id}" title="#{bundle.CreatePageTitle_id}" required="true" requiredMessage="#{bundle.CreatePageRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.CreatePageLabel_title}" for="title" />
-                        <p:inputText id="title" value="#{pageController.selected.title}" title="#{bundle.CreatePageTitle_title}" required="true" requiredMessage="#{bundle.CreatePageRequiredMessage_title}"/>
-                        <p:outputLabel value="#{bundle.CreatePageLabel_content}" for="content" />
-                        <p:inputTextarea rows="4" cols="30" id="content" value="#{pageController.selected.content}" title="#{bundle.CreatePageTitle_content}" />
+                        <p:outputLabel value="#{bundle.CreatePageLabel_contentFa}" for="contentFa" />
+                        <p:inputTextarea rows="4" cols="30" id="contentFa" value="#{pageController.selected.contentFa}" title="#{bundle.CreatePageTitle_contentFa}" />
                         <p:outputLabel value="#{bundle.CreatePageLabel_img}" for="img" />
-                        <p:inputText id="img" value="#{pageController.selected.img}" title="#{bundle.CreatePageTitle_img}" required="true" requiredMessage="#{bundle.CreatePageRequiredMessage_img}"/>
-                        <p:outputLabel value="#{bundle.CreatePageLabel_visit}" for="visit" />
-                        <p:inputText id="visit" value="#{pageController.selected.visit}" title="#{bundle.CreatePageTitle_visit}" required="true" requiredMessage="#{bundle.CreatePageRequiredMessage_visit}"/>
+                        <p:inputText id="img" value="#{pageController.selected.img}" title="#{bundle.CreatePageTitle_img}" />
                         <p:outputLabel value="#{bundle.CreatePageLabel_meta}" for="meta" />
                         <p:inputText id="meta" value="#{pageController.selected.meta}" title="#{bundle.CreatePageTitle_meta}" />
                         <p:outputLabel value="#{bundle.CreatePageLabel_slug}" for="slug" />
                         <p:inputText id="slug" value="#{pageController.selected.slug}" title="#{bundle.CreatePageTitle_slug}" />
-                        <p:outputLabel value="#{bundle.CreatePageLabel_craetedAt}" for="craetedAt" />
-                        <p:calendar id="craetedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{pageController.selected.craetedAt}" title="#{bundle.EditPageTitle_craetedAt}" required="true" requiredMessage="#{bundle.EditPageRequiredMessage_craetedAt}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreatePageLabel_updatedAt}" for="updatedAt" />
-                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{pageController.selected.updatedAt}" title="#{bundle.EditPageTitle_updatedAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePageLabel_titleFa}" for="titleFa" />
+                        <p:inputText id="titleFa" value="#{pageController.selected.titleFa}" title="#{bundle.CreatePageTitle_titleFa}" />
+                        <p:outputLabel value="#{bundle.CreatePageLabel_visit}" for="visit" />
+                        <p:inputText id="visit" value="#{pageController.selected.visit}" title="#{bundle.CreatePageTitle_visit}" />
+                        <p:outputLabel value="#{bundle.CreatePageLabel_contentEn}" for="contentEn" />
+                        <p:inputTextarea rows="4" cols="30" id="contentEn" value="#{pageController.selected.contentEn}" title="#{bundle.CreatePageTitle_contentEn}" />
+                        <p:outputLabel value="#{bundle.CreatePageLabel_titleEn}" for="titleEn" />
+                        <p:inputText id="titleEn" value="#{pageController.selected.titleEn}" title="#{bundle.CreatePageTitle_titleEn}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{pageController.create}" value="#{bundle.Save}" update="display,:PageListForm:datalist,:growl" oncomplete="handleSubmit(args,'PageCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="PageCreateDialog.hide()"/>

@@ -16,6 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -153,6 +155,10 @@ public class Contact implements Serializable {
     @Override
     public String toString() {
         return "Entity.Contact[ id=" + id + " ]";
+    }
+        @PrePersist
+    public void PrePersisit(){
+        this.createdAt = new Date();
     }
     
 }

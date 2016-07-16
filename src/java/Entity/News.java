@@ -18,10 +18,11 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -35,13 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "News.findAll", query = "SELECT n FROM News n"),
     @NamedQuery(name = "News.findById", query = "SELECT n FROM News n WHERE n.id = :id"),
-    @NamedQuery(name = "News.findByTitle", query = "SELECT n FROM News n WHERE n.title = :title"),
-    @NamedQuery(name = "News.findByVisit", query = "SELECT n FROM News n WHERE n.visit = :visit"),
+    @NamedQuery(name = "News.findByCreatedAt", query = "SELECT n FROM News n WHERE n.createdAt = :createdAt"),
+    @NamedQuery(name = "News.findByImg", query = "SELECT n FROM News n WHERE n.img = :img"),
     @NamedQuery(name = "News.findByMeta", query = "SELECT n FROM News n WHERE n.meta = :meta"),
     @NamedQuery(name = "News.findBySlug", query = "SELECT n FROM News n WHERE n.slug = :slug"),
-    @NamedQuery(name = "News.findByImg", query = "SELECT n FROM News n WHERE n.img = :img"),
-    @NamedQuery(name = "News.findByCreatedAt", query = "SELECT n FROM News n WHERE n.createdAt = :createdAt"),
-    @NamedQuery(name = "News.findByUpdatedAt", query = "SELECT n FROM News n WHERE n.updatedAt = :updatedAt")})
+    @NamedQuery(name = "News.findByTitleFa", query = "SELECT n FROM News n WHERE n.titleFa = :titleFa"),
+    @NamedQuery(name = "News.findByUpdatedAt", query = "SELECT n FROM News n WHERE n.updatedAt = :updatedAt"),
+    @NamedQuery(name = "News.findByVisit", query = "SELECT n FROM News n WHERE n.visit = :visit"),
+    @NamedQuery(name = "News.findByTitleEn", query = "SELECT n FROM News n WHERE n.titleEn = :titleEn")})
 public class News implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,38 +52,37 @@ public class News implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 300)
-    @Column(name = "title")
-    private String title;
-    @Basic(optional = false)
-    @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647)
-    @Column(name = "content")
-    private String content;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "visit")
-    private int visit;
-    @Size(max = 300)
-    @Column(name = "meta")
-    private String meta;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 300)
-    @Column(name = "slug")
-    private String slug;
-    @Size(max = 300)
-    @Column(name = "img")
-    private String img;
+    @Size(max = 2147483647)
+    @Column(name = "content_fa")
+    private String contentFa;
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+    @Size(max = 255)
+    @Column(name = "img")
+    private String img;
+    @Size(max = 255)
+    @Column(name = "meta")
+    private String meta;
+    @Size(max = 255)
+    @Column(name = "slug")
+    private String slug;
+    @Size(max = 255)
+    @Column(name = "title_fa")
+    private String titleFa;
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+    @Column(name = "visit")
+    private Integer visit;
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "content_en")
+    private String contentEn;
+    @Size(max = 300)
+    @Column(name = "title_en")
+    private String titleEn;
     @JoinColumn(name = "ctg_id", referencedColumnName = "id")
     @ManyToOne
     private NewsCategory ctgId;
@@ -93,14 +94,6 @@ public class News implements Serializable {
         this.id = id;
     }
 
-    public News(Integer id, String title, String content, int visit, String slug) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.visit = visit;
-        this.slug = slug;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -109,28 +102,28 @@ public class News implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getContentFa() {
+        return contentFa;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setContentFa(String contentFa) {
+        this.contentFa = contentFa;
     }
 
-    public String getContent() {
-        return content;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public int getVisit() {
-        return visit;
+    public String getImg() {
+        return img;
     }
 
-    public void setVisit(int visit) {
-        this.visit = visit;
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getMeta() {
@@ -149,20 +142,12 @@ public class News implements Serializable {
         this.slug = slug;
     }
 
-    public String getImg() {
-        return img;
+    public String getTitleFa() {
+        return titleFa;
     }
 
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setTitleFa(String titleFa) {
+        this.titleFa = titleFa;
     }
 
     public Date getUpdatedAt() {
@@ -171,6 +156,30 @@ public class News implements Serializable {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Integer getVisit() {
+        return visit;
+    }
+
+    public void setVisit(Integer visit) {
+        this.visit = visit;
+    }
+
+    public String getContentEn() {
+        return contentEn;
+    }
+
+    public void setContentEn(String contentEn) {
+        this.contentEn = contentEn;
+    }
+
+    public String getTitleEn() {
+        return titleEn;
+    }
+
+    public void setTitleEn(String titleEn) {
+        this.titleEn = titleEn;
     }
 
     public NewsCategory getCtgId() {
@@ -205,5 +214,14 @@ public class News implements Serializable {
     public String toString() {
         return "Entity.News[ id=" + id + " ]";
     }
-    
+
+    @PrePersist
+    public void PrePersisit() {
+        this.createdAt = new Date();
+    }
+
+    @PreUpdate
+    public void PreUpdate() {
+        this.updatedAt = new Date();
+    }
 }

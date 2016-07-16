@@ -14,28 +14,32 @@
                     <p:panelGrid columns="2" rendered="#{servicesController.selected != null}">
                         <h:outputText value="#{bundle.ViewServicesLabel_id}"/>
                         <h:outputText value="#{servicesController.selected.id}" title="#{bundle.ViewServicesTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewServicesLabel_title}"/>
-                        <h:outputText value="#{servicesController.selected.title}" title="#{bundle.ViewServicesTitle_title}"/>
-                        <h:outputText value="#{bundle.ViewServicesLabel_content}"/>
-                        <h:outputText value="#{servicesController.selected.content}" title="#{bundle.ViewServicesTitle_content}"/>
-                        <h:outputText value="#{bundle.ViewServicesLabel_img}"/>
-                        <h:outputText value="#{servicesController.selected.img}" title="#{bundle.ViewServicesTitle_img}"/>
-                        <h:outputText value="#{bundle.ViewServicesLabel_visit}"/>
-                        <h:outputText value="#{servicesController.selected.visit}" title="#{bundle.ViewServicesTitle_visit}"/>
-                        <h:outputText value="#{bundle.ViewServicesLabel_meta}"/>
-                        <h:outputText value="#{servicesController.selected.meta}" title="#{bundle.ViewServicesTitle_meta}"/>
-                        <h:outputText value="#{bundle.ViewServicesLabel_slug}"/>
-                        <h:outputText value="#{servicesController.selected.slug}" title="#{bundle.ViewServicesTitle_slug}"/>
-                        <h:outputText value="#{bundle.ViewServicesLabel_pdf}"/>
-                        <h:outputText value="#{servicesController.selected.pdf}" title="#{bundle.ViewServicesTitle_pdf}"/>
+                        <h:outputText value="#{bundle.ViewServicesLabel_contentFa}"/>
+                        <h:outputText value="#{servicesController.selected.contentFa}" title="#{bundle.ViewServicesTitle_contentFa}"/>
                         <h:outputText value="#{bundle.ViewServicesLabel_createdAt}"/>
                         <h:outputText value="#{servicesController.selected.createdAt}" title="#{bundle.ViewServicesTitle_createdAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewServicesLabel_img}"/>
+                        <h:outputText value="#{servicesController.selected.img}" title="#{bundle.ViewServicesTitle_img}"/>
+                        <h:outputText value="#{bundle.ViewServicesLabel_meta}"/>
+                        <h:outputText value="#{servicesController.selected.meta}" title="#{bundle.ViewServicesTitle_meta}"/>
+                        <h:outputText value="#{bundle.ViewServicesLabel_pdf}"/>
+                        <h:outputText value="#{servicesController.selected.pdf}" title="#{bundle.ViewServicesTitle_pdf}"/>
+                        <h:outputText value="#{bundle.ViewServicesLabel_slug}"/>
+                        <h:outputText value="#{servicesController.selected.slug}" title="#{bundle.ViewServicesTitle_slug}"/>
+                        <h:outputText value="#{bundle.ViewServicesLabel_titleFa}"/>
+                        <h:outputText value="#{servicesController.selected.titleFa}" title="#{bundle.ViewServicesTitle_titleFa}"/>
                         <h:outputText value="#{bundle.ViewServicesLabel_updatedAt}"/>
                         <h:outputText value="#{servicesController.selected.updatedAt}" title="#{bundle.ViewServicesTitle_updatedAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewServicesLabel_visit}"/>
+                        <h:outputText value="#{servicesController.selected.visit}" title="#{bundle.ViewServicesTitle_visit}"/>
+                        <h:outputText value="#{bundle.ViewServicesLabel_contentEn}"/>
+                        <h:outputText value="#{servicesController.selected.contentEn}" title="#{bundle.ViewServicesTitle_contentEn}"/>
+                        <h:outputText value="#{bundle.ViewServicesLabel_titleEn}"/>
+                        <h:outputText value="#{servicesController.selected.titleEn}" title="#{bundle.ViewServicesTitle_titleEn}"/>
                         <h:outputText value="#{bundle.ViewServicesLabel_ctgId}"/>
                         <h:outputText value="#{servicesController.selected.ctgId}" title="#{bundle.ViewServicesTitle_ctgId}"/>
                     </p:panelGrid>

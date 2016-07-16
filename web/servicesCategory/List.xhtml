@@ -35,15 +35,17 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListServicesCategoryTitle_title}"/>
+                                <h:outputText value="#{bundle.ListServicesCategoryTitle_createdAt}"/>
                             </f:facet>
-                            <h:outputText value="#{item.title}"/>
+                            <h:outputText value="#{item.createdAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListServicesCategoryTitle_describtion}"/>
+                                <h:outputText value="#{bundle.ListServicesCategoryTitle_describtionFa}"/>
                             </f:facet>
-                            <h:outputText value="#{item.describtion}"/>
+                            <h:outputText value="#{item.describtionFa}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -53,11 +55,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListServicesCategoryTitle_createdAt}"/>
+                                <h:outputText value="#{bundle.ListServicesCategoryTitle_titleFa}"/>
                             </f:facet>
-                            <h:outputText value="#{item.createdAt}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
+                            <h:outputText value="#{item.titleFa}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -66,6 +66,18 @@
                             <h:outputText value="#{item.updatedAt}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                             </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListServicesCategoryTitle_decribtionEn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.decribtionEn}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListServicesCategoryTitle_titleEn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleEn}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{servicesCategoryController.prepareCreate}" update=":ServicesCategoryCreateForm" oncomplete="PF('ServicesCategoryCreateDialog').show()"/>

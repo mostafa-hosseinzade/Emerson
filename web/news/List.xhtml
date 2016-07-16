@@ -35,21 +35,23 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListNewsTitle_title}"/>
+                                <h:outputText value="#{bundle.ListNewsTitle_contentFa}"/>
                             </f:facet>
-                            <h:outputText value="#{item.title}"/>
+                            <h:outputText value="#{item.contentFa}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListNewsTitle_content}"/>
+                                <h:outputText value="#{bundle.ListNewsTitle_createdAt}"/>
                             </f:facet>
-                            <h:outputText value="#{item.content}"/>
+                            <h:outputText value="#{item.createdAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListNewsTitle_visit}"/>
+                                <h:outputText value="#{bundle.ListNewsTitle_img}"/>
                             </f:facet>
-                            <h:outputText value="#{item.visit}"/>
+                            <h:outputText value="#{item.img}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -65,17 +67,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListNewsTitle_img}"/>
+                                <h:outputText value="#{bundle.ListNewsTitle_titleFa}"/>
                             </f:facet>
-                            <h:outputText value="#{item.img}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListNewsTitle_createdAt}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.createdAt}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
+                            <h:outputText value="#{item.titleFa}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -84,6 +78,24 @@
                             <h:outputText value="#{item.updatedAt}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                             </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNewsTitle_visit}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.visit}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNewsTitle_contentEn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contentEn}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNewsTitle_titleEn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleEn}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

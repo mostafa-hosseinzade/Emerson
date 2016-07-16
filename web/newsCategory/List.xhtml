@@ -35,23 +35,29 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListNewsCategoryTitle_title}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.title}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListNewsCategoryTitle_describtion}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.describtion}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNewsCategoryTitle_createdAt}"/>
                             </f:facet>
                             <h:outputText value="#{item.createdAt}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                             </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNewsCategoryTitle_describtionFa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.describtionFa}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNewsCategoryTitle_img}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.img}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNewsCategoryTitle_titleFa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleFa}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -63,9 +69,15 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListNewsCategoryTitle_img}"/>
+                                <h:outputText value="#{bundle.ListNewsCategoryTitle_describtionEn}"/>
                             </f:facet>
-                            <h:outputText value="#{item.img}"/>
+                            <h:outputText value="#{item.describtionEn}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNewsCategoryTitle_titleEn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleEn}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{newsCategoryController.prepareCreate}" update=":NewsCategoryCreateForm" oncomplete="PF('NewsCategoryCreateDialog').show()"/>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ServedEmersonViewDlg" widgetVar="ServedEmersonViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewServedEmersonTitle}">
+            <h:form id="ServedEmersonViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{servedEmersonController.selected != null}">
+                        <h:outputText value="#{bundle.ViewServedEmersonLabel_id}"/>
+                        <h:outputText value="#{servedEmersonController.selected.id}" title="#{bundle.ViewServedEmersonTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewServedEmersonLabel_title}"/>
+                        <h:outputText value="#{servedEmersonController.selected.title}" title="#{bundle.ViewServedEmersonTitle_title}"/>
+                        <h:outputText value="#{bundle.ViewServedEmersonLabel_content}"/>
+                        <h:outputText value="#{servedEmersonController.selected.content}" title="#{bundle.ViewServedEmersonTitle_content}"/>
+                        <h:outputText value="#{bundle.ViewServedEmersonLabel_img}"/>
+                        <h:outputText value="#{servedEmersonController.selected.img}" title="#{bundle.ViewServedEmersonTitle_img}"/>
+                        <h:outputText value="#{bundle.ViewServedEmersonLabel_createdAt}"/>
+                        <h:outputText value="#{servedEmersonController.selected.createdAt}" title="#{bundle.ViewServedEmersonTitle_createdAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewServedEmersonLabel_updatedAt}"/>
+                        <h:outputText value="#{servedEmersonController.selected.updatedAt}" title="#{bundle.ViewServedEmersonTitle_updatedAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ServedEmersonViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ServedEmersonCreateDlg" widgetVar="ServedEmersonCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateServedEmersonTitle}">
+            <h:form id="ServedEmersonCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{servedEmersonController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateServedEmersonLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{servedEmersonController.selected.id}" title="#{bundle.CreateServedEmersonTitle_id}" required="true" requiredMessage="#{bundle.CreateServedEmersonRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateServedEmersonLabel_title}" for="title" />
+                        <p:inputText id="title" value="#{servedEmersonController.selected.title}" title="#{bundle.CreateServedEmersonTitle_title}" required="true" requiredMessage="#{bundle.CreateServedEmersonRequiredMessage_title}"/>
+                        <p:outputLabel value="#{bundle.CreateServedEmersonLabel_content}" for="content" />
+                        <p:inputTextarea rows="4" cols="30" id="content" value="#{servedEmersonController.selected.content}" title="#{bundle.CreateServedEmersonTitle_content}" />
+                        <p:outputLabel value="#{bundle.CreateServedEmersonLabel_img}" for="img" />
+                        <p:inputText id="img" value="#{servedEmersonController.selected.img}" title="#{bundle.CreateServedEmersonTitle_img}" />
+                        <p:outputLabel value="#{bundle.CreateServedEmersonLabel_createdAt}" for="createdAt" />
+                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{servedEmersonController.selected.createdAt}" title="#{bundle.EditServedEmersonTitle_createdAt}" required="true" requiredMessage="#{bundle.EditServedEmersonRequiredMessage_createdAt}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateServedEmersonLabel_updatedAt}" for="updatedAt" />
+                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{servedEmersonController.selected.updatedAt}" title="#{bundle.EditServedEmersonTitle_updatedAt}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{servedEmersonController.create}" value="#{bundle.Save}" update="display,:ServedEmersonListForm:datalist,:growl" oncomplete="handleSubmit(args,'ServedEmersonCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ServedEmersonCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

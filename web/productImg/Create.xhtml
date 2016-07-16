@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProductImgCreateDlg" widgetVar="ProductImgCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProductImgTitle}">
+            <h:form id="ProductImgCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{productImgController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateProductImgLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{productImgController.selected.id}" title="#{bundle.CreateProductImgTitle_id}" required="true" requiredMessage="#{bundle.CreateProductImgRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateProductImgLabel_img}" for="img" />
+                        <p:inputText id="img" value="#{productImgController.selected.img}" title="#{bundle.CreateProductImgTitle_img}" required="true" requiredMessage="#{bundle.CreateProductImgRequiredMessage_img}"/>
+                        <p:outputLabel value="#{bundle.CreateProductImgLabel_alt}" for="alt" />
+                        <p:inputText id="alt" value="#{productImgController.selected.alt}" title="#{bundle.CreateProductImgTitle_alt}" />
+                        <p:outputLabel value="#{bundle.CreateProductImgLabel_createdAt}" for="createdAt" />
+                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{productImgController.selected.createdAt}" title="#{bundle.EditProductImgTitle_createdAt}" required="true" requiredMessage="#{bundle.EditProductImgRequiredMessage_createdAt}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateProductImgLabel_updatedAt}" for="updatedAt" />
+                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{productImgController.selected.updatedAt}" title="#{bundle.EditProductImgTitle_updatedAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateProductImgLabel_productId}" for="productId" />
+                        <p:selectOneMenu id="productId" value="#{productImgController.selected.productId}" required="true" requiredMessage="#{bundle.EditProductImgRequiredMessage_productId}">
+                            <f:selectItems value="#{productController.itemsAvailableSelectOne}"
+                                           var="productIdItem"
+                                           itemValue="#{productIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{productImgController.create}" value="#{bundle.Save}" update="display,:ProductImgListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProductImgCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProductImgCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

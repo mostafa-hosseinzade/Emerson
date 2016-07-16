@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProductEditDlg" widgetVar="ProductEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditProductTitle}">
+            <h:form id="ProductEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{productController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditProductLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{productController.selected.id}" title="#{bundle.EditProductTitle_id}" required="true" requiredMessage="#{bundle.EditProductRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditProductLabel_title}" for="title" />
+                        <p:inputText id="title" value="#{productController.selected.title}" title="#{bundle.EditProductTitle_title}" required="true" requiredMessage="#{bundle.EditProductRequiredMessage_title}"/>
+                        <p:outputLabel value="#{bundle.EditProductLabel_content}" for="content" />
+                        <p:inputTextarea rows="4" cols="30" id="content" value="#{productController.selected.content}" title="#{bundle.EditProductTitle_content}" />
+                        <p:outputLabel value="#{bundle.EditProductLabel_createdAt}" for="createdAt" />
+                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{productController.selected.createdAt}" title="#{bundle.EditProductTitle_createdAt}" required="true" requiredMessage="#{bundle.EditProductRequiredMessage_createdAt}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditProductLabel_updatedAt}" for="updatedAt" />
+                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{productController.selected.updatedAt}" title="#{bundle.EditProductTitle_updatedAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditProductLabel_link}" for="link" />
+                        <p:inputText id="link" value="#{productController.selected.link}" title="#{bundle.EditProductTitle_link}" />
+                        <p:outputLabel value="#{bundle.EditProductLabel_brandId}" for="brandId" />
+                        <p:selectOneMenu id="brandId" value="#{productController.selected.brandId}" required="true" requiredMessage="#{bundle.EditProductRequiredMessage_brandId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{brandEmersonController.itemsAvailableSelectOne}"
+                                           var="brandIdItem"
+                                           itemValue="#{brandIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{productController.update}" value="#{bundle.Save}" update="display,:ProductListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProductEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProductEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

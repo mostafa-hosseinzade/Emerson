@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProductImgViewDlg" widgetVar="ProductImgViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProductImgTitle}">
+            <h:form id="ProductImgViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{productImgController.selected != null}">
+                        <h:outputText value="#{bundle.ViewProductImgLabel_id}"/>
+                        <h:outputText value="#{productImgController.selected.id}" title="#{bundle.ViewProductImgTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewProductImgLabel_img}"/>
+                        <h:outputText value="#{productImgController.selected.img}" title="#{bundle.ViewProductImgTitle_img}"/>
+                        <h:outputText value="#{bundle.ViewProductImgLabel_alt}"/>
+                        <h:outputText value="#{productImgController.selected.alt}" title="#{bundle.ViewProductImgTitle_alt}"/>
+                        <h:outputText value="#{bundle.ViewProductImgLabel_createdAt}"/>
+                        <h:outputText value="#{productImgController.selected.createdAt}" title="#{bundle.ViewProductImgTitle_createdAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewProductImgLabel_updatedAt}"/>
+                        <h:outputText value="#{productImgController.selected.updatedAt}" title="#{bundle.ViewProductImgTitle_updatedAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewProductImgLabel_productId}"/>
+                        <h:outputText value="#{productImgController.selected.productId}" title="#{bundle.ViewProductImgTitle_productId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ProductImgViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

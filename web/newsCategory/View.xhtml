@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="NewsCategoryViewDlg" widgetVar="NewsCategoryViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewNewsCategoryTitle}">
+            <h:form id="NewsCategoryViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{newsCategoryController.selected != null}">
+                        <h:outputText value="#{bundle.ViewNewsCategoryLabel_id}"/>
+                        <h:outputText value="#{newsCategoryController.selected.id}" title="#{bundle.ViewNewsCategoryTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewNewsCategoryLabel_title}"/>
+                        <h:outputText value="#{newsCategoryController.selected.title}" title="#{bundle.ViewNewsCategoryTitle_title}"/>
+                        <h:outputText value="#{bundle.ViewNewsCategoryLabel_describtion}"/>
+                        <h:outputText value="#{newsCategoryController.selected.describtion}" title="#{bundle.ViewNewsCategoryTitle_describtion}"/>
+                        <h:outputText value="#{bundle.ViewNewsCategoryLabel_createdAt}"/>
+                        <h:outputText value="#{newsCategoryController.selected.createdAt}" title="#{bundle.ViewNewsCategoryTitle_createdAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewNewsCategoryLabel_updatedAt}"/>
+                        <h:outputText value="#{newsCategoryController.selected.updatedAt}" title="#{bundle.ViewNewsCategoryTitle_updatedAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewNewsCategoryLabel_img}"/>
+                        <h:outputText value="#{newsCategoryController.selected.img}" title="#{bundle.ViewNewsCategoryTitle_img}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="NewsCategoryViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

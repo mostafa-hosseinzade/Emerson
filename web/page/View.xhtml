@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PageViewDlg" widgetVar="PageViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPageTitle}">
+            <h:form id="PageViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pageController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPageLabel_id}"/>
+                        <h:outputText value="#{pageController.selected.id}" title="#{bundle.ViewPageTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewPageLabel_title}"/>
+                        <h:outputText value="#{pageController.selected.title}" title="#{bundle.ViewPageTitle_title}"/>
+                        <h:outputText value="#{bundle.ViewPageLabel_content}"/>
+                        <h:outputText value="#{pageController.selected.content}" title="#{bundle.ViewPageTitle_content}"/>
+                        <h:outputText value="#{bundle.ViewPageLabel_img}"/>
+                        <h:outputText value="#{pageController.selected.img}" title="#{bundle.ViewPageTitle_img}"/>
+                        <h:outputText value="#{bundle.ViewPageLabel_visit}"/>
+                        <h:outputText value="#{pageController.selected.visit}" title="#{bundle.ViewPageTitle_visit}"/>
+                        <h:outputText value="#{bundle.ViewPageLabel_meta}"/>
+                        <h:outputText value="#{pageController.selected.meta}" title="#{bundle.ViewPageTitle_meta}"/>
+                        <h:outputText value="#{bundle.ViewPageLabel_slug}"/>
+                        <h:outputText value="#{pageController.selected.slug}" title="#{bundle.ViewPageTitle_slug}"/>
+                        <h:outputText value="#{bundle.ViewPageLabel_craetedAt}"/>
+                        <h:outputText value="#{pageController.selected.craetedAt}" title="#{bundle.ViewPageTitle_craetedAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPageLabel_updatedAt}"/>
+                        <h:outputText value="#{pageController.selected.updatedAt}" title="#{bundle.ViewPageTitle_updatedAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PageViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

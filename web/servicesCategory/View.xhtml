@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ServicesCategoryViewDlg" widgetVar="ServicesCategoryViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewServicesCategoryTitle}">
+            <h:form id="ServicesCategoryViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{servicesCategoryController.selected != null}">
+                        <h:outputText value="#{bundle.ViewServicesCategoryLabel_id}"/>
+                        <h:outputText value="#{servicesCategoryController.selected.id}" title="#{bundle.ViewServicesCategoryTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewServicesCategoryLabel_title}"/>
+                        <h:outputText value="#{servicesCategoryController.selected.title}" title="#{bundle.ViewServicesCategoryTitle_title}"/>
+                        <h:outputText value="#{bundle.ViewServicesCategoryLabel_describtion}"/>
+                        <h:outputText value="#{servicesCategoryController.selected.describtion}" title="#{bundle.ViewServicesCategoryTitle_describtion}"/>
+                        <h:outputText value="#{bundle.ViewServicesCategoryLabel_slug}"/>
+                        <h:outputText value="#{servicesCategoryController.selected.slug}" title="#{bundle.ViewServicesCategoryTitle_slug}"/>
+                        <h:outputText value="#{bundle.ViewServicesCategoryLabel_createdAt}"/>
+                        <h:outputText value="#{servicesCategoryController.selected.createdAt}" title="#{bundle.ViewServicesCategoryTitle_createdAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewServicesCategoryLabel_updatedAt}"/>
+                        <h:outputText value="#{servicesCategoryController.selected.updatedAt}" title="#{bundle.ViewServicesCategoryTitle_updatedAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ServicesCategoryViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

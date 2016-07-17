@@ -9,13 +9,13 @@
     <ui:composition>
 
         <p:dialog id="ServicesCategoryImgCreateDlg" widgetVar="ServicesCategoryImgCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateServicesCategoryImgTitle}">
-            <h:form id="ServicesCategoryImgCreateForm">
-                <h:panelGroup id="display">
+            <h:form id="ServicesCategoryImgCreateForm" enctype="multipart/form-data">
+                <h:panelGroup id="display" >
                     <p:panelGrid columns="2" rendered="#{servicesCategoryImgController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateServicesCategoryImgLabel_alt}" for="alt" />
                         <p:inputText id="alt" value="#{servicesCategoryImgController.selected.alt}" title="#{bundle.CreateServicesCategoryImgTitle_alt}" />
                         <p:outputLabel value="#{bundle.CreateServicesCategoryImgLabel_img}" for="img" />
-                        <p:inputText id="img" value="#{servicesCategoryImgController.selected.img}" title="#{bundle.CreateServicesCategoryImgTitle_img}" />
+                        <p:fileUpload id="img" value="#{servicesCategoryImgController.file}" mode="simple" skinSimple="true"/>
                         <p:outputLabel value="#{bundle.CreateServicesCategoryImgLabel_servicesCategoryId}" for="servicesCategoryId" />
                         <p:selectOneMenu id="servicesCategoryId" value="#{servicesCategoryImgController.selected.servicesCategoryId}" >
                             <f:selectItems value="#{servicesCategoryController.itemsAvailableSelectOne}"
@@ -23,7 +23,7 @@
                                            itemValue="#{servicesCategoryIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{servicesCategoryImgController.create}" value="#{bundle.Save}" update="display,:ServicesCategoryImgListForm:datalist,:growl" oncomplete="handleSubmit(args,'ServicesCategoryImgCreateDialog');"/>
+                    <p:commandButton actionListener="#{servicesCategoryImgController.create}" ajax="false" value="#{bundle.Save}" update="display,:ServicesCategoryImgListForm:datalist,:growl" oncomplete="handleSubmit(args,'ServicesCategoryImgCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ServicesCategoryImgCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

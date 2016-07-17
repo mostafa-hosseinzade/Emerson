@@ -9,13 +9,13 @@
     <ui:composition>
 
         <p:dialog id="ServicesCategoryImgEditDlg" widgetVar="ServicesCategoryImgEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditServicesCategoryImgTitle}">
-            <h:form id="ServicesCategoryImgEditForm">
+            <h:form id="ServicesCategoryImgEditForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{servicesCategoryImgController.selected != null}">
                         <p:outputLabel value="#{bundle.EditServicesCategoryImgLabel_alt}" for="alt" />
                         <p:inputText id="alt" value="#{servicesCategoryImgController.selected.alt}" title="#{bundle.EditServicesCategoryImgTitle_alt}" />
                         <p:outputLabel value="#{bundle.EditServicesCategoryImgLabel_img}" for="img" />
-                        <p:inputText id="img" value="#{servicesCategoryImgController.selected.img}" title="#{bundle.EditServicesCategoryImgTitle_img}" />
+                        <p:fileUpload id="img" value="#{servicesCategoryImgController.file}" mode="simple" skinSimple="true" />
                         <p:outputLabel value="#{bundle.EditServicesCategoryImgLabel_servicesCategoryId}" for="servicesCategoryId" />
                         <p:selectOneMenu id="servicesCategoryId" value="#{servicesCategoryImgController.selected.servicesCategoryId}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
@@ -24,7 +24,7 @@
                                            itemValue="#{servicesCategoryIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{servicesCategoryImgController.update}" value="#{bundle.Save}" update="display,:ServicesCategoryImgListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ServicesCategoryImgEditDialog');"/>
+                    <p:commandButton actionListener="#{servicesCategoryImgController.update}" ajax="false" value="#{bundle.Save}" update="display,:ServicesCategoryImgListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ServicesCategoryImgEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ServicesCategoryImgEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

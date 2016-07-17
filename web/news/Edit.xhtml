@@ -9,13 +9,13 @@
     <ui:composition>
 
         <p:dialog id="NewsEditDlg" widgetVar="NewsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditNewsTitle}">
-            <h:form id="NewsEditForm">
+            <h:form id="NewsEditForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{newsController.selected != null}">
                         <p:outputLabel value="#{bundle.EditNewsLabel_contentFa}" for="contentFa" />
                         <p:inputTextarea rows="4" cols="30" id="contentFa" value="#{newsController.selected.contentFa}" title="#{bundle.EditNewsTitle_contentFa}" />
                         <p:outputLabel value="#{bundle.EditNewsLabel_img}" for="img" />
-                        <p:inputText id="img" value="#{newsController.selected.img}" title="#{bundle.EditNewsTitle_img}" />
+                        <p:fileUpload id="img" value="#{newsController.file}" mode="simple" skinSimple="true" />
                         <p:outputLabel value="#{bundle.EditNewsLabel_meta}" for="meta" />
                         <p:inputText id="meta" value="#{newsController.selected.meta}" title="#{bundle.EditNewsTitle_meta}" />
                         <p:outputLabel value="#{bundle.EditNewsLabel_slug}" for="slug" />
@@ -36,7 +36,7 @@
                                            itemValue="#{ctgIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{newsController.update}" value="#{bundle.Save}" update="display,:NewsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NewsEditDialog');"/>
+                    <p:commandButton actionListener="#{newsController.update}" value="#{bundle.Save}" ajax="false" update="display,:NewsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NewsEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="NewsEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

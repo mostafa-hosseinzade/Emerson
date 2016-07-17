@@ -4,8 +4,16 @@ import Entity.News;
 import JsfClass.util.JsfUtil;
 import JsfClass.util.JsfUtil.PersistAction;
 import SessionBean.NewsFacade;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -18,6 +26,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.primefaces.model.UploadedFile;
+import org.apache.commons.io.FilenameUtils;
+import org.primefaces.event.FileUploadEvent;
 
 @Named("newsController")
 @SessionScoped
@@ -27,6 +38,7 @@ public class NewsController implements Serializable {
     private SessionBean.NewsFacade ejbFacade;
     private List<News> items = null;
     private News selected;
+    private UploadedFile file;
 
     public NewsController() {
     }
@@ -55,14 +67,58 @@ public class NewsController implements Serializable {
         return selected;
     }
 
-    public void create() {
+    public void create() throws IOException {
+        if (this.file != null) {
+            String filename = "";
+            File dir = new File("/opt/Emerson/uploads/news");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            Path folder = Paths.get("/opt/Emerson/uploads/news");
+            System.out.println("JsfClass.NewsController.create() : Extention is : " + file);
+            String extension = FilenameUtils.getExtension(file.getFileName());
+
+            String name = 1 + "_" + System.currentTimeMillis();
+            Path path = Paths.get(folder.toString(), name + "." + extension);
+            Path outFile = Files.createFile(path);
+            try (InputStream input = file.getInputstream()) {
+                Files.copy(input, outFile, StandardCopyOption.REPLACE_EXISTING);
+                filename += name + "." + extension;
+            }
+            selected.setImg(filename);
+            this.file = null;
+        }
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("NewsCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public void update() {
+    public void update() throws IOException {
+        if (this.file != null) {
+            String filename = "";
+            File dir = new File("/opt/Emerson/uploads/news");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            Path folder = Paths.get("/opt/Emerson/uploads/news");
+            if (selected.getImg() != null) {
+                File f = new File("/opt/Emerson/uploads/news/" + selected.getImg());
+                if (f.exists()) {
+                    f.delete();
+                }
+            }
+            String extension = FilenameUtils.getExtension(file.getFileName());
+            String name = 1 + "_" + System.currentTimeMillis();
+            Path path = Paths.get(folder.toString(), name + "." + extension);
+            Path outFile = Files.createFile(path);
+            try (InputStream input = file.getInputstream()) {
+                Files.copy(input, outFile, StandardCopyOption.REPLACE_EXISTING);
+                filename = name + "." + extension;
+                selected.setImg(filename);
+                this.file = null;
+            }
+        }
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("NewsUpdated"));
     }
 
@@ -88,6 +144,12 @@ public class NewsController implements Serializable {
                 if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
+                    if(selected.getImg() != ""){
+                        File f = new File("/opt/Emerson/uploads/news/"+selected.getImg());
+                        if(f.exists()){
+                            f.delete();
+                        }
+                    }
                     getFacade().remove(selected);
                 }
                 JsfUtil.addSuccessMessage(successMessage);
@@ -107,6 +169,14 @@ public class NewsController implements Serializable {
                 JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             }
         }
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
 
     public News getNews(java.lang.Integer id) {

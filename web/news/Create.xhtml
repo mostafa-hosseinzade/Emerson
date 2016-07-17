@@ -9,13 +9,13 @@
     <ui:composition>
 
         <p:dialog id="NewsCreateDlg" widgetVar="NewsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateNewsTitle}">
-            <h:form id="NewsCreateForm">
+            <h:form id="NewsCreateForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{newsController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateNewsLabel_contentFa}" for="contentFa" />
                         <p:inputTextarea rows="4" cols="30" id="contentFa" value="#{newsController.selected.contentFa}" title="#{bundle.CreateNewsTitle_contentFa}" />
                         <p:outputLabel value="#{bundle.CreateNewsLabel_img}" for="img" />
-                        <p:inputText id="img" value="#{newsController.selected.img}" title="#{bundle.CreateNewsTitle_img}" />
+                        <p:fileUpload id="img" value="#{newsController.file}" mode="simple" skinSimple="true"/>
                         <p:outputLabel value="#{bundle.CreateNewsLabel_meta}" for="meta" />
                         <p:inputText id="meta" value="#{newsController.selected.meta}" title="#{bundle.CreateNewsTitle_meta}" />
                         <p:outputLabel value="#{bundle.CreateNewsLabel_slug}" for="slug" />
@@ -35,7 +35,7 @@
                                            itemValue="#{ctgIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{newsController.create}" value="#{bundle.Save}" update="display,:NewsListForm:datalist,:growl" oncomplete="handleSubmit(args,'NewsCreateDialog');"/>
+                    <p:commandButton actionListener="#{newsController.create}" ajax="false" value="#{bundle.Save}" update="display,:NewsListForm:datalist,:growl" oncomplete="handleSubmit(args,'NewsCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="NewsCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

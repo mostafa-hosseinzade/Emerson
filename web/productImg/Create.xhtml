@@ -9,13 +9,13 @@
     <ui:composition>
 
         <p:dialog id="ProductImgCreateDlg" widgetVar="ProductImgCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProductImgTitle}">
-            <h:form id="ProductImgCreateForm">
+            <h:form id="ProductImgCreateForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{productImgController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateProductImgLabel_alt}" for="alt" />
                         <p:inputText id="alt" value="#{productImgController.selected.alt}" title="#{bundle.CreateProductImgTitle_alt}" />
                         <p:outputLabel value="#{bundle.CreateProductImgLabel_img}" for="img" />
-                        <p:inputText id="img" value="#{productImgController.selected.img}" title="#{bundle.CreateProductImgTitle_img}" />
+                        <p:fileUpload id="img" value="#{productImgController.file}" mode="simple" skinSimple="true"/>
                         <p:outputLabel value="#{bundle.CreateProductImgLabel_productId}" for="productId" />
                         <p:selectOneMenu id="productId" value="#{productImgController.selected.productId}" >
                             <f:selectItems value="#{productController.itemsAvailableSelectOne}"
@@ -23,7 +23,7 @@
                                            itemValue="#{productIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{productImgController.create}" value="#{bundle.Save}" update="display,:ProductImgListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProductImgCreateDialog');"/>
+                    <p:commandButton actionListener="#{productImgController.create}" ajax="false" value="#{bundle.Save}" update="display,:ProductImgListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProductImgCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ProductImgCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

@@ -21,7 +21,7 @@
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewPageLabel_img}"/>
-                        <h:outputText value="#{pageController.selected.img}" title="#{bundle.ViewPageTitle_img}"/>
+                        <h:graphicImage value="/images/page/#{pageController.selected.img}" style="width: 200px;height: 143px"/>
                         <h:outputText value="#{bundle.ViewPageLabel_meta}"/>
                         <h:outputText value="#{pageController.selected.meta}" title="#{bundle.ViewPageTitle_meta}"/>
                         <h:outputText value="#{bundle.ViewPageLabel_slug}"/>

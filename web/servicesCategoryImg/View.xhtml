@@ -21,7 +21,7 @@
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewServicesCategoryImgLabel_img}"/>
-                        <h:outputText value="#{servicesCategoryImgController.selected.img}" title="#{bundle.ViewServicesCategoryImgTitle_img}"/>
+                        <h:graphicImage value="/images/servicescategory/#{servicesCategoryImgController.selected.img}" style="width: 200px;height: 143px"/>
                         <h:outputText value="#{bundle.ViewServicesCategoryImgLabel_updatedAt}"/>
                         <h:outputText value="#{servicesCategoryImgController.selected.updatedAt}" title="#{bundle.ViewServicesCategoryImgTitle_updatedAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />

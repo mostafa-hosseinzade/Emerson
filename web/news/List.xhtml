@@ -51,7 +51,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNewsTitle_img}"/>
                             </f:facet>
-                            <h:outputText value="#{item.img}"/>
+                            <h:graphicImage value="/images/news/#{item.img}" style="width: 100px;height: 63px"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -101,7 +101,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNewsTitle_ctgId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.ctgId}"/>
+                            <h:outputText value="#{item.ctgId.titleFa}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{newsController.prepareCreate}" update=":NewsCreateForm" oncomplete="PF('NewsCreateDialog').show()"/>

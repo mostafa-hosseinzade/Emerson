@@ -9,13 +9,13 @@
     <ui:composition>
 
         <p:dialog id="PageEditDlg" widgetVar="PageEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPageTitle}">
-            <h:form id="PageEditForm">
+            <h:form id="PageEditForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{pageController.selected != null}">
                         <p:outputLabel value="#{bundle.EditPageLabel_contentFa}" for="contentFa" />
                         <p:inputTextarea rows="4" cols="30" id="contentFa" value="#{pageController.selected.contentFa}" title="#{bundle.EditPageTitle_contentFa}" />
                         <p:outputLabel value="#{bundle.EditPageLabel_img}" for="img" />
-                        <p:inputText id="img" value="#{pageController.selected.img}" title="#{bundle.EditPageTitle_img}" />
+                        <p:fileUpload id="img" value="#{pageController.file}" mode="simple" skinSimple="true" />
                         <p:outputLabel value="#{bundle.EditPageLabel_meta}" for="meta" />
                         <p:inputText id="meta" value="#{pageController.selected.meta}" title="#{bundle.EditPageTitle_meta}" />
                         <p:outputLabel value="#{bundle.EditPageLabel_slug}" for="slug" />
@@ -29,7 +29,7 @@
                         <p:outputLabel value="#{bundle.EditPageLabel_titleEn}" for="titleEn" />
                         <p:inputText id="titleEn" value="#{pageController.selected.titleEn}" title="#{bundle.EditPageTitle_titleEn}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{pageController.update}" value="#{bundle.Save}" update="display,:PageListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PageEditDialog');"/>
+                    <p:commandButton actionListener="#{pageController.update}" ajax="false" value="#{bundle.Save}" update="display,:PageListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PageEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="PageEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

@@ -21,7 +21,7 @@
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewServicesLabel_img}"/>
-                        <h:outputText value="#{servicesController.selected.img}" title="#{bundle.ViewServicesTitle_img}"/>
+                        <h:graphicImage value="/images/services/#{servicesController.selected.img}" style="width: 200px;height: 143px"/>
                         <h:outputText value="#{bundle.ViewServicesLabel_meta}"/>
                         <h:outputText value="#{servicesController.selected.meta}" title="#{bundle.ViewServicesTitle_meta}"/>
                         <h:outputText value="#{bundle.ViewServicesLabel_pdf}"/>

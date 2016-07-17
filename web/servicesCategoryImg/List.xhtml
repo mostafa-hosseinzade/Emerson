@@ -51,7 +51,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListServicesCategoryImgTitle_img}"/>
                             </f:facet>
-                            <h:outputText value="#{item.img}"/>
+                            <h:graphicImage value="/images/servicescategory/#{item.img}" style="width: 100px;height: 63px"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -65,7 +65,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListServicesCategoryImgTitle_servicesCategoryId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.servicesCategoryId}"/>
+                            <h:outputText value="#{item.servicesCategoryId.titleFa}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{servicesCategoryImgController.prepareCreate}" update=":ServicesCategoryImgCreateForm" oncomplete="PF('ServicesCategoryImgCreateDialog').show()"/>

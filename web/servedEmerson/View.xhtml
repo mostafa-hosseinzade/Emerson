@@ -21,7 +21,7 @@
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewServedEmersonLabel_img}"/>
-                        <h:outputText value="#{servedEmersonController.selected.img}" title="#{bundle.ViewServedEmersonTitle_img}"/>
+                        <h:graphicImage value="/images/served/#{servedEmersonController.selected.img}" style="width: 200px;height: 143px"/>
                         <h:outputText value="#{bundle.ViewServedEmersonLabel_titleFa}"/>
                         <h:outputText value="#{servedEmersonController.selected.titleFa}" title="#{bundle.ViewServedEmersonTitle_titleFa}"/>
                         <h:outputText value="#{bundle.ViewServedEmersonLabel_updatedAt}"/>

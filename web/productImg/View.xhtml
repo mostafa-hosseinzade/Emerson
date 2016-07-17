@@ -21,13 +21,13 @@
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewProductImgLabel_img}"/>
-                        <h:outputText value="#{productImgController.selected.img}" title="#{bundle.ViewProductImgTitle_img}"/>
+                        <h:graphicImage value="/images/product/#{productImgController.selected.img}" style="width: 200px;height: 143px"/>
                         <h:outputText value="#{bundle.ViewProductImgLabel_updatedAt}"/>
                         <h:outputText value="#{productImgController.selected.updatedAt}" title="#{bundle.ViewProductImgTitle_updatedAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewProductImgLabel_productId}"/>
-                        <h:outputText value="#{productImgController.selected.productId}" title="#{bundle.ViewProductImgTitle_productId}"/>
+                        <h:outputText value="#{productImgController.selected.productId.titleFa}" title="#{bundle.ViewProductImgTitle_productId}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ProductImgViewDialog.hide()"/>
                 </h:panelGroup>

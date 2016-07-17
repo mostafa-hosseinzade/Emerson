@@ -4,8 +4,15 @@ import Entity.Services;
 import JsfClass.util.JsfUtil;
 import JsfClass.util.JsfUtil.PersistAction;
 import SessionBean.ServicesFacade;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -18,6 +25,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.apache.commons.io.FilenameUtils;
+import org.primefaces.model.UploadedFile;
 
 @Named("servicesController")
 @SessionScoped
@@ -27,6 +36,24 @@ public class ServicesController implements Serializable {
     private SessionBean.ServicesFacade ejbFacade;
     private List<Services> items = null;
     private Services selected;
+    private UploadedFile file;
+    private UploadedFile pdf;
+
+    public UploadedFile getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(UploadedFile pdf) {
+        this.pdf = pdf;
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
 
     public ServicesController() {
     }
@@ -55,15 +82,129 @@ public class ServicesController implements Serializable {
         return selected;
     }
 
-    public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ServicesCreated"));
-        if (!JsfUtil.isValidationFailed()) {
-            items = null;    // Invalidate list of items to trigger re-query.
+    public void create() throws IOException {
+        int error = 0;
+        String extension = FilenameUtils.getExtension(file.getFileName());
+        if (extension != "") {
+            String filename = "";
+            File dir = new File("/opt/Emerson/uploads/services");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            Path folder = Paths.get("/opt/Emerson/uploads/services");
+            
+            if (extension != "jpg" && extension != "png" && extension != "gif") {
+                JsfUtil.addErrorMessage("فرمت عکس مجاز نمی باشد فرمت های مجاز (jpg,png,gif)");
+                error = 1;
+                this.file = null;
+            } else {
+                String name = 1 + "_" + System.currentTimeMillis();
+                Path path = Paths.get(folder.toString(), name + "." + extension);
+                Path outFile = Files.createFile(path);
+                try (InputStream input = file.getInputstream()) {
+                    Files.copy(input, outFile, StandardCopyOption.REPLACE_EXISTING);
+                    filename += name + "." + extension;
+                }
+                selected.setImg(filename);
+                this.file = null;
+            }
+        }
+        extension = FilenameUtils.getExtension(pdf.getFileName());
+        if (extension != "") {
+            String filename = "";
+            File dir = new File("/opt/Emerson/uploads/services");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            Path folder = Paths.get("/opt/Emerson/uploads/services");
+            if (extension != "pdf") {
+                error = 1;
+                JsfUtil.addErrorMessage("فرمت فایل کتاب الکترونیک درست نمی باشد");
+                this.pdf = null;
+            } else {
+                String name = 1 + "_" + System.currentTimeMillis();
+                Path path = Paths.get(folder.toString(), name + "." + extension);
+                Path outFile = Files.createFile(path);
+                try (InputStream input = pdf.getInputstream()) {
+                    Files.copy(input, outFile, StandardCopyOption.REPLACE_EXISTING);
+                    filename += name + "." + extension;
+                }
+                selected.setPdf(filename);
+                this.pdf = null;
+            }
+        }
+        if (error == 0) {
+            persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ServicesCreated"));
+            if (!JsfUtil.isValidationFailed()) {
+                items = null;    // Invalidate list of items to trigger re-query.
+            }
         }
     }
 
-    public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ServicesUpdated"));
+    public void update() throws IOException {
+        int error = 0;
+        if (this.file != null) {
+            String filename = "";
+            File dir = new File("/opt/Emerson/uploads/services");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            Path folder = Paths.get("/opt/Emerson/uploads/services");
+            if (selected.getImg() != null) {
+                File f = new File("/opt/Emerson/uploads/services/" + selected.getImg());
+                if (f.exists()) {
+                    f.delete();
+                }
+            }
+            String extension = FilenameUtils.getExtension(file.getFileName());
+            if (extension != "jpg" && extension != "png" && extension != "gif") {
+                System.out.println("JsfClass.ServicesController.update() : errrrrrrrrrrooooooooorrrrrrrr");
+                JsfUtil.addErrorMessage("Format img Not True");
+                error = 1;
+            } else {
+                String name = 1 + "_" + System.currentTimeMillis();
+                Path path = Paths.get(folder.toString(), name + "." + extension);
+                Path outFile = Files.createFile(path);
+                try (InputStream input = file.getInputstream()) {
+                    Files.copy(input, outFile, StandardCopyOption.REPLACE_EXISTING);
+                    filename = name + "." + extension;
+                    selected.setImg(filename);
+                    this.file = null;
+                }
+            }
+        }
+
+        if (this.pdf != null) {
+            String filename = "";
+            File dir = new File("/opt/Emerson/uploads/services");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            Path folder = Paths.get("/opt/Emerson/uploads/services");
+            if (selected.getPdf() != null) {
+                File f = new File("/opt/Emerson/uploads/services/" + selected.getPdf());
+                if (f.exists()) {
+                    f.delete();
+                }
+            }
+            String extension = FilenameUtils.getExtension(pdf.getFileName());
+            if (extension != "pdf") {
+                error = 1;
+                JsfUtil.addErrorMessage("Format PDf Not True");
+            }
+            String name = 1 + "_" + System.currentTimeMillis();
+            Path path = Paths.get(folder.toString(), name + "." + extension);
+            Path outFile = Files.createFile(path);
+            try (InputStream input = pdf.getInputstream()) {
+                Files.copy(input, outFile, StandardCopyOption.REPLACE_EXISTING);
+                filename = name + "." + extension;
+                selected.setPdf(filename);
+                this.pdf = null;
+            }
+        }
+        if (error == 0) {
+            persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ServicesUpdated"));
+        }
     }
 
     public void destroy() {
@@ -88,6 +229,12 @@ public class ServicesController implements Serializable {
                 if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
+                    if (selected.getImg() != null) {
+                        File f = new File("/opt/Emerson/uploads/services/" + selected.getImg());
+                        if (f.exists()) {
+                            f.delete();
+                        }
+                    }
                     getFacade().remove(selected);
                 }
                 JsfUtil.addSuccessMessage(successMessage);

@@ -9,13 +9,13 @@
     <ui:composition>
 
         <p:dialog id="ServedEmersonEditDlg" widgetVar="ServedEmersonEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditServedEmersonTitle}">
-            <h:form id="ServedEmersonEditForm">
+            <h:form id="ServedEmersonEditForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{servedEmersonController.selected != null}">
                         <p:outputLabel value="#{bundle.EditServedEmersonLabel_contentFa}" for="contentFa" />
                         <p:inputTextarea rows="4" cols="30" id="contentFa" value="#{servedEmersonController.selected.contentFa}" title="#{bundle.EditServedEmersonTitle_contentFa}" />
                         <p:outputLabel value="#{bundle.EditServedEmersonLabel_img}" for="img" />
-                        <p:inputText id="img" value="#{servedEmersonController.selected.img}" title="#{bundle.EditServedEmersonTitle_img}" />
+                        <p:fileUpload id="img" value="#{servedEmersonController.file}" mode="simple" skinSimple="true" />
                         <p:outputLabel value="#{bundle.EditServedEmersonLabel_titleFa}" for="titleFa" />
                         <p:inputText id="titleFa" value="#{servedEmersonController.selected.titleFa}" title="#{bundle.EditServedEmersonTitle_titleFa}" />
                         <p:outputLabel value="#{bundle.EditServedEmersonLabel_contentEn}" for="contentEn" />
@@ -23,7 +23,7 @@
                         <p:outputLabel value="#{bundle.EditServedEmersonLabel_titleEn}" for="titleEn" />
                         <p:inputText id="titleEn" value="#{servedEmersonController.selected.titleEn}" title="#{bundle.EditServedEmersonTitle_titleEn}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{servedEmersonController.update}" value="#{bundle.Save}" update="display,:ServedEmersonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ServedEmersonEditDialog');"/>
+                    <p:commandButton actionListener="#{servedEmersonController.update}" ajax="false" value="#{bundle.Save}" update="display,:ServedEmersonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ServedEmersonEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ServedEmersonEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

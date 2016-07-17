@@ -9,13 +9,13 @@
     <ui:composition>
 
         <p:dialog id="ServicesEditDlg" widgetVar="ServicesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditServicesTitle}">
-            <h:form id="ServicesEditForm">
+            <h:form id="ServicesEditForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{servicesController.selected != null}">
                         <p:outputLabel value="#{bundle.EditServicesLabel_contentFa}" for="contentFa" />
                         <p:inputTextarea rows="4" cols="30" id="contentFa" value="#{servicesController.selected.contentFa}" title="#{bundle.EditServicesTitle_contentFa}" />
                         <p:outputLabel value="#{bundle.EditServicesLabel_img}" for="img" />
-                        <p:inputText id="img" value="#{servicesController.selected.img}" title="#{bundle.EditServicesTitle_img}" />
+                        <p:fileUpload id="img" value="#{servicesController.file}" mode="simple" skinSimple="true" />
                         <p:outputLabel value="#{bundle.EditServicesLabel_meta}" for="meta" />
                         <p:inputText id="meta" value="#{servicesController.selected.meta}" title="#{bundle.EditServicesTitle_meta}" />
                         <p:outputLabel value="#{bundle.EditServicesLabel_pdf}" for="pdf" />
@@ -38,7 +38,7 @@
                                            itemValue="#{ctgIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{servicesController.update}" value="#{bundle.Save}" update="display,:ServicesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ServicesEditDialog');"/>
+                    <p:commandButton actionListener="#{servicesController.update}" ajax="false" value="#{bundle.Save}" update="display,:ServicesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ServicesEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ServicesEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

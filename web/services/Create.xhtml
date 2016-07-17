@@ -9,17 +9,17 @@
     <ui:composition>
 
         <p:dialog id="ServicesCreateDlg" widgetVar="ServicesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateServicesTitle}">
-            <h:form id="ServicesCreateForm">
+            <h:form id="ServicesCreateForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{servicesController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateServicesLabel_contentFa}" for="contentFa" />
                         <p:inputTextarea rows="4" cols="30" id="contentFa" value="#{servicesController.selected.contentFa}" title="#{bundle.CreateServicesTitle_contentFa}" />
                         <p:outputLabel value="#{bundle.CreateServicesLabel_img}" for="img" />
-                        <p:inputText id="img" value="#{servicesController.selected.img}" title="#{bundle.CreateServicesTitle_img}" />
+                        <p:fileUpload id="img" value="#{servicesController.file}" mode="simple" skinSimple="true" />
                         <p:outputLabel value="#{bundle.CreateServicesLabel_meta}" for="meta" />
                         <p:inputText id="meta" value="#{servicesController.selected.meta}" title="#{bundle.CreateServicesTitle_meta}" />
                         <p:outputLabel value="#{bundle.CreateServicesLabel_pdf}" for="pdf" />
-                        <p:inputText id="pdf" value="#{servicesController.selected.pdf}" title="#{bundle.CreateServicesTitle_pdf}" />
+                        <p:fileUpload id="pdf" value="#{servicesController.pdf}" required="true" mode="simple" skinSimple="true" />
                         <p:outputLabel value="#{bundle.CreateServicesLabel_slug}" for="slug" />
                         <p:inputText id="slug" value="#{servicesController.selected.slug}" title="#{bundle.CreateServicesTitle_slug}" />
                         <p:outputLabel value="#{bundle.CreateServicesLabel_titleFa}" for="titleFa" />
@@ -37,7 +37,7 @@
                                            itemValue="#{ctgIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{servicesController.create}" value="#{bundle.Save}" update="display,:ServicesListForm:datalist,:growl" oncomplete="handleSubmit(args,'ServicesCreateDialog');"/>
+                    <p:commandButton actionListener="#{servicesController.create}" value="#{bundle.Save}" ajax="false" update="display,:ServicesListForm:datalist,:growl" oncomplete="handleSubmit(args,'ServicesCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ServicesCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

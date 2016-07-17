@@ -9,13 +9,13 @@
     <ui:composition>
 
         <p:dialog id="ProductImgEditDlg" widgetVar="ProductImgEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditProductImgTitle}">
-            <h:form id="ProductImgEditForm">
+            <h:form id="ProductImgEditForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{productImgController.selected != null}">
                         <p:outputLabel value="#{bundle.EditProductImgLabel_alt}" for="alt" />
                         <p:inputText id="alt" value="#{productImgController.selected.alt}" title="#{bundle.EditProductImgTitle_alt}" />
                         <p:outputLabel value="#{bundle.EditProductImgLabel_img}" for="img" />
-                        <p:inputText id="img" value="#{productImgController.selected.img}" title="#{bundle.EditProductImgTitle_img}" />
+                        <p:fileUpload id="img" value="#{productImgController.file}" mode="simple" skinSimple="true" />
                         <p:outputLabel value="#{bundle.EditProductImgLabel_productId}" for="productId" />
                         <p:selectOneMenu id="productId" value="#{productImgController.selected.productId}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
@@ -24,7 +24,7 @@
                                            itemValue="#{productIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{productImgController.update}" value="#{bundle.Save}" update="display,:ProductImgListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProductImgEditDialog');"/>
+                    <p:commandButton actionListener="#{productImgController.update}" ajax="false" value="#{bundle.Save}" update="display,:ProductImgListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProductImgEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ProductImgEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

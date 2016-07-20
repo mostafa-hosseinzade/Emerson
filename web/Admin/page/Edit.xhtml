@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PageEditDlg" widgetVar="PageEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPageTitle}">
+            <h:form id="PageEditForm" enctype="multipart/form-data">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pageController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPageLabel_contentFa}" for="contentFa" />
+                        <p:editor id="contentFa" value="#{pageController.selected.contentFa}"/>
+                        <p:outputLabel value="#{bundle.EditPageLabel_img}" for="img" />
+                        <p:fileUpload id="img" value="#{pageController.file}" mode="simple" skinSimple="true" />
+                        <p:outputLabel value="#{bundle.EditPageLabel_meta}" for="meta" />
+                        <p:inputText id="meta" value="#{pageController.selected.meta}" title="#{bundle.EditPageTitle_meta}" />
+                        <p:outputLabel value="#{bundle.EditPageLabel_slug}" for="slug" />
+                        <p:inputText id="slug" value="#{pageController.selected.slug}" title="#{bundle.EditPageTitle_slug}" />
+                        <p:outputLabel value="#{bundle.EditPageLabel_titleFa}" for="titleFa" />
+                        <p:inputText id="titleFa" value="#{pageController.selected.titleFa}" title="#{bundle.EditPageTitle_titleFa}" />
+                        <p:outputLabel value="#{bundle.EditPageLabel_visit}" for="visit" />
+                        <p:inputText id="visit" value="#{pageController.selected.visit}" title="#{bundle.EditPageTitle_visit}" />
+                        <p:outputLabel value="#{bundle.EditPageLabel_contentEn}" for="contentEn" />
+                        <p:editor id="contentEn" value="#{pageController.selected.contentEn}"/>
+                        <p:outputLabel value="#{bundle.EditPageLabel_titleEn}" for="titleEn" />
+                        <p:inputText id="titleEn" value="#{pageController.selected.titleEn}" title="#{bundle.EditPageTitle_titleEn}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pageController.update}" ajax="false" value="#{bundle.Save}" update="display,:PageListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PageEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PageEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

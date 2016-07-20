@@ -1,0 +1,34 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 17, 2016, 4:34:12 PM
+    Author     : administrator
+*/
+
+.section-social > .social {
+    margin-top: 40px;
+    font-weight: bold;
+    float: right;
+}
+
+.main > .side > ul > .active{
+    border-left: 4px solid #036EAC;
+}
+
+.head-img > .img  .crew{
+transform: skewX(29deg);margin-left:-77px;
+}
+
+.head-img > .text > h1{
+    padding-left: 30px;
+}
+
+.head-img > .text{
+    background: linear-gradient(88deg, #009CD1 0%, #00AFE9 51%, #00AFE9 75%);
+}
+.navbar-form-head{
+    float: right;
+}

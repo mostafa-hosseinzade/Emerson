@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="NewsViewDlg" widgetVar="NewsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewNewsTitle}">
+            <h:form id="NewsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{newsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewNewsLabel_id}"/>
+                        <h:outputText value="#{newsController.selected.id}" title="#{bundle.ViewNewsTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewNewsLabel_contentFa}"/>
+                        <h:outputText value="#{newsController.selected.contentFa}" title="#{bundle.ViewNewsTitle_contentFa}"/>
+                        <h:outputText value="#{bundle.ViewNewsLabel_createdAt}"/>
+                        <h:outputText value="#{newsController.selected.createdAt}" title="#{bundle.ViewNewsTitle_createdAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewNewsLabel_img}"/>
+                        <h:graphicImage value="/images/news/#{newsController.selected.img}" style="width: 200px;height: 143px"/>
+                        <h:outputText value="#{bundle.ViewNewsLabel_meta}"/>
+                        <h:outputText value="#{newsController.selected.meta}" title="#{bundle.ViewNewsTitle_meta}"/>
+                        <h:outputText value="#{bundle.ViewNewsLabel_slug}"/>
+                        <h:outputText value="#{newsController.selected.slug}" title="#{bundle.ViewNewsTitle_slug}"/>
+                        <h:outputText value="#{bundle.ViewNewsLabel_titleFa}"/>
+                        <h:outputText value="#{newsController.selected.titleFa}" title="#{bundle.ViewNewsTitle_titleFa}"/>
+                        <h:outputText value="#{bundle.ViewNewsLabel_updatedAt}"/>
+                        <h:outputText value="#{newsController.selected.updatedAt}" title="#{bundle.ViewNewsTitle_updatedAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewNewsLabel_visit}"/>
+                        <h:outputText value="#{newsController.selected.visit}" title="#{bundle.ViewNewsTitle_visit}"/>
+                        <h:outputText value="#{bundle.ViewNewsLabel_contentEn}"/>
+                        <h:outputText value="#{newsController.selected.contentEn}" title="#{bundle.ViewNewsTitle_contentEn}"/>
+                        <h:outputText value="#{bundle.ViewNewsLabel_titleEn}"/>
+                        <h:outputText value="#{newsController.selected.titleEn}" title="#{bundle.ViewNewsTitle_titleEn}"/>
+                        <h:outputText value="#{bundle.ViewNewsLabel_ctgId}"/>
+                        <h:outputText value="#{newsController.selected.ctgId}" title="#{bundle.ViewNewsTitle_ctgId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="NewsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

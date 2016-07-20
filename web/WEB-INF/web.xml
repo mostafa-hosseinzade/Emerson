@@ -5,14 +5,18 @@
         <param-value>Development</param-value>
     </context-param>
     <context-param>
+        <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+        <param-value>2</param-value>
+    </context-param>
+
+    <context-param>
         <param-name>primefaces.DIR</param-name>
         <param-value>RTL</param-value>
     </context-param>
-    <context-param>
+<!--    <context-param>
         <param-name>primefaces.THEME</param-name>
-        <param-value>afterdark</param-value>
-        <!--<param-value>metroui</param-value>-->
-    </context-param>
+        <param-value>metroui</param-value>
+    </context-param>-->
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -20,7 +24,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
+        <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

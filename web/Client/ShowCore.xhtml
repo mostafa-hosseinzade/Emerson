@@ -1,0 +1,179 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition template="LayoutCore.xhtml">
+        <ui:define name="title">
+            #{main.title}
+        </ui:define>
+        <ui:define name="bodyShow">
+            <div class="MainContainer">
+            <div class="col-lg-12 head-top">
+                <nav class="navbar">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" style="background-color: #ccc;color: #fff;margin-top: 20px;" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="fa fa-reorder"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">
+                                <div class="col-lg-6">
+                                    <p:graphicImage value="../resources/img/logo.png" styleClass="img img-responsive hidden-xs"/>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p:graphicImage styleClass="img img-responsive " value="../resources/img/logo_piramoon.png"/>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-nav-speacial navbar-head">
+                                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                                <li><a href="#">Link</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#">One more separated link</a></li>
+                                    </ul>
+                                </li>
+                                <form class="navbar-form navbar-head" role="search">
+                                    <div class="form-group input-search ">
+                                        <input type="text" class="" placeholder="Search"/>
+                                        <span class="fa fa-search" style="transform: rotate(90deg);cursor: pointer"></span>
+                                    </div>
+                                </form>
+                            </ul>
+                            <br/>
+                            <br/>
+                            <ul class="nav navbar-nav navbar-nav-speacial-tow ">
+                                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                                <li><a href="#">Link</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li><a href="#">One more separated link</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-lg-12">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li class="active">Data</li>
+                </ol>
+            </div>
+            <div class="col-lg-12 head-slide">
+                <div class="img" style="background: url(../resources/img/hero1.jpg) no-repeat">
+                    <div class="col-lg-9 col-md-9 col-xs-12 col-sm-12 text1">
+                        <h1 style="background: url(../resources/img/measure_y_analyze_hdr.png) no-repeat"></h1>
+                        <p>The broadest range of measurement and analytical<br/>technologies for process clarity and insight.</p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 text2">
+                        <p>How can smarter<br/>instruments help reduce energy costs and<br/>emissions?</p>
+                        <a href="#">Maximizing low-cost fuel use »</a>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-12">
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 ">
+                    <div class="col-lg-12 content">
+                        <div class="intro"><h2>Operate at Your Peak Potential</h2>
+                            <p>The rigorous demands of your process operations require you to have reliable, accurate devices <br/>that give you the measurements you need. Emerson delivers field-proven technologies that can <br/>handle the toughest conditions or analytical challenges to allow you to maximize the performance, <br/>profitability and, most importantly, safety of your applications. </p></div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="colum-l" ><h3><a href="/en-US/products-services/Measure-and-Analyze/pressure-measurement">Pressure Measurement »</a></h3>
+                            <ul><li><a >Pressure Transmitters »</a> </li>
+                                <li><a >MultiVariable Transmitters »</a> </li>
+                                <li><a >Manifolds »</a> </li>
+                                <li><a >Nuclear »</a> </li></ul>
+                            <h3><a href="#">Level Measurement »</a></h3>
+                            <ul><li><a >Differential Pressure »</a> </li>
+                                <li><a >Guided Wave Radar »</a> </li>
+                                <li><a >Non-Contacting Radar »</a> </li>
+                                <li><a >Switches »</a> </li>
+                                <li><a >Ultrasonic »</a> </li>
+                                <li><a >Electromechanical »</a> </li>
+                                <li><a >Magnetic Level Indicator »</a> </li></ul>
+                            <h3><a href="/en-US/products-services/Measure-and-Analyze/temperature-measurement">Temperature <br/>Measurement »</a></h3>
+                            <ul>
+                                <li><a >Transmitters »</a> </li>
+                                <li><a >Sensors »</a> </li>
+                                <li><a >Thermowells »</a> </li></ul></div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="colum-l" ><h3><a href="/en-US/products-services/Measure-and-Analyze/flow-measurement">Flow Measurement »</a> </h3>
+                            <ul><li><a >Differential Pressure »</a> </li>
+                                <li><a >Coriolis »</a> </li>
+                                <li><a href="#">Magnetic »</a> </li>
+                                <li><a href="#">Vortex »</a> </li>
+                                <li><a href="#">Ultrasonic »</a> </li>
+                                <li><a href="#">Orifice Fittings »</a> </li>
+                                <li><a href="#">Liquid Turbine »</a> </li></ul>
+                            <h3 class="digital"><a href="#">Marine Measurement &amp; Analytical »</a></h3>
+                            <h3 class="digital"><a href="#">Liquid Analysis »</a></h3>
+                            <h3 class="digital"><a href="#">Tank Gauging »</a></h3>
+                            <h3 class="digital"></h3></div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="colum-l last"><h3 class="digital"><a href="#">Density &amp; Viscosity Measurement »</a></h3>
+                            <h3 class="digital"><a href="#">Downhole Measurement »</a></h3>
+                            <h3 class="digital"><a href="/en-US/products-services/Measure-and-Analyze/Flame-Gas-Detection/Pages/index.aspx">Flame &amp; Gas Detection »</a></h3>
+                            <h3 class="digital"><a href="#">Subsea Measurement »</a></h3>
+                            <h3 class="digital"><a href="#">Functional Safety Sensors »</a></h3>
+                            <h3 class="digital"><a href="#">Wireless Technologies »</a></h3></div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="related-brands">
+                            <div class="row">
+                                <h4 style="margin-top: 10px;color: #359CED">Related Brands</h4>
+                                <hr />
+                            </div>
+                            <?php for($i=0;$i<10;$i++): ?>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <a class="brands" href="#">Rosemount »</a>
+                            </div>
+                            <?php endfor;?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 contact">
+                    <div class="show-category">
+                        <div class="menu-tools" style="background-color: rgb(237,237,237)"><h3 style="color: rgb(60,158,234)">online tools</h3>
+                            <p style="color: rgb(144,144,144)">Handbooks, guides,<br/>calculators and other tools to help you find the right solution.</p>
+                            <ul>
+                                <li><a href="#">Instrument Toolkit<br/>for Measurement</a></li>
+                                <li><a href="#">Flow Measurement<br/>Online Store </a></li>
+                                <li><a href="#">Flow Applications<br/>Sizing Tools </a></li>
+                                <li><a href="#">Analytical pH Selector<br/>Guide</a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script src="../resources/js/jquery.min.js"></script>
+        <script src="../resources/js/bootstrap.min.js"></script>
+        </ui:define>
+    </ui:composition>
+</html>

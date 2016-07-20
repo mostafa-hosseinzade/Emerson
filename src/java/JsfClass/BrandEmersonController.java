@@ -18,6 +18,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.jsoup.Jsoup;
 
 @Named("brandEmersonController")
 @SessionScoped
@@ -162,4 +163,7 @@ public class BrandEmersonController implements Serializable {
 
     }
 
+    public String html2text(String html) {
+        return Jsoup.parse(html).text();
+    }
 }

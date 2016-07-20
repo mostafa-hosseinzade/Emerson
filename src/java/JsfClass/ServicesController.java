@@ -93,11 +93,11 @@ public class ServicesController implements Serializable {
             }
             Path folder = Paths.get("/opt/Emerson/uploads/services");
             
-            if (extension != "jpg" && extension != "png" && extension != "gif") {
-                JsfUtil.addErrorMessage("فرمت عکس مجاز نمی باشد فرمت های مجاز (jpg,png,gif)");
-                error = 1;
-                this.file = null;
-            } else {
+//            if (extension != "jpg" && extension != "png" && extension != "gif") {
+//                JsfUtil.addErrorMessage("فرمت عکس مجاز نمی باشد فرمت های مجاز (jpg,png,gif)");
+//                error = 1;
+//                this.file = null;
+//            } else {
                 String name = 1 + "_" + System.currentTimeMillis();
                 Path path = Paths.get(folder.toString(), name + "." + extension);
                 Path outFile = Files.createFile(path);
@@ -107,7 +107,7 @@ public class ServicesController implements Serializable {
                 }
                 selected.setImg(filename);
                 this.file = null;
-            }
+//            }
         }
         extension = FilenameUtils.getExtension(pdf.getFileName());
         if (extension != "") {
@@ -157,11 +157,11 @@ public class ServicesController implements Serializable {
                 }
             }
             String extension = FilenameUtils.getExtension(file.getFileName());
-            if (extension != "jpg" && extension != "png" && extension != "gif") {
-                System.out.println("JsfClass.ServicesController.update() : errrrrrrrrrrooooooooorrrrrrrr");
-                JsfUtil.addErrorMessage("Format img Not True");
-                error = 1;
-            } else {
+//            if (extension != "jpg" && extension != "png" && extension != "gif") {
+//                System.out.println("JsfClass.ServicesController.update() : errrrrrrrrrrooooooooorrrrrrrr");
+//                JsfUtil.addErrorMessage("Format img Not True");
+//                error = 1;
+//            } else {
                 String name = 1 + "_" + System.currentTimeMillis();
                 Path path = Paths.get(folder.toString(), name + "." + extension);
                 Path outFile = Files.createFile(path);
@@ -171,7 +171,7 @@ public class ServicesController implements Serializable {
                     selected.setImg(filename);
                     this.file = null;
                 }
-            }
+//            }
         }
 
         if (this.pdf != null) {

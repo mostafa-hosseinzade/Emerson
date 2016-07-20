@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <style>.ui-editor{height:120px !important;}</style>
+        <p:dialog id="NewsCreateDlg" widgetVar="NewsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateNewsTitle}">
+            <h:form id="NewsCreateForm" enctype="multipart/form-data">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{newsController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateNewsLabel_contentFa}" for="contentFa" />
+                        <p:editor id="contentFa" value="#{newsController.selected.contentFa}" />
+                        <p:outputLabel value="#{bundle.CreateNewsLabel_img}" for="img" />
+                        <p:fileUpload id="img" value="#{newsController.file}" mode="simple" skinSimple="true"/>
+                        <p:outputLabel value="#{bundle.CreateNewsLabel_meta}" for="meta" />
+                        <p:inputText id="meta" value="#{newsController.selected.meta}" title="#{bundle.CreateNewsTitle_meta}" />
+                        <p:outputLabel value="#{bundle.CreateNewsLabel_slug}" for="slug" />
+                        <p:inputText id="slug" value="#{newsController.selected.slug}" title="#{bundle.CreateNewsTitle_slug}" />
+                        <p:outputLabel value="#{bundle.CreateNewsLabel_titleFa}" for="titleFa" />
+                        <p:inputText id="titleFa" value="#{newsController.selected.titleFa}" title="#{bundle.CreateNewsTitle_titleFa}" />
+                        <p:outputLabel value="#{bundle.CreateNewsLabel_visit}" for="visit" />
+                        <p:inputText id="visit" value="#{newsController.selected.visit}" title="#{bundle.CreateNewsTitle_visit}" />
+                        <p:outputLabel value="#{bundle.CreateNewsLabel_contentEn}" for="contentEn" />
+                        <p:editor id="contentEn" value="#{newsController.selected.contentEn}" />
+                        <p:outputLabel value="#{bundle.CreateNewsLabel_titleEn}" for="titleEn" />
+                        <p:inputText id="titleEn" value="#{newsController.selected.titleEn}" title="#{bundle.CreateNewsTitle_titleEn}" />
+                        <p:outputLabel value="#{bundle.CreateNewsLabel_ctgId}" for="ctgId" />
+                        <p:selectOneMenu id="ctgId" value="#{newsController.selected.ctgId}" >
+                            <f:selectItems value="#{newsCategoryController.itemsAvailableSelectOne}"
+                                           var="ctgIdItem"
+                                           itemValue="#{ctgIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{newsController.create}" ajax="false" value="#{bundle.Save}" update="display,:NewsListForm:datalist,:growl" oncomplete="handleSubmit(args,'NewsCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="NewsCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

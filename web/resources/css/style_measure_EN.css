@@ -1,0 +1,86 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 19, 2016, 10:39:26 AM
+    Author     : administrator
+*/
+
+.navbar-head{
+    float: right !important;
+}
+.container-fluid{
+    padding-left: 46px;
+}
+
+.head-slide > .img > .text1 > h1{
+    width: 334px;
+    margin-left: 41px;
+    height: 121px;
+    margin-top: 49px;
+}
+.head-slide > .img > .text1 > p{
+    font-size: 16px;
+    color: #fff;
+    margin-top: 20px;
+    margin-left: 45px;
+}
+.head-slide > .img > .text2 > p{
+    font-size: 16px;
+    margin-top: 55px;
+    margin-left: 30px;
+    color: #fff;
+    vertical-align: middle;
+}
+
+.head-slide > .img > .text2 > a{
+    font-size: 11px;
+    font-weight: bold;
+    word-spacing: 0px;
+    margin-left: 30px;
+    color: #fff;
+    vertical-align: middle;
+}
+@media(max-width:772px){
+    .head-slide > .img > .text2 > a{
+        color: black;
+    }
+    .head-slide > .img > .text2 > p{
+        color: #002a80;
+        margin-top: 10px;
+    }
+    .head-slide > .img > .text1 > h1{
+    margin-left: 5px;
+    }
+}
+.head-slide > .img > .text2 {
+    margin: 26px 0 0 0;
+    padding: 0 0 0 14px;
+    width: 206px;
+}
+.content > .intro{
+    border-left: 6px solid #439eea;
+    padding-left: 15px;
+    margin-left: 32px;
+}
+.contact .show-category > .menu-tools{
+    background-color: rgb(237,237,237);
+    padding: 10px 20px 1px 20px;
+}
+
+.contact .show-category > .menu-tools > ul{
+    list-style: none;
+}
+.contact .show-category > .menu-tools > ul li{
+    list-style-position: outside !important;
+    background-color: #359CED;
+    margin-top: 6px;
+    margin-left: -25px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.contact .show-category > .menu-tools > ul li a{
+ color: #fff;   
+}

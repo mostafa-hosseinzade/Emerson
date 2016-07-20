@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <c:if test="#{main.language == 'FA'}">
+            <h:outputStylesheet library="css" name="bootstrap.rtl.css" />
+        </c:if>
+        <c:if test="#{main.language == 'EN'}">
+            <h:outputStylesheet library="css" name="bootstrap.css"/>
+        </c:if>
+        <h:outputStylesheet library="css" name="font-awesome.min.css"/>
+        <h:outputStylesheet library="css" name="style_measure.css" />
+        <h:outputStylesheet library="css" name="style_measure_#{main.language}.css" />
+    </h:head>
+    <h:body>
+        <p:layoutUnit position="south" size="60">
+            <ui:insert name="footer"/>
+        </p:layoutUnit>
+
+
+        <ui:insert name="bodyShow"/>
+
+    </h:body>
+</html>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProductTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="ProductListForm">
+                <p:panel header="#{bundle.ListProductTitle}">
+                    <p:dataTable id="datalist" value="#{productController.items}" var="item" widgetVar="itemTable"
+                                 selectionMode="single" selection="#{productController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <f:facet name="header" >
+                            <h:panelGrid columns="2">
+                                <p:outputPanel >
+                                    <h:outputText value=":Search all fields"/>
+                                    <p:inputText id="globalFilter" onkeyup="PF('itemTable').filter()" style="width:150px; float:right;" placeholder="Enter keyword"/>
+                                </p:outputPanel>
+                                <p:outputPanel>
+                                    <p:commandButton id="toggler" type="button" value="Columns" style="float:left" icon="ui-icon-calculator" />
+                                    <p:columnToggler datasource="datalist" trigger="toggler" />
+                                </p:outputPanel>
+                            </h:panelGrid>
+                        </f:facet>
+                        
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.contentEn}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_contentEn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contentEn.length() gt 20 ? item.contentEn.substring(0,21).concat('...') : item.contentEn}"/>/>
+                        </p:column>
+                        <p:column sortBy="#{item.createdAt}" filterBy="#{item.createdAt}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_createdAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column filterBy="#{item.link}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_link}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.link}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.titleEn}" filterBy="#{item.titleEn}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_titleEn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleEn}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.updatedAt}" filterBy="#{item.updatedAt}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_updatedAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.updatedAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column filterBy="#{item.contentFa}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_contentFa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contentFa.length() gt 20 ? item.contentFa.substring(0,21).concat('...') : item.contentFa}"/>"/>
+                        </p:column>
+                        <p:column sortBy="#{item.titleFa}" filterBy="#{item.titleFa}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_titleFa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleFa}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_brandId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.brandId}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{productController.prepareCreate}" update=":ProductCreateForm" oncomplete="PF('ProductCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ProductViewForm" oncomplete="PF('ProductViewDialog').show()" disabled="#{empty productController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProductEditForm" oncomplete="PF('ProductEditDialog').show()" disabled="#{empty productController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{productController.destroy}" update=":growl,datalist" disabled="#{empty productController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

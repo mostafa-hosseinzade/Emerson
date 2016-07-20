@@ -41,7 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "ServicesCategory.findBySlug", query = "SELECT s FROM ServicesCategory s WHERE s.slug = :slug"),
     @NamedQuery(name = "ServicesCategory.findByTitleFa", query = "SELECT s FROM ServicesCategory s WHERE s.titleFa = :titleFa"),
     @NamedQuery(name = "ServicesCategory.findByUpdatedAt", query = "SELECT s FROM ServicesCategory s WHERE s.updatedAt = :updatedAt"),
-    @NamedQuery(name = "ServicesCategory.findByDecribtionEn", query = "SELECT s FROM ServicesCategory s WHERE s.decribtionEn = :decribtionEn"),
+    @NamedQuery(name = "ServicesCategory.findByDescribtionEn", query = "SELECT s FROM ServicesCategory s WHERE s.describtionEn = :describtionEn"),
     @NamedQuery(name = "ServicesCategory.findByTitleEn", query = "SELECT s FROM ServicesCategory s WHERE s.titleEn = :titleEn")})
 public class ServicesCategory implements Serializable {
 
@@ -67,8 +67,8 @@ public class ServicesCategory implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
     @Size(max = 3000)
-    @Column(name = "decribtion_en")
-    private String decribtionEn;
+    @Column(name = "describtion_en")
+    private String describtionEn;
     @Size(max = 300)
     @Column(name = "title_en")
     private String titleEn;
@@ -132,12 +132,12 @@ public class ServicesCategory implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public String getDecribtionEn() {
-        return decribtionEn;
+    public String getDescribtionEn() {
+        return describtionEn;
     }
 
-    public void setDecribtionEn(String decribtionEn) {
-        this.decribtionEn = decribtionEn;
+    public void setDescribtionEn(String describtionEn) {
+        this.describtionEn = describtionEn;
     }
 
     public String getTitleEn() {

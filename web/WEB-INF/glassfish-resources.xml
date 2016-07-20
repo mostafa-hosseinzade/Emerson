@@ -8,5 +8,6 @@
     <property name="URL" value="jdbc:mysql://localhost:3306/emerson?zeroDateTimeBehavior=convertToNull"/>
     <property name="User" value="root"/>
     <property name="Password" value="root"/>
+    <property name="characterEncoding" value="UTF-8"/>
   </jdbc-connection-pool>
 </resources>

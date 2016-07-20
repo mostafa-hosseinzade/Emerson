@@ -28,6 +28,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import org.primefaces.model.UploadedFile;
 import org.apache.commons.io.FilenameUtils;
+import org.jsoup.Jsoup;
 import org.primefaces.event.FileUploadEvent;
 
 @Named("newsController")
@@ -70,11 +71,11 @@ public class NewsController implements Serializable {
     public void create() throws IOException {
         if (this.file != null) {
             String filename = "";
-            File dir = new File("/opt/Emerson/uploads/news");
+            File dir = new File("C:/uploads");
             if (!dir.exists()) {
                 dir.mkdirs();
             }
-            Path folder = Paths.get("/opt/Emerson/uploads/news");
+            Path folder = Paths.get("C:/uploads/news");
             System.out.println("JsfClass.NewsController.create() : Extention is : " + file);
             String extension = FilenameUtils.getExtension(file.getFileName());
 
@@ -230,6 +231,9 @@ public class NewsController implements Serializable {
             }
         }
 
+    }
+    public String html2text(String html) {
+        return Jsoup.parse(html).text();
     }
 
 }

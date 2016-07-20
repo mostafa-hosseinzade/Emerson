@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        
+        <p:dialog id="ServicesEditDlg" widgetVar="ServicesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditServicesTitle}">
+            <h:form id="ServicesEditForm" enctype="multipart/form-data">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{servicesController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditServicesLabel_contentFa}" for="contentFa" />
+                        <p:editor id="contentFa" value="#{servicesController.selected.contentFa}"/>
+                        <p:outputLabel value="#{bundle.EditServicesLabel_img}" for="img" />
+                        <p:fileUpload id="img" value="#{servicesController.file}" mode="simple" skinSimple="true" />
+                        <p:outputLabel value="#{bundle.EditServicesLabel_meta}" for="meta" />
+                        <p:inputText id="meta" value="#{servicesController.selected.meta}" title="#{bundle.EditServicesTitle_meta}" />
+                        <p:outputLabel value="#{bundle.EditServicesLabel_pdf}" for="pdf" />
+                        <p:inputText id="pdf" value="#{servicesController.selected.pdf}" title="#{bundle.EditServicesTitle_pdf}" />
+                        <p:outputLabel value="#{bundle.EditServicesLabel_slug}" for="slug" />
+                        <p:inputText id="slug" value="#{servicesController.selected.slug}" title="#{bundle.EditServicesTitle_slug}" />
+                        <p:outputLabel value="#{bundle.EditServicesLabel_titleFa}" for="titleFa" />
+                        <p:inputText id="titleFa" value="#{servicesController.selected.titleFa}" title="#{bundle.EditServicesTitle_titleFa}" />
+                        <p:outputLabel value="#{bundle.EditServicesLabel_visit}" for="visit" />
+                        <p:inputText id="visit" value="#{servicesController.selected.visit}" title="#{bundle.EditServicesTitle_visit}" />
+                        <p:outputLabel value="#{bundle.EditServicesLabel_contentEn}" for="contentEn" />
+                        <p:editor id="contentEn" value="#{servicesController.selected.contentEn}"/>
+                        <p:outputLabel value="#{bundle.EditServicesLabel_titleEn}" for="titleEn" />
+                        <p:inputText id="titleEn" value="#{servicesController.selected.titleEn}" title="#{bundle.EditServicesTitle_titleEn}" />
+                        <p:outputLabel value="#{bundle.EditServicesLabel_ctgId}" for="ctgId" />
+                        <p:selectOneMenu id="ctgId" value="#{servicesController.selected.ctgId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{servicesCategoryController.itemsAvailableSelectOne}"
+                                           var="ctgIdItem"
+                                           itemValue="#{ctgIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{servicesController.update}" ajax="false" value="#{bundle.Save}" update="display,:ServicesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ServicesEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ServicesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

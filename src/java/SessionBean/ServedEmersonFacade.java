@@ -6,6 +6,7 @@
 package SessionBean;
 
 import Entity.ServedEmerson;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,10 @@ public class ServedEmersonFacade extends AbstractFacade<ServedEmerson> {
 
     public ServedEmersonFacade() {
         super(ServedEmerson.class);
+    }
+    
+    public List<ServedEmerson> all(){
+        return this.em.createNamedQuery("ServedEmerson.findAll").getResultList();
     }
     
 }

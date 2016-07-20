@@ -1,0 +1,258 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width,initial-scale = 1"/>
+        <title>#{main.title}</title>
+        <c:if test="#{main.language=='FA'}">
+            <h:outputStylesheet library="css" name="bootstrap.rtl.css" />
+        </c:if>
+        <c:if test="#{main.language=='EN'}">
+            <h:outputStylesheet library="css" name="bootstrap.css"/>
+        </c:if>
+        <h:outputStylesheet library="css" name="font-awesome.min.css"/>
+        <h:outputStylesheet library="css" name="style.css" />
+        <h:outputStylesheet library="css" name="style_#{main.language}.css" />
+    </h:head>
+    <h:body>
+        <div class="col-lg-12">
+            <div class="container">
+                <nav class="navbar">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" style="background-color: #ccc;color: #fff;margin-top: 20px;" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="fa fa-reorder"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">
+                                <div class="col-lg-6">
+                                    <p:graphicImage value="../resources/img/logo.png" styleClass="img img-responsive hidden-xs"/>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p:graphicImage value="../resources/img/logo_piramoon.png" styleClass="img img-responsive " />
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 hidden-sm hidden-xs">
+
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 section-social">
+                                    <span class="social">
+                                        <!--<span>Site Language: </span>-->
+                                        <span><a href="#">EN</a></span> | <span><a href="#">FA</a></span>
+                                        <a href="#"><span class="fa fa-facebook icon"></span></a>
+                                        <a href="#"><span class="fa fa-twitter icon"></span></a>
+                                        <a href="#"><span class="fa fa-linkedin icon"></span></a>
+                                        <a href="#"><span class="fa fa-youtube icon"></span></a>
+                                    </span>
+                                </div>
+                                <div class="col-lg-12" style="margin-top: 30px">
+                                    <ul class="nav nav-pills menu">
+                                        <li class="menu-active"><a href="#">Home</a></li>
+                                        <li class="dropdown-parent"><a href="#">Profile</a>
+                                            <div class="dropdown-child">
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                                    test
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                                    test
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                                    test
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                                    test
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li ><a href="#">Messages</a></li>
+                                        <form class="navbar-form navbar-form-head" role="search">
+                                            <div class="form-group">
+                                                <div class="search-box">
+                                                    <input type="text" class="form-control" placeholder="Search" style="width: 90%" /><span class="search-icon fa fa-search"></span>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="container-main">
+            <div class="inside">
+                <div class="row">
+                    <div class="col-lg-12 head-img">
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 text">
+                            <h1>​Emerson Process Management​</h1>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 img" style="background-image: url(../resources/img/emerson-process-management-h.jpg);">
+                            <div class="row">
+                                <div class="col-lg-4 hidden-sm hidden-xs crew">
+                                </div>
+                                <div class="col-lg-8">
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-12 main">
+                        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs side">
+                            <div class="header">
+                                <span class="header_title">
+                                    <c:if test="#{main.language == 'EN'}">
+                                        #{main.coreOffering.titleEn}
+                                    </c:if>
+                                    <c:if test="#{main.language == 'FA'}">
+                                        #{main.coreOffering.titleFa}
+                                    </c:if>
+                                </span>
+                            </div>
+                            <ul>
+                                <ui:repeat value="#{main.coreOffering.servicesCollection}" var="item">
+                                    <c:if test="#{main.language == 'EN'}">
+                                        <li><a href="#">#{item.titleEn}</a></li>
+                                    </c:if>
+                                    <c:if test="#{main.language == 'FA'}">
+                                        <li ><a href="#">#{item.titleFa}</a></li>
+                                    </c:if>
+                                </ui:repeat>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 center">
+                            <h2>
+                                <c:if test="#{main.language == 'EN'}">
+                                    #{main.coreOffering.titleEn}
+                                </c:if>
+                                <c:if test="#{main.language == 'FA'}">
+                                    #{main.coreOffering.titleFa}
+                                </c:if>
+                            </h2>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <a href="#" ><p:graphicImage value="../resources/img/Icon-1.png" styleClass="img img-responsive core-img"/></a>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <a href="#" ><p:graphicImage value="../resources/img/Icon-2.png" styleClass="img img-responsive core-img"/></a>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <a href="#" ><p:graphicImage value="../resources/img/Icon-3.png" styleClass="img img-responsive core-img"/></a>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <a href="#" ><p:graphicImage value="../resources/img/Icon-4.png" styleClass="img img-responsive core-img"/></a>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="ms-rtestate-field">
+                                    <p>
+                                        <c:if test="#{main.language == 'EN'}">
+                                            <h:outputText escape="false" value="#{main.coreOffering.describtionEn}" />
+                                        </c:if>
+                                        <c:if test="#{main.language == 'FA'}">
+                                            <h:outputText escape="false" value="#{main.coreOffering.describtionFa}" />
+                                        </c:if>
+
+                                        <br/><br/><p:graphicImage styleClass="img-responsive" value="../resources/img/Process-Management-business.jpg" alt=""/><br/>  </p>
+
+
+                                    <c:if test="#{main.language == 'EN'}">
+                                        <h2>Industries Served</h2>
+                                        <p>
+                                            <a href="#" target="_blank">See All &gt;</a></p>
+                                        <ul class="list-decorated">
+                                            <c:forEach items="#{main.allServed}"  var="elem">
+                                                <li>#{elem.titleEn}</li>
+                                            </c:forEach>
+                                        </ul>
+                                    </c:if>
+                                    <c:if test="#{main.language == 'FA'}">
+                                        <h2>سرویس های ما</h2>
+                                        <p>
+                                            <a href="#" target="_blank">See All &gt;</a></p>
+                                        <ul class="list-decorated">
+                                            <c:forEach items="#{main.allServed}"  var="elem">
+                                                <li>#{elem.titleFa}</li>
+                                            </c:forEach>
+                                        </ul>
+                                    </c:if>
+
+                                    
+                                    <c:if test="#{main.language == 'EN'}">
+                                        <h2>Industries Served</h2>
+                                       <h2>Our Brands</h2>
+                                    <p> 
+                                        <a href="#" target="_blank">See All &gt;</a></p>
+                                        <ul class="list-decorated">
+                                            <c:forEach items="#{main.allBrand}"  var="elem">
+                                                <li>#{elem.titleEn}</li>
+                                            </c:forEach>
+                                        </ul>
+                                    </c:if>
+                                    <c:if test="#{main.language == 'FA'}">
+                                        <h2>برندهای ما</h2>
+                                        <p>
+                                            <a href="#" target="_blank">See All &gt;</a></p>
+                                        <ul class="list-decorated">
+                                            <c:forEach items="#{main.allBrand}"  var="elem">
+                                                <li>#{elem.titleFa}</li>
+                                            </c:forEach>
+                                        </ul>
+                                    </c:if>
+                                    <div class="emerson-content-facebook" style="display: none;">Learn more about Emerson Process Management, a global leader in production, processing and distribution automation.</div>
+                                    <div class="emerson-content-linkedin" style="display: none;">Learn more about Emerson Process Management, a global leader in production, processing and distribution automation.</div>
+                                    <div class="emerson-content-twitter" style="display: none;">Learn more about Emerson Process Management, a global leader in production, processing and distribution automation.​</div></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 side">
+                            <p class="head-span"></p>
+                            <div class="show-content-side">
+                                <div class="header">
+                                    <span class="title">Emerson Process Management</span>
+                                </div>
+                                <div class="content">
+                                    <p>Automation, control and optimization technologies and services</p>
+                                </div>
+                                <div class="footer">
+                                    <a href="#" class="btn btn-info">visit Now <b><span class="fa fa-angle-right"></span></b></a>
+                                </div>
+                            </div>
+                            <p style="height: 10px;"></p>
+                            <p class="head-span"></p>
+                            <div class="show-content-side">
+                                <div class="header">
+                                    <span class="title">Contact Us</span>
+                                </div>
+                            </div>
+                            <div class="content vcard"><p class="fn org">Emerson Process Management​</p><p class="adr">
+                                    <span class="street-address">Global Headquarters<br/>8000 Norman Center Drive</span><br/><span class="locality">Bloomington</span>, 
+                                    <span class="region">MN </span> 
+                                    <span class="postal-code">55437</span><br/><span class="country-name">United States</span> </p><p class="tel">+1 952 828 3500</p>
+                                <a href="mailto:infocentral@emersonprocess.com">infocentral@
+                                    emersonprocess.com</a> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <script src="../resources/js/jquery.min.js"></script>
+        <script src="../resources/js/bootstrap.min.js"></script>
+    </h:body>
+</html>

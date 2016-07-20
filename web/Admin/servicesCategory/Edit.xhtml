@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ServicesCategoryEditDlg" widgetVar="ServicesCategoryEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditServicesCategoryTitle}">
+            <h:form id="ServicesCategoryEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{servicesCategoryController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditServicesCategoryLabel_title}" for="titleEn" />
+                        <p:inputText id="titleEn" value="#{servicesCategoryController.selected.titleEn}" title="#{bundle.EditServicesCategoryTitle_title}" required="true" requiredMessage="#{bundle.EditServicesCategoryRequiredMessage_title}"/>
+                        <p:outputLabel value="#{bundle.EditServicesCategoryLabel_describtion}" for="describtionEn" />
+                        <p:editor id="describtionEn" value="#{servicesCategoryController.selected.describtionEn}" />
+                        
+                        <p:outputLabel value="#{bundle.EditServicesCategoryLabel_title}" for="titleFa" />
+                        <p:inputText id="titleFa" value="#{servicesCategoryController.selected.titleFa}" title="#{bundle.EditServicesCategoryTitle_title}" required="true" requiredMessage="#{bundle.EditServicesCategoryRequiredMessage_title}"/>
+                        <p:outputLabel value="#{bundle.EditServicesCategoryLabel_describtion}" for="describtionFa" />
+                        <p:editor id="describtionFa" value="#{servicesCategoryController.selected.describtionFa}" />
+                        
+                        <p:outputLabel value="#{bundle.EditServicesCategoryLabel_slug}" for="slug" />
+                        <p:inputText id="slug" value="#{servicesCategoryController.selected.slug}" title="#{bundle.EditServicesCategoryTitle_slug}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{servicesCategoryController.update}" value="#{bundle.Save}" update="display,:ServicesCategoryListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ServicesCategoryEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ServicesCategoryEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

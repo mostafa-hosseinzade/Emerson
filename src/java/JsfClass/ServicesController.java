@@ -92,21 +92,21 @@ public class ServicesController implements Serializable {
                 dir.mkdirs();
             }
             Path folder = Paths.get("/opt/Emerson/uploads/services");
-            
+
 //            if (extension != "jpg" && extension != "png" && extension != "gif") {
 //                JsfUtil.addErrorMessage("فرمت عکس مجاز نمی باشد فرمت های مجاز (jpg,png,gif)");
 //                error = 1;
 //                this.file = null;
 //            } else {
-                String name = 1 + "_" + System.currentTimeMillis();
-                Path path = Paths.get(folder.toString(), name + "." + extension);
-                Path outFile = Files.createFile(path);
-                try (InputStream input = file.getInputstream()) {
-                    Files.copy(input, outFile, StandardCopyOption.REPLACE_EXISTING);
-                    filename += name + "." + extension;
-                }
-                selected.setImg(filename);
-                this.file = null;
+            String name = 1 + "_" + System.currentTimeMillis();
+            Path path = Paths.get(folder.toString(), name + "." + extension);
+            Path outFile = Files.createFile(path);
+            try (InputStream input = file.getInputstream()) {
+                Files.copy(input, outFile, StandardCopyOption.REPLACE_EXISTING);
+                filename += name + "." + extension;
+            }
+            selected.setImg(filename);
+            this.file = null;
 //            }
         }
         extension = FilenameUtils.getExtension(pdf.getFileName());
@@ -117,11 +117,11 @@ public class ServicesController implements Serializable {
                 dir.mkdirs();
             }
             Path folder = Paths.get("/opt/Emerson/uploads/services");
-            if (extension != "pdf") {
-                error = 1;
-                JsfUtil.addErrorMessage("فرمت فایل کتاب الکترونیک درست نمی باشد");
-                this.pdf = null;
-            } else {
+//            if (extension != "pdf") {
+//                error = 1;
+//                JsfUtil.addErrorMessage("فرمت فایل کتاب الکترونیک درست نمی باشد");
+//                this.pdf = null;
+//            } else {
                 String name = 1 + "_" + System.currentTimeMillis();
                 Path path = Paths.get(folder.toString(), name + "." + extension);
                 Path outFile = Files.createFile(path);
@@ -131,7 +131,7 @@ public class ServicesController implements Serializable {
                 }
                 selected.setPdf(filename);
                 this.pdf = null;
-            }
+//            }
         }
         if (error == 0) {
             persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ServicesCreated"));
@@ -143,7 +143,8 @@ public class ServicesController implements Serializable {
 
     public void update() throws IOException {
         int error = 0;
-        if (this.file != null) {
+        String extension = FilenameUtils.getExtension(file.getFileName());
+        if (extension != "") {
             String filename = "";
             File dir = new File("/opt/Emerson/uploads/services");
             if (!dir.exists()) {
@@ -156,25 +157,25 @@ public class ServicesController implements Serializable {
                     f.delete();
                 }
             }
-            String extension = FilenameUtils.getExtension(file.getFileName());
+            
 //            if (extension != "jpg" && extension != "png" && extension != "gif") {
 //                System.out.println("JsfClass.ServicesController.update() : errrrrrrrrrrooooooooorrrrrrrr");
 //                JsfUtil.addErrorMessage("Format img Not True");
 //                error = 1;
 //            } else {
-                String name = 1 + "_" + System.currentTimeMillis();
-                Path path = Paths.get(folder.toString(), name + "." + extension);
-                Path outFile = Files.createFile(path);
-                try (InputStream input = file.getInputstream()) {
-                    Files.copy(input, outFile, StandardCopyOption.REPLACE_EXISTING);
-                    filename = name + "." + extension;
-                    selected.setImg(filename);
-                    this.file = null;
-                }
+            String name = 1 + "_" + System.currentTimeMillis();
+            Path path = Paths.get(folder.toString(), name + "." + extension);
+            Path outFile = Files.createFile(path);
+            try (InputStream input = file.getInputstream()) {
+                Files.copy(input, outFile, StandardCopyOption.REPLACE_EXISTING);
+                filename = name + "." + extension;
+                selected.setImg(filename);
+                this.file = null;
+            }
 //            }
         }
-
-        if (this.pdf != null) {
+        extension = FilenameUtils.getExtension(pdf.getFileName());
+        if (extension != "") {
             String filename = "";
             File dir = new File("/opt/Emerson/uploads/services");
             if (!dir.exists()) {
@@ -187,11 +188,10 @@ public class ServicesController implements Serializable {
                     f.delete();
                 }
             }
-            String extension = FilenameUtils.getExtension(pdf.getFileName());
-            if (extension != "pdf") {
-                error = 1;
-                JsfUtil.addErrorMessage("Format PDf Not True");
-            }
+//            if (extension != "pdf") {
+//                error = 1;
+//                JsfUtil.addErrorMessage("Format PDf Not True");
+//            }
             String name = 1 + "_" + System.currentTimeMillis();
             Path path = Paths.get(folder.toString(), name + "." + extension);
             Path outFile = Files.createFile(path);

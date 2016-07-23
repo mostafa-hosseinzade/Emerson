@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProjectCategoryViewDlg" widgetVar="ProjectCategoryViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleProject.ViewProjectCategoryTitle}">
+            <h:form id="ProjectCategoryViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{projectCategoryController.selected != null}">
+                        <h:outputText value="#{bundleProject.ViewProjectCategoryLabel_id}"/>
+                        <h:outputText value="#{projectCategoryController.selected.id}" title="#{bundleProject.ViewProjectCategoryTitle_id}"/>
+                        <h:outputText value="#{bundleProject.ViewProjectCategoryLabel_titleEn}"/>
+                        <h:outputText value="#{projectCategoryController.selected.titleEn}" title="#{bundleProject.ViewProjectCategoryTitle_titleEn}"/>
+                        <h:outputText value="#{bundleProject.ViewProjectCategoryLabel_titleFa}"/>
+                        <h:outputText value="#{projectCategoryController.selected.titleFa}" title="#{bundleProject.ViewProjectCategoryTitle_titleFa}"/>
+                        <h:outputText value="#{bundleProject.ViewProjectCategoryLabel_describtionEn}"/>
+                        <h:outputText value="#{projectCategoryController.selected.describtionEn}" title="#{bundleProject.ViewProjectCategoryTitle_describtionEn}"/>
+                        <h:outputText value="#{bundleProject.ViewProjectCategoryLabel_describtionFa}"/>
+                        <h:outputText value="#{projectCategoryController.selected.describtionFa}" title="#{bundleProject.ViewProjectCategoryTitle_describtionFa}"/>
+                        <h:outputText value="#{bundleProject.ViewProjectCategoryLabel_createdAt}"/>
+                        <h:outputText value="#{projectCategoryController.selected.createdAt}" title="#{bundleProject.ViewProjectCategoryTitle_createdAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundleProject.ViewProjectCategoryLabel_updatedAt}"/>
+                        <h:outputText value="#{projectCategoryController.selected.updatedAt}" title="#{bundleProject.ViewProjectCategoryTitle_updatedAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundleProject.Close}" onclick="ProjectCategoryViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

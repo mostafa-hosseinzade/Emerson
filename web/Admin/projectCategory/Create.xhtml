@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProjectCategoryCreateDlg" widgetVar="ProjectCategoryCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleProject.CreateProjectCategoryTitle}">
+            <h:form id="ProjectCategoryCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{projectCategoryController.selected != null}">
+                        <p:outputLabel value="#{bundleProject.CreateProjectCategoryLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{projectCategoryController.selected.id}" title="#{bundleProject.CreateProjectCategoryTitle_id}" required="true" requiredMessage="#{bundleProject.CreateProjectCategoryRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundleProject.CreateProjectCategoryLabel_titleEn}" for="titleEn" />
+                        <p:inputText id="titleEn" value="#{projectCategoryController.selected.titleEn}" title="#{bundleProject.CreateProjectCategoryTitle_titleEn}" />
+                        <p:outputLabel value="#{bundleProject.CreateProjectCategoryLabel_titleFa}" for="titleFa" />
+                        <p:inputText id="titleFa" value="#{projectCategoryController.selected.titleFa}" title="#{bundleProject.CreateProjectCategoryTitle_titleFa}" />
+                        <p:outputLabel value="#{bundleProject.CreateProjectCategoryLabel_describtionEn}" for="describtionEn" />
+                        <p:inputText id="describtionEn" value="#{projectCategoryController.selected.describtionEn}" title="#{bundleProject.CreateProjectCategoryTitle_describtionEn}" />
+                        <p:outputLabel value="#{bundleProject.CreateProjectCategoryLabel_describtionFa}" for="describtionFa" />
+                        <p:inputText id="describtionFa" value="#{projectCategoryController.selected.describtionFa}" title="#{bundleProject.CreateProjectCategoryTitle_describtionFa}" />
+                        <p:outputLabel value="#{bundleProject.CreateProjectCategoryLabel_createdAt}" for="createdAt" />
+                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{projectCategoryController.selected.createdAt}" title="#{bundleProject.EditProjectCategoryTitle_createdAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundleProject.CreateProjectCategoryLabel_updatedAt}" for="updatedAt" />
+                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{projectCategoryController.selected.updatedAt}" title="#{bundleProject.EditProjectCategoryTitle_updatedAt}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{projectCategoryController.create}" value="#{bundleProject.Save}" update="display,:ProjectCategoryListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProjectCategoryCreateDialog');"/>
+                    <p:commandButton value="#{bundleProject.Cancel}" onclick="ProjectCategoryCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

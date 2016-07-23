@@ -19,7 +19,7 @@
                         <p:outputLabel value="#{bundle.EditServicesLabel_meta}" for="meta" />
                         <p:inputText id="meta" value="#{servicesController.selected.meta}" title="#{bundle.EditServicesTitle_meta}" />
                         <p:outputLabel value="#{bundle.EditServicesLabel_pdf}" for="pdf" />
-                        <p:inputText id="pdf" value="#{servicesController.selected.pdf}" title="#{bundle.EditServicesTitle_pdf}" />
+                        <p:fileUpload id="pdf" value="#{servicesController.pdf}" mode="simple" skinSimple="true"/>
                         <p:outputLabel value="#{bundle.EditServicesLabel_slug}" for="slug" />
                         <p:inputText id="slug" value="#{servicesController.selected.slug}" title="#{bundle.EditServicesTitle_slug}" />
                         <p:outputLabel value="#{bundle.EditServicesLabel_titleFa}" for="titleFa" />

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProjectEditDlg" widgetVar="ProjectEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleProject.EditProjectTitle}">
+            <h:form id="ProjectEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{projectController.selected != null}">
+                        <p:outputLabel value="#{bundleProject.EditProjectLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{projectController.selected.id}" title="#{bundleProject.EditProjectTitle_id}" required="true" requiredMessage="#{bundleProject.EditProjectRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundleProject.EditProjectLabel_titleEn}" for="titleEn" />
+                        <p:inputText id="titleEn" value="#{projectController.selected.titleEn}" title="#{bundleProject.EditProjectTitle_titleEn}" />
+                        <p:outputLabel value="#{bundleProject.EditProjectLabel_titleFa}" for="titleFa" />
+                        <p:inputText id="titleFa" value="#{projectController.selected.titleFa}" title="#{bundleProject.EditProjectTitle_titleFa}" />
+                        <p:outputLabel value="#{bundleProject.EditProjectLabel_contentEn}" for="contentEn" />
+                        <p:inputTextarea rows="4" cols="30" id="contentEn" value="#{projectController.selected.contentEn}" title="#{bundleProject.EditProjectTitle_contentEn}" />
+                        <p:outputLabel value="#{bundleProject.EditProjectLabel_contentFa}" for="contentFa" />
+                        <p:inputTextarea rows="4" cols="30" id="contentFa" value="#{projectController.selected.contentFa}" title="#{bundleProject.EditProjectTitle_contentFa}" />
+                        <p:outputLabel value="#{bundleProject.EditProjectLabel_link}" for="link" />
+                        <p:inputText id="link" value="#{projectController.selected.link}" title="#{bundleProject.EditProjectTitle_link}" />
+                        <p:outputLabel value="#{bundleProject.EditProjectLabel_createdAt}" for="createdAt" />
+                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{projectController.selected.createdAt}" title="#{bundleProject.EditProjectTitle_createdAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundleProject.EditProjectLabel_updatedAt}" for="updatedAt" />
+                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{projectController.selected.updatedAt}" title="#{bundleProject.EditProjectTitle_updatedAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundleProject.EditProjectLabel_ctgId}" for="ctgId" />
+                        <p:selectOneMenu id="ctgId" value="#{projectController.selected.ctgId}" >
+                            <f:selectItem itemLabel="#{bundleProject.SelectOneMessage}"/>
+                            <f:selectItems value="#{projectCategoryController.itemsAvailableSelectOne}"
+                                           var="ctgIdItem"
+                                           itemValue="#{ctgIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{projectController.update}" value="#{bundleProject.Save}" update="display,:ProjectListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProjectEditDialog');"/>
+                    <p:commandButton value="#{bundleProject.Cancel}" onclick="ProjectEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

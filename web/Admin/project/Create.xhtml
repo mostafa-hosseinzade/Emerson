@@ -8,12 +8,10 @@
 
     <ui:composition>
 
-        <p:dialog id="ProjectCreateDlg" widgetVar="ProjectCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleProject.CreateProjectTitle}">
+        <p:dialog id="ProjectCreateDlg" widgetVar="ProjectCreateDialog" modal="false" resizable="false" appendTo="@(body)" header="#{bundleProject.CreateProjectTitle}">
             <h:form id="ProjectCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{projectController.selected != null}">
-                        <p:outputLabel value="#{bundleProject.CreateProjectLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{projectController.selected.id}" title="#{bundleProject.CreateProjectTitle_id}" required="true" requiredMessage="#{bundleProject.CreateProjectRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundleProject.CreateProjectLabel_titleEn}" for="titleEn" />
                         <p:inputText id="titleEn" value="#{projectController.selected.titleEn}" title="#{bundleProject.CreateProjectTitle_titleEn}" />
                         <p:outputLabel value="#{bundleProject.CreateProjectLabel_titleFa}" for="titleFa" />
@@ -32,25 +30,32 @@
                         <p:selectOneMenu id="ctgId" value="#{projectController.selected.ctgId}" >
                             <f:selectItems value="#{projectCategoryController.itemsAvailableSelectOne}"
                                            var="ctgIdItem"
-                                           itemValue="#{ctgIdItem}"/>
+                                           itemValue="#{ctgIdItem}" itemLabel="#{ctgIdItem.titleEn}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel for="btn-map" value="انتخاب نقطه روی نقشه"/>
+                        <p:commandButton id="btn-map" type="button" icon="ui-icon-pin-s" value="نمایش نقشه" onclick="PF('dlg').show();" />
                     </p:panelGrid>
-                    <p:panelGrid>
-                        <h:form>  
-                            <p:growl id="messages" showDetail="true" life="2000" />
 
-                            <p:gmap id="gmap" center="41.381542, 2.122893" zoom="15" type="ROADMAP" style="width:100%;height:400px">
-                                <p:ajax event="stateChange" listener="#{eventView.onStateChange}" update="messages" />
-                                <p:ajax event="pointSelect" listener="#{eventView.onPointSelect}" update="messages" />
-                            </p:gmap>
-                        </h:form>
-                    </p:panelGrid>
                     <p:commandButton actionListener="#{projectController.create}" value="#{bundleProject.Save}" update="display,:ProjectListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProjectCreateDialog');"/>
                     <p:commandButton value="#{bundleProject.Cancel}" onclick="ProjectCreateDialog.hide()"/>
                 </h:panelGroup>
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6BRl6KQbNAOr2rERIIUZf2sMMmYoshhw&amp;sensor=false" type="text/javascript"></script>
             </h:form>
         </p:dialog>
+        <p:dialog id="gmapDialog" widgetVar="dlg" width="625" height="400" modal="false" resizable="false" appendTo="@(body)">
+            <p:panelGrid>
+                <h:form>  
+                    <p:growl id="messages" showDetail="true" life="2000" />
+
+                    <p:gmap id="gmap" center="#{projectController.center}" zoom="#{projectController.zoomLevel}" type="HYBRID"  model="#{projectController.pointSelect}" style="width:100%;height:360px">
+                        <p:ajax event="stateChange" listener="#{projectController.onStateChange}" update="messages gmap " />
+                        <p:ajax event="pointSelect" listener="#{projectController.onPointSelect}"  update="messages gmap  " />
+                    </p:gmap>
+                    <p:commandButton type="button" value="انتخاب" onclick="PF('dlg').hide();"/>
+                </h:form>
+            </p:panelGrid>
+        </p:dialog>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6BRl6KQbNAOr2rERIIUZf2sMMmYoshhw&amp;sensor=false" type="text/javascript"></script>
+
 
     </ui:composition>
 </html>

@@ -4,41 +4,53 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:composition>
 
         <p:dialog id="ProjectViewDlg" widgetVar="ProjectViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleProject.ViewProjectTitle}">
             <h:form id="ProjectViewForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{projectController.selected != null}">
-                        <h:outputText value="#{bundleProject.ViewProjectLabel_id}"/>
-                        <h:outputText value="#{projectController.selected.id}" title="#{bundleProject.ViewProjectTitle_id}"/>
-                        <h:outputText value="#{bundleProject.ViewProjectLabel_titleEn}"/>
-                        <h:outputText value="#{projectController.selected.titleEn}" title="#{bundleProject.ViewProjectTitle_titleEn}"/>
-                        <h:outputText value="#{bundleProject.ViewProjectLabel_titleFa}"/>
-                        <h:outputText value="#{projectController.selected.titleFa}" title="#{bundleProject.ViewProjectTitle_titleFa}"/>
-                        <h:outputText value="#{bundleProject.ViewProjectLabel_contentEn}"/>
-                        <h:outputText value="#{projectController.selected.contentEn}" title="#{bundleProject.ViewProjectTitle_contentEn}"/>
-                        <h:outputText value="#{bundleProject.ViewProjectLabel_contentFa}"/>
-                        <h:outputText value="#{projectController.selected.contentFa}" title="#{bundleProject.ViewProjectTitle_contentFa}"/>
-                        <h:outputText value="#{bundleProject.ViewProjectLabel_link}"/>
-                        <h:outputText value="#{projectController.selected.link}" title="#{bundleProject.ViewProjectTitle_link}"/>
-                        <h:outputText value="#{bundleProject.ViewProjectLabel_createdAt}"/>
-                        <h:outputText value="#{projectController.selected.createdAt}" title="#{bundleProject.ViewProjectTitle_createdAt}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundleProject.ViewProjectLabel_updatedAt}"/>
-                        <h:outputText value="#{projectController.selected.updatedAt}" title="#{bundleProject.ViewProjectTitle_updatedAt}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundleProject.ViewProjectLabel_ctgId}"/>
-                        <h:outputText value="#{projectController.selected.ctgId}" title="#{bundleProject.ViewProjectTitle_ctgId}"/>
+                <h:panelGroup id="display" >
+                    <p:panelGrid columns="2">
+                        <p:panelGrid columns="2" rendered="#{projectController.selected != null}" style="width: 100%">
+                            <h:outputText value="#{bundleProject.ViewProjectLabel_id}"/>
+                            <h:outputText value="#{projectController.selected.id}" title="#{bundleProject.ViewProjectTitle_id}"/>
+                            <h:outputText value="#{bundleProject.ViewProjectLabel_titleEn}"/>
+                            <h:outputText value="#{projectController.selected.titleEn}" title="#{bundleProject.ViewProjectTitle_titleEn}"/>
+                            <h:outputText value="#{bundleProject.ViewProjectLabel_titleFa}"/>
+                            <h:outputText value="#{projectController.selected.titleFa}" title="#{bundleProject.ViewProjectTitle_titleFa}"/>
+                            <h:outputText value="#{bundleProject.ViewProjectLabel_contentEn}"/>
+                            <h:outputText value="#{projectController.selected.contentEn}" title="#{bundleProject.ViewProjectTitle_contentEn}"/>
+                            <h:outputText value="#{bundleProject.ViewProjectLabel_contentFa}"/>
+                            <h:outputText value="#{projectController.selected.contentFa}" title="#{bundleProject.ViewProjectTitle_contentFa}"/>
+                            <h:outputText value="#{bundleProject.ViewProjectLabel_link}"/>
+                            <h:outputText value="#{projectController.selected.link}" title="#{bundleProject.ViewProjectTitle_link}"/>
+                            <h:outputText value="#{bundleProject.ViewProjectLabel_createdAt}"/>
+                            <h:outputText value="#{projectController.selected.createdAt}" title="#{bundleProject.ViewProjectTitle_createdAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                            <h:outputText value="#{bundleProject.ViewProjectLabel_updatedAt}"/>
+                            <h:outputText value="#{projectController.selected.updatedAt}" title="#{bundleProject.ViewProjectTitle_updatedAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                            <h:outputText value="#{bundleProject.ViewProjectLabel_ctgId}"/>
+                            <h:outputText value="#{projectController.selected.ctgId}" title="#{bundleProject.ViewProjectTitle_ctgId}"/>
+                        </p:panelGrid>
+                        <c:if test="#{projectController.selected.points != null}">
+                            <p:panelGrid>
+                                <br/>
+                                <h2>مکان روی نقشه:</h2>
+                                <p:gmap id="gmap" center="#{projectController.selected.points}" zoom="#{projectController.zoomLevel}" type="HYBRID"  model="#{projectController.pointSelect}" style="width:300px;height:200px">
+                                </p:gmap>
+                            </p:panelGrid>
+                        </c:if>
                     </p:panelGrid>
                     <p:commandButton value="#{bundleProject.Close}" onclick="ProjectViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6BRl6KQbNAOr2rERIIUZf2sMMmYoshhw&amp;sensor=false" type="text/javascript"></script>
 
     </ui:composition>
 </html>

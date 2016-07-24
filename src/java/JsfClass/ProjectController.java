@@ -10,19 +10,63 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.primefaces.event.map.PointSelectEvent;
+import org.primefaces.event.map.StateChangeEvent;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.LatLngBounds;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 
 @Named("projectController")
 @SessionScoped
 public class ProjectController implements Serializable {
 
+    private MapModel pointSelect;
+    private static String center;
+    private static String zoomLevel = "13";
+
+    public String getCenter() {
+        return center;
+    }
+
+    public String getZoomLevel() {
+        return zoomLevel;
+    }
+
+    public MapModel getPointSelect() {
+        return pointSelect;
+    }
+
+    public void onStateChange(StateChangeEvent event) {
+        LatLngBounds bounds = event.getBounds();
+        int zoomLevel = event.getZoomLevel();
+        this.center = event.getCenter().getLat() + "," + event.getCenter().getLng();
+        this.zoomLevel = String.valueOf(zoomLevel);
+    }
+
+    public void onPointSelect(PointSelectEvent event) {
+        pointSelect = new DefaultMapModel();
+        LatLng latlng = event.getLatLng();
+        pointSelect.addOverlay(new Marker(latlng));
+        this.center = event.getLatLng().getLat() + "," + event.getLatLng().getLng();
+    }
+
+    @PostConstruct
+    public void init() {
+        center = "35.69634053686432 , 51.391639709472656";
+        zoomLevel = "13";
+    }
     @EJB
     private SessionBean.ProjectFacade ejbFacade;
     private List<Project> items = null;
@@ -37,6 +81,17 @@ public class ProjectController implements Serializable {
 
     public void setSelected(Project selected) {
         this.selected = selected;
+        if (this.selected != null) {
+            if (this.selected.getPoints() != null) {
+                pointSelect = new DefaultMapModel();
+                String[] d = this.selected.getPoints().split(",");
+                LatLng latlng = new LatLng(Double.valueOf(d[0]), Double.valueOf(d[1]));
+                pointSelect.addOverlay(new Marker(latlng, selected.getTitleEn()));
+                this.center = selected.getPoints();
+            } else {
+                this.pointSelect = new DefaultMapModel();
+            }
+        }
     }
 
     protected void setEmbeddableKeys() {
@@ -50,19 +105,27 @@ public class ProjectController implements Serializable {
     }
 
     public Project prepareCreate() {
+        pointSelect = new DefaultMapModel();
         selected = new Project();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
+        if (this.pointSelect.getMarkers() != null) {
+            selected.setPoints(center);
+        }
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/BundleProject").getString("ProjectCreated"));
+        this.pointSelect = new DefaultMapModel();
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
+        if (this.pointSelect.getMarkers() != null) {
+            selected.setPoints(center);
+        }
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/BundleProject").getString("ProjectUpdated"));
     }
 

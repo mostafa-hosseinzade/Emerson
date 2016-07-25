@@ -12,7 +12,13 @@
                     <div class="row">
                         <div class="col-lg-12 head-img">
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 text">
-                                <h1>​Emerson Process Management​</h1>
+                                <h1>​Emerson returned to iran, this time Piramoon​</h1>
+                                <div class="col-lg-6">
+                                    <p:graphicImage value="../resources/img/logo.png" styleClass="img img-responsive hidden-xs"/>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p:graphicImage value="../resources/img/logo_piramoon.png" style="width: 169px;height: 65px" styleClass="img img-responsive pull-right" />
+                                </div>
                             </div>
                             <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 img" style="background-image: url(../resources/img/emerson-process-management-h.jpg);">
                                 <div class="row">
@@ -31,14 +37,33 @@
                         </div>
                         <div class="col-lg-12">
                             <h:form>
-                                <p:gmap id="gmap" center="35.69634053686432 , 51.391639709472656" zoom="5" type="HYBRID" model="#{clienProjectController.points}"  style="width:100%;height:500px">
+                                <p:gmap id="gmap" center="35.69634053686432 , 51.391639709472656" zoom="5" type="HYBRID" model="#{clienProjectController.points}" widgetVar="test"  style="width:100%;height:500px">
                                     <p:ajax event="overlaySelect" listener="#{clienProjectController.onMarkerSelect}" />
-                                    <p:gmapInfoWindow id="infoWindow">
-                                        <p:outputPanel style="text-align: center; display: block; margin: auto">
-                                            <p:outputLabel value="/test" />
-                                            <br />
-                                            <h:outputText value="#test" />
-                                        </p:outputPanel>
+                                    <p:gmapInfoWindow id="infoWindow"  >
+                                        <c:if test="#{clienProjectController.lang == 'EN'}">
+                                            <p:outputPanel style="display: block">
+                                                <h3>#{clienProjectController.marker.data.titleEn} #{clienProjectController.lang}</h3>
+                                                <h:outputText  value="#{clienProjectController.marker.data.contentEn}" escape="false" style="max-width: 220px;"/>
+                                                <p:imageSwitch effect="fade" style="width: 220px;height: 170px;">
+                                                    <ui:repeat value="#{clienProjectController.marker.data.projectImgCollection}" var="image">
+                                                        <h:graphicImage value="/images/project/#{image.img}" style="width: 200px;height: auto" />
+                                                    </ui:repeat>
+                                                </p:imageSwitch>
+                                                <div class="clearfix"></div>
+                                            </p:outputPanel>
+                                        </c:if>
+                                        <c:if test="#{clienProjectController.lang == 'FA'}" >
+                                            <p:outputPanel style="display: block">
+                                                <h3>#{clienProjectController.data.titleFa} Language is #{clienProjectController.lang}</h3>
+                                                <h:outputText  value="#{clienProjectController.marker.data.contentFa}" escape="false" style="max-width: 220px;"/>
+                                                <p:imageSwitch effect="fade" style="width: 220px;height: 170px;">
+                                                    <ui:repeat value="#{clienProjectController.marker.data.projectImgCollection}" var="image">
+                                                        <h:graphicImage value="/images/project/#{image.img}" style="width: 200px;height: auto" />
+                                                    </ui:repeat>
+                                                </p:imageSwitch>
+                                                <div class="clearfix"></div>
+                                            </p:outputPanel>
+                                        </c:if>
                                     </p:gmapInfoWindow>
                                 </p:gmap>
                             </h:form>
@@ -60,7 +85,12 @@
                     </div>
                 </div>
             </div>
-
+            <style>
+                .gm-style-iw div {
+                    overflow: visible !important;
+                    max-width: 220px;
+                }
+            </style>
         </ui:define>
     </ui:composition>    
 

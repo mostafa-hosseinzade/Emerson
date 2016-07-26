@@ -33,37 +33,55 @@ and open the template in the editor.
                 </div>
             </div>
             <br/>
-            <h:form>
-                <h:inputText value="#{main.product_id}" />
-                <h:commandButton value="Order" action="#{main}" >
-                    <f:ajax render="" execute=""/>
-                </h:commandButton>
-                
-                <div class="form-group">
-                        <h:inputText class="form-control" value="#{Contacts.contact.name}" a:placeholder="Name"/>
-                    </div>
+            <div class="col-lg-12">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                    Launch demo modal
+                </button>
 
-                    <div class="form-group">
-                        <h:inputText class="form-control" value="#{Contacts.contact.phone}" a:placeholder="Mobile*"/>
-                    </div>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                            </div>
+                            <div class="modal-body">
+                                <h:form id="ShowFormOrder">
+                                    <div class="form-group">
+                                        <h:inputText class="form-control" value="#{Contacts.contact.name}" a:placeholder="Name"/>
+                                    </div>
 
-                    <div class="form-group">
-                        <h:inputText class="form-control" value="#{Contacts.contact.email}"  a:placeholder="Email*"/>
-                    </div>
+                                    <div class="form-group">
+                                        <h:inputText class="form-control" value="#{Contacts.contact.phone}" a:placeholder="Mobile*"/>
+                                    </div>
 
-                    <div class="form-group">
-                        <h:inputTextarea class="form-control" value="#{Contacts.contact.message}" rows="4" a:placeholder="Message" />
-                    </div>
-                    <div class="mbr-buttons mbr-buttons--right btn-inverse">
-                        <h:commandButton action="#{Contacts.insert()}" value="CONTACT US" class="mbr-buttons__btn btn buttons_special btn-danger">
-                            <f:ajax render="@form" execute="form_contact_send"> </f:ajax> 
-                        </h:commandButton>    
-                    </div>
+                                    <div class="form-group">
+                                        <h:inputText class="form-control" value="#{Contacts.contact.email}"  a:placeholder="Email*"/>
+                                    </div>
 
-                    <p:messages style="margin-top: 20px" id="messagesshow"/>
-                    
-            </h:form> 
-            
+                                    <div class="form-group">
+                                        <h:inputTextarea class="form-control" value="#{Contacts.contact.message}" rows="4" a:placeholder="Message" />
+                                    </div>
+                                    <div class="mbr-buttons mbr-buttons--right btn-inverse">
+                                        <h:commandButton action="#{Contacts.insert()}" value="CONTACT US" class="mbr-buttons__btn btn buttons_special btn-danger">
+                                            <f:ajax render="@form" execute="form_contact_send"> </f:ajax> 
+                                        </h:commandButton>    
+                                    </div>
+
+                                    <p:messages style="margin-top: 20px" id="messagesshow"/>
+
+                                </h:form> 
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </ui:define>
     </ui:composition>    
 </html>

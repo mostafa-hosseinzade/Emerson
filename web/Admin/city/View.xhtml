@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CityViewDlg" widgetVar="CityViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle3.ViewCityTitle}">
+            <h:form id="CityViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cityController.selected != null}">
+                        <h:outputText value="#{bundle3.ViewCityLabel_id}"/>
+                        <h:outputText value="#{cityController.selected.id}" title="#{bundle3.ViewCityTitle_id}"/>
+                        <h:outputText value="#{bundle3.ViewCityLabel_name}"/>
+                        <h:outputText value="#{cityController.selected.name}" title="#{bundle3.ViewCityTitle_name}"/>
+                        <h:outputText value="#{bundle3.ViewCityLabel_createdAt}"/>
+                        <h:outputText value="#{cityController.selected.createdAt}" title="#{bundle3.ViewCityTitle_createdAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle3.ViewCityLabel_updatedAt}"/>
+                        <h:outputText value="#{cityController.selected.updatedAt}" title="#{bundle3.ViewCityTitle_updatedAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle3.ViewCityLabel_provinceId}"/>
+                        <h:outputText value="#{cityController.selected.provinceId}" title="#{bundle3.ViewCityTitle_provinceId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle3.Close}" onclick="CityViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

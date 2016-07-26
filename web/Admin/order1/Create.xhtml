@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="Order1CreateDlg" widgetVar="Order1CreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle3.CreateOrder1Title}">
+            <h:form id="Order1CreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{order1Controller.selected != null}">
+                        <p:outputLabel value="#{bundle3.CreateOrder1Label_id}" for="id" />
+                        <p:inputText id="id" value="#{order1Controller.selected.id}" title="#{bundle3.CreateOrder1Title_id}" required="true" requiredMessage="#{bundle3.CreateOrder1RequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle3.CreateOrder1Label_company}" for="company" />
+                        <p:inputText id="company" value="#{order1Controller.selected.company}" title="#{bundle3.CreateOrder1Title_company}" required="true" requiredMessage="#{bundle3.CreateOrder1RequiredMessage_company}"/>
+                        <p:outputLabel value="#{bundle3.CreateOrder1Label_name}" for="name" />
+                        <p:inputText id="name" value="#{order1Controller.selected.name}" title="#{bundle3.CreateOrder1Title_name}" />
+                        <p:outputLabel value="#{bundle3.CreateOrder1Label_mobile}" for="mobile" />
+                        <p:inputText id="mobile" value="#{order1Controller.selected.mobile}" title="#{bundle3.CreateOrder1Title_mobile}" required="true" requiredMessage="#{bundle3.CreateOrder1RequiredMessage_mobile}"/>
+                        <p:outputLabel value="#{bundle3.CreateOrder1Label_email}" for="email" />
+                        <p:inputText id="email" value="#{order1Controller.selected.email}" title="#{bundle3.CreateOrder1Title_email}" required="true" requiredMessage="#{bundle3.CreateOrder1RequiredMessage_email}"/>
+                        <p:outputLabel value="#{bundle3.CreateOrder1Label_address}" for="address" />
+                        <p:inputText id="address" value="#{order1Controller.selected.address}" title="#{bundle3.CreateOrder1Title_address}" />
+                        <p:outputLabel value="#{bundle3.CreateOrder1Label_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{order1Controller.selected.phone}" title="#{bundle3.CreateOrder1Title_phone}" required="true" requiredMessage="#{bundle3.CreateOrder1RequiredMessage_phone}"/>
+                        <p:outputLabel value="#{bundle3.CreateOrder1Label_activityCompany}" for="activityCompany" />
+                        <p:inputText id="activityCompany" value="#{order1Controller.selected.activityCompany}" title="#{bundle3.CreateOrder1Title_activityCompany}" />
+                        <p:outputLabel value="#{bundle3.CreateOrder1Label_describtion}" for="describtion" />
+                        <p:inputText id="describtion" value="#{order1Controller.selected.describtion}" title="#{bundle3.CreateOrder1Title_describtion}" />
+                        <p:outputLabel value="#{bundle3.CreateOrder1Label_updatedAt}" for="updatedAt" />
+                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{order1Controller.selected.updatedAt}" title="#{bundle3.EditOrder1Title_updatedAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle3.CreateOrder1Label_createdAt}" for="createdAt" />
+                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{order1Controller.selected.createdAt}" title="#{bundle3.EditOrder1Title_createdAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle3.CreateOrder1Label_productId}" for="productId" />
+                        <p:selectOneMenu id="productId" value="#{order1Controller.selected.productId}" >
+                            <f:selectItems value="#{productController.itemsAvailableSelectOne}"
+                                           var="productIdItem"
+                                           itemValue="#{productIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle3.CreateOrder1Label_cityId}" for="cityId" />
+                        <p:selectOneMenu id="cityId" value="#{order1Controller.selected.cityId}" >
+                            <f:selectItems value="#{cityController.itemsAvailableSelectOne}"
+                                           var="cityIdItem"
+                                           itemValue="#{cityIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle3.CreateOrder1Label_brandId}" for="brandId" />
+                        <p:selectOneMenu id="brandId" value="#{order1Controller.selected.brandId}" >
+                            <f:selectItems value="#{brandEmersonController.itemsAvailableSelectOne}"
+                                           var="brandIdItem"
+                                           itemValue="#{brandIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{order1Controller.create}" value="#{bundle3.Save}" update="display,:Order1ListForm:datalist,:growl" oncomplete="handleSubmit(args,'Order1CreateDialog');"/>
+                    <p:commandButton value="#{bundle3.Cancel}" onclick="Order1CreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProvinceCreateDlg" widgetVar="ProvinceCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle3.CreateProvinceTitle}">
+            <h:form id="ProvinceCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{provinceController.selected != null}">
+                        <p:outputLabel value="#{bundle3.CreateProvinceLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{provinceController.selected.id}" title="#{bundle3.CreateProvinceTitle_id}" required="true" requiredMessage="#{bundle3.CreateProvinceRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle3.CreateProvinceLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{provinceController.selected.name}" title="#{bundle3.CreateProvinceTitle_name}" />
+                        <p:outputLabel value="#{bundle3.CreateProvinceLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{provinceController.selected.code}" title="#{bundle3.CreateProvinceTitle_code}" />
+                        <p:outputLabel value="#{bundle3.CreateProvinceLabel_createdAt}" for="createdAt" />
+                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{provinceController.selected.createdAt}" title="#{bundle3.EditProvinceTitle_createdAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle3.CreateProvinceLabel_updatedAt}" for="updatedAt" />
+                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{provinceController.selected.updatedAt}" title="#{bundle3.EditProvinceTitle_updatedAt}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{provinceController.create}" value="#{bundle3.Save}" update="display,:ProvinceListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProvinceCreateDialog');"/>
+                    <p:commandButton value="#{bundle3.Cancel}" onclick="ProvinceCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

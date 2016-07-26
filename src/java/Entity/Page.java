@@ -66,8 +66,9 @@ public class Page implements Serializable {
     @Size(max = 255)
     @Column(name = "slug")
     private String slug;
+    @Size(max = 255)
     @Column(name = "title_fa")
-    private Integer titleFa;
+    private String titleFa;
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
@@ -137,11 +138,11 @@ public class Page implements Serializable {
         this.slug = slug;
     }
 
-    public Integer getTitleFa() {
+    public String getTitleFa() {
         return titleFa;
     }
 
-    public void setTitleFa(Integer titleFa) {
+    public void setTitleFa(String titleFa) {
         this.titleFa = titleFa;
     }
 

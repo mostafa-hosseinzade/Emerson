@@ -46,6 +46,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Product.findByTitleFa", query = "SELECT p FROM Product p WHERE p.titleFa = :titleFa")})
 public class Product implements Serializable {
 
+    @OneToMany(mappedBy = "productId")
+    private Collection<Order1> order1Collection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -202,5 +205,14 @@ public class Product implements Serializable {
     @PreUpdate
     public void PreUpdate() {
         this.updatedAt = new Date();
+    }
+
+    @XmlTransient
+    public Collection<Order1> getOrder1Collection() {
+        return order1Collection;
+    }
+
+    public void setOrder1Collection(Collection<Order1> order1Collection) {
+        this.order1Collection = order1Collection;
     }
 }

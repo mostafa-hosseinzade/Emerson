@@ -9,13 +9,13 @@
     <ui:composition>
 
         <p:dialog id="NewsCategoryEditDlg" widgetVar="NewsCategoryEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditNewsCategoryTitle}">
-            <h:form id="NewsCategoryEditForm">
+            <h:form id="NewsCategoryEditForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{newsCategoryController.selected != null}">
                         <p:outputLabel value="#{bundle.EditNewsCategoryLabel_describtionFa}" for="describtionFa" />
                         <p:inputText id="describtionFa" value="#{newsCategoryController.selected.describtionFa}" title="#{bundle.EditNewsCategoryTitle_describtionFa}" />
                         <p:outputLabel value="#{bundle.EditNewsCategoryLabel_img}" for="img" />
-                        <p:inputText id="img" value="#{newsCategoryController.selected.img}" title="#{bundle.EditNewsCategoryTitle_img}" />
+                        <p:fileUpload id="img" value="#{newsCategoryController.file}" mode="simple" skinSimple="true" />
                         <p:outputLabel value="#{bundle.EditNewsCategoryLabel_titleFa}" for="titleFa" />
                         <p:inputText id="titleFa" value="#{newsCategoryController.selected.titleFa}" title="#{bundle.EditNewsCategoryTitle_titleFa}" />
                         <p:outputLabel value="#{bundle.EditNewsCategoryLabel_describtionEn}" for="describtionEn" />
@@ -23,7 +23,7 @@
                         <p:outputLabel value="#{bundle.EditNewsCategoryLabel_titleEn}" for="titleEn" />
                         <p:inputText id="titleEn" value="#{newsCategoryController.selected.titleEn}" title="#{bundle.EditNewsCategoryTitle_titleEn}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{newsCategoryController.update}" value="#{bundle.Save}" update="display,:NewsCategoryListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NewsCategoryEditDialog');"/>
+                    <p:commandButton actionListener="#{newsCategoryController.update}" value="#{bundle.Save}" ajax="false" update="display,:NewsCategoryListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NewsCategoryEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="NewsCategoryEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

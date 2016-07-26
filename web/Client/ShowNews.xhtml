@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition template="LayoutCore.xhtml">
+        <ui:define name="bodyShow">
+            <div class="MainContainer">
+                <div class="col-lg-12">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Library</a></li>
+                        <li class="active">Data</li>
+                    </ol>
+                </div>
+                <div class="col-lg-12 head-slide">
+                    <div class="img" style="background: url(../images/news/#{main.news == null ? '../resources/img/hero1.jpg' : main.news.img}) no-repeat;background-size: 100% 100% ">
+                        <div class="col-lg-12"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-lg-12" style="color: #585353;padding: 5px;">
+                    <c:if test="#{main.language == 'EN'}">
+                        <h2 >#{main.news.titleEn}</h2>
+                        <h:outputText value="#{main.news.contentEn}" escape="false" />
+                    </c:if>
+                    <c:if test="#{main.language == 'FA'}">
+                        <h2 >#{main.news.titleFa}</h2>
+                        <h:outputText value="#{main.news.contentFa}" escape="false"/>
+                    </c:if>
+                </div>
+            </div>
+
+        </ui:define>
+    </ui:composition>    
+</html>
+
+

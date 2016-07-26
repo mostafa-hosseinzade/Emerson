@@ -6,7 +6,8 @@
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:p="http://primefaces.org/ui"
     xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width,initial-scale = 1"/>
@@ -45,10 +46,9 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <div class="row">
-                                <div class="col-lg-6 col-md-6 hidden-sm hidden-xs">
+                                <c:set var="langvar" value="#{main.language== 'EN'?'right':'left'}"/>
 
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 section-social">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-#{langvar} section-social">
                                     <span class="social">
                                         <!--<span>Site Language: </span>-->
                                         <span><a href="#">EN</a></span> | <span><a href="#">FA</a></span>
@@ -60,28 +60,28 @@
                                 </div>
                                 <div class="col-lg-12" style="margin-top: 30px">
                                     <ul class="nav nav-pills menu">
-                                        <li class="menu-active"><a href="#">Home</a></li>
+                                        <li class="menu-active"><a href="#{request.contextPath}/Client/index.xhtml">Home</a></li>
                                         <li class="dropdown-parent"><a href="#">Core Offering</a>
                                             <div class="dropdown-child">
                                                 <div class="col-lg-9">
                                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                                         <div class="menu">
-                                                            <h3 class="menu-item"><a href="#">Map Off Project</a></h3>
+                                                            <h3 class="menu-item"><a href="#{request.contextPath}/Client/ShowCore.xhtml?servicesid=12">Measure &amp; Analyze</a></h3>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                                         <div class="menu">
-                                                            <h3 class="menu-item"><a href="#">Map Off Project</a></h3>
+                                                            <h3 class="menu-item"><a href="#{request.contextPath}/Client/ShowCore.xhtml?servicesid=13" >Operate &amp; Manage</a></h3>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                                         <div class="menu">
-                                                            <h3 class="menu-item"><a href="#">Map Off Project</a></h3>
+                                                            <h3 class="menu-item"><a href="#{request.contextPath}/Client/ShowCore.xhtml?servicesid=14" >Final Control &amp; Regulate</a></h3>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                                         <div class="menu">
-                                                            <h3 class="menu-item"><a href="#">Map Off Project</a></h3>
+                                                            <h3 class="menu-item"><a href="#{request.contextPath}/Client/ShowCore.xhtml?servicesid=15" >Solve &amp; Support</a></h3>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -101,7 +101,7 @@
                                                 <div class="col-lg-9">
                                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
                                                         <div class="menu">
-                                                            <h3 class="menu-item"><a href="#">Piramoon PALAY ENGINEERING</a></h3>
+                                                            <h3 class="menu-item"><a href="#{request.contextPath}/Client/ShowPage.xhtml?pageId=3">Piramoon PALAY ENGINEERING</a></h3>
                                                             <hr/>
                                                             <h5><a href="#">Monitoring systems</a></h5>
                                                             <h5><a href="#">Energy efficiency systems</a></h5>
@@ -111,7 +111,7 @@
                                                     </div>
                                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                                         <div class="menu">
-                                                            <h3 class="menu-item"><a href="#">Piramoon PARDAZESH GHESHM</a></h3>
+                                                            <h3 class="menu-item"><a href="#{request.contextPath}/Client/ShowPage.xhtml?pageId=4">Piramoon PARDAZESH GHESHM</a></h3>
                                                             <hr/>
                                                             <h5><a href="#">Boundless industry knowledge</a></h5>
                                                             <h5><a href="#">Proficient design</a></h5>
@@ -121,7 +121,7 @@
                                                     </div>
                                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
                                                         <div class="menu">
-                                                            <h3 class="menu-item"><a href="#">Piramoon SYSTEM GHESHM</a></h3>
+                                                            <h3 class="menu-item"><a href="#{request.contextPath}/Client/ShowPage.xhtml?pageId=5">Piramoon SYSTEM GHESHM</a></h3>
                                                             <hr/>
                                                             <h5><a href="#">Meticulously Design</a></h5>
                                                             <h5><a href="#">Agile manufacturing</a></h5>
@@ -141,13 +141,13 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li ><a href="#">Product</a></li>
+                                        <li ><a href="#{request.contextPath}/Client/ShowBrandProduct.xhtml">Product</a></li>
                                         <li class="dropdown-parent"><a href="#">Project</a>
                                             <div class="dropdown-child">
                                                 <div class="col-lg-9">
                                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                                         <div class="menu">
-                                                            <h3 class="menu-item"><a href="#">Map Off Project</a></h3>
+                                                            <h3 class="menu-item"><a href="#{request.contextPath}/Client/MapOffProject.xhtml">Map Off Project</a></h3>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
@@ -184,6 +184,39 @@
                                                 </div>
                                             </div>
                                         </li>
+
+                                        <li class="dropdown-parent"><a href="#">News</a>
+                                            <div class="dropdown-child">
+                                                <div class="col-lg-9">
+                                                    <ui:repeat value="#{main.newsCategory}" var="news">
+                                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                            <div class="menu">
+                                                                <h3 class="menu-item">
+                                                                    <a href="#{request.contextPath}/Client/ShowAllNews.xhtml?news_category_id=#{news.id}">
+                                                                        <c:if test="#{main.language=='EN'}">
+                                                                            #{news.titleEn}
+                                                                        </c:if>
+                                                                        <c:if test="#{main.language=='FA'}">
+                                                                            #{news.titleFa}
+                                                                        </c:if>
+                                                                    </a>
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                    </ui:repeat>
+                                                </div>
+                                                <div class="col-lg-3 img">
+                                                    <h:graphicImage value="../resources/img/PersianStarCover.jpg" style="max-width: 100%;height: auto" />
+                                                    <p class="head">
+                                                        Header
+                                                    </p>
+                                                    <p class="body">
+                                                        Piramoon Process Management
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+
                                         <form class="navbar-form navbar-form-head" role="search">
                                             <div class="form-group">
                                                 <div class="search-box">
@@ -203,6 +236,36 @@
         <div class="clearfix"></div>
 
         <ui:insert name="bodyHome"/>
+
+        <div class="col-lg-12">
+            <div class="mbr-contacts__column col-sm-4">
+                <h:form id="form_contact_send">
+                    <div class="form-group">
+                        <h:inputText class="form-control" value="#{Contacts.contact.name}" a:placeholder="Name"/>
+                    </div>
+
+                    <div class="form-group">
+                        <h:inputText class="form-control" value="#{Contacts.contact.phone}" a:placeholder="Mobile*"/>
+                    </div>
+
+                    <div class="form-group">
+                        <h:inputText class="form-control" value="#{Contacts.contact.email}"  a:placeholder="Email*"/>
+                    </div>
+
+                    <div class="form-group">
+                        <h:inputTextarea class="form-control" value="#{Contacts.contact.message}" rows="4" a:placeholder="Message" />
+                    </div>
+                    <div class="mbr-buttons mbr-buttons--right btn-inverse">
+                        <h:commandButton action="#{Contacts.insert()}" value="CONTACT US" class="mbr-buttons__btn btn buttons_special btn-danger">
+                            <f:ajax render="@form" execute="form_contact_send"> </f:ajax> 
+                        </h:commandButton>    
+                    </div>
+
+                    <p:messages style="margin-top: 20px" id="messagesshow"/>
+                </h:form>
+            </div>
+        </div>
+
         <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
         <script src="../resources/js/bootstrap.min.js"></script>
 

@@ -1,10 +1,20 @@
 package Client;
 
 import Entity.BrandEmerson;
+import Entity.News;
+import Entity.NewsCategory;
+import Entity.Page;
+import Entity.Product;
+import Entity.Project;
 import Entity.ServedEmerson;
 import Entity.Services;
 import Entity.ServicesCategory;
 import SessionBean.BrandEmersonFacade;
+import SessionBean.NewsCategoryFacade;
+import SessionBean.NewsFacade;
+import SessionBean.PageFacade;
+import SessionBean.ProductFacade;
+import SessionBean.ProjectFacade;
 import SessionBean.ServedEmersonFacade;
 import SessionBean.ServicesCategoryFacade;
 import SessionBean.ServicesFacade;
@@ -57,6 +67,8 @@ public class Main implements Serializable {
     private BrandEmersonFacade brandEmersonFacade;
     @EJB
     private ServicesFacade servicesFacade;
+    @EJB
+    private ProjectFacade projectFacade;
 
     private Services services;
     private ServicesCategory CoreOffering;
@@ -118,6 +130,131 @@ public class Main implements Serializable {
     public List<BrandEmerson> getAllBrand() {
         return brandEmersonFacade.findAll();
     }
+    // Project Show Code
+    @ManagedProperty(value = "#{param.project_id}")
+    private Integer project_id;
+    private Project project;
+
+    public Project getProject() {
+        if (project_id != null) {
+            this.project = projectFacade.find(project_id);
+        }
+        return project;
+    }
+
+    public Integer getProject_id() {
+        return project_id;
+    }
+
+    public void setProject_id(Integer project_id) {
+        this.project_id = project_id;
+    }
+    /////////////////////
+
+    //Show Brads And Product
+    private List<BrandEmerson> brands;
+    private Product product;
+    @ManagedProperty(value = "#{param.product_id}")
+    private Integer product_id;
+    @EJB
+    private ProductFacade productFacade;
+
+    public Product getProduct() {
+        if (this.product_id != null) {
+            this.product = productFacade.find(this.product_id);
+        }
+        return product;
+    }
+
+    public Integer getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(Integer product_id) {
+        this.product_id = product_id;
+    }
+
+    public List<BrandEmerson> getBrands() {
+        return brandEmersonFacade.findAll();
+    }
+    /////////////////////
+
+    // News Code
+    private List<NewsCategory> newsCategory;
+    @EJB
+    private NewsCategoryFacade newsCategoryFacade;
+    @EJB
+    private NewsFacade newsFacade;
+    @ManagedProperty(value = "#{param.news_id}")
+    private Integer news_id;
+    @ManagedProperty(value = "#{param.news_category_id}")
+    private Integer newsCategoryId;
+
+    private News news;
+    private NewsCategory newsCategorySelect;
+
+    public void setNewsCategoryId(Integer newsCategoryId) {
+        this.newsCategoryId = newsCategoryId;
+    }
+
+    public NewsCategory getNewsCategorySelect() {
+        if (newsCategoryId != null) {
+            this.newsCategory = newsCategoryFacade.findAll();
+            for (NewsCategory s : newsCategory) {
+                if (s.getId() == newsCategoryId) {
+                    this.newsCategorySelect = s;
+                    break;
+                }
+            }
+        }
+        return newsCategorySelect;
+    }
+
+    public Integer getNewsCategoryId() {
+        return newsCategoryId;
+    }
+
+    public List<NewsCategory> getNewsCategory() {
+        return newsCategoryFacade.findAll();
+    }
+
+    public Integer getNews_id() {
+        return news_id;
+    }
+
+    public void setNews_id(Integer news_id) {
+        this.news_id = news_id;
+    }
+
+    public News getNews() {
+        if (this.news_id != null) {
+            this.news = newsFacade.find(this.news_id);
+        }
+        return news;
+    }
+    ///////////////////
     
+    //page section
+    private Page page;
+    @EJB
+    private PageFacade pageFacade;
+    @ManagedProperty(value = "#{param.pageId}")
+    private Integer pageId;
+
+    public void setPageId(Integer pageId) {
+        this.pageId = pageId;
+    }
+
+    public Page getPage() {
+        if(this.pageId != null){
+            this.page = pageFacade.find(pageId);
+        }
+        return page;
+    }
+
+    public Integer getPageId() {
+        return pageId;
+    }
     
+
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <ui:composition template="LayoutCore.xhtml">
+        <ui:define name="bodyShow">
+            <div class="MainContainer">
+                <div class="col-lg-12" style="color: #585353;padding: 5px;">
+                    <c:if test="#{main.language == 'EN'}">
+                        <h2 >#{main.product.titleEn}</h2>
+                        <h:outputText value="#{main.product.contentEn}" escape="false" />
+                    </c:if>
+                    <c:if test="#{main.language == 'FA'}">
+                        <h2 >#{main.product.titleFa}</h2>
+                        <h:outputText value="#{main.product.contentFa}" escape="false"/>
+                    </c:if>
+                </div>
+                <div class="col-lg-12" style="text-align: center">
+                    <c:set var="locationcar"  value="#{main.language=='EN' ?'right':'left'}"/>
+                    <p:galleria value="#{main.product.productImgCollection}" var="image" panelWidth="500" styleClass="pull-#{locationcar}" panelHeight="313" showCaption="true">
+                        <h:graphicImage value="/images/product/#{image.img}" alt="#{image.alt}" title="#{image.alt}" style="width: 100%;height: 100%;"/>
+                    </p:galleria>
+                </div>
+            </div>
+            <br/>
+            <h:form>
+                <h:inputText value="#{main.product_id}" />
+                <h:commandButton value="Order" action="#{main}" >
+                    <f:ajax render="" execute=""/>
+                </h:commandButton>
+                
+                <div class="form-group">
+                        <h:inputText class="form-control" value="#{Contacts.contact.name}" a:placeholder="Name"/>
+                    </div>
+
+                    <div class="form-group">
+                        <h:inputText class="form-control" value="#{Contacts.contact.phone}" a:placeholder="Mobile*"/>
+                    </div>
+
+                    <div class="form-group">
+                        <h:inputText class="form-control" value="#{Contacts.contact.email}"  a:placeholder="Email*"/>
+                    </div>
+
+                    <div class="form-group">
+                        <h:inputTextarea class="form-control" value="#{Contacts.contact.message}" rows="4" a:placeholder="Message" />
+                    </div>
+                    <div class="mbr-buttons mbr-buttons--right btn-inverse">
+                        <h:commandButton action="#{Contacts.insert()}" value="CONTACT US" class="mbr-buttons__btn btn buttons_special btn-danger">
+                            <f:ajax render="@form" execute="form_contact_send"> </f:ajax> 
+                        </h:commandButton>    
+                    </div>
+
+                    <p:messages style="margin-top: 20px" id="messagesshow"/>
+                    
+            </h:form> 
+            
+        </ui:define>
+    </ui:composition>    
+</html>
+
+

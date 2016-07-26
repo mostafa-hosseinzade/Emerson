@@ -31,9 +31,9 @@
                             </div>
                         </div>
                         <div class="col-lg-12" style="padding:20px">
-                            <h1>PIRAMOON REFINERY PROJECTS</h1>
+                            <h1 style="line-height: 5px;color: #585353;">PIRAMOON REFINERY PROJECTS</h1>
                             <br/>
-                            <p>Recent Piramoon Refinery Projects</p>
+                            <p style="color: #585353">Recent Piramoon Refinery Projects</p>
                         </div>
                         <div class="col-lg-12">
                             <h:form>
@@ -54,7 +54,7 @@
                                         </c:if>
                                         <c:if test="#{clienProjectController.lang == 'FA'}" >
                                             <p:outputPanel style="display: block">
-                                                <h3>#{clienProjectController.data.titleFa} Language is #{clienProjectController.lang}</h3>
+                                                <h3>#{clienProjectController.marker.data.titleFa} Language is #{clienProjectController.lang}</h3>
                                                 <h:outputText  value="#{clienProjectController.marker.data.contentFa}" escape="false" style="max-width: 220px;"/>
                                                 <p:imageSwitch effect="fade" style="width: 220px;height: 170px;">
                                                     <ui:repeat value="#{clienProjectController.marker.data.projectImgCollection}" var="image">
@@ -70,17 +70,46 @@
                         </div>
                     </div>
                     <div class="col-lg-12">
+                        <c:set var="locationvar" value="#{clienProjectController.lang=='EN'?'right':'left'}"/>
                         <h:form>
-                            <p:selectManyCheckbox>
-                                <ui:repeat value="#{clienProjectController.projectCategory}" var="items">
-                                    <div class="col-lg-3">
+                            <ui:repeat value="#{clienProjectController.projectCategory}" var="items">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <c:if test="#{clienProjectController.lang == 'EN'}">
                                         <h2>#{items.titleEn}</h2>
+                                        <br/>
                                         <ui:repeat value="#{items.projectCollection}" var="project">
-                                            <p:selectBooleanCheckbox>#{project.titleEn}</p:selectBooleanCheckbox><br/>
+                                            <div class="col-lg-12">
+                                                <div class="panel panel-primary" style="border-radius: 0px">
+                                                    <div class="panel-heading" style="border-radius: 0px">
+                                                        #{project.titleEn}
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        #{project.contentEn}<br/>
+                                                        <a href="#{request.contextPath}/Client/ShowProject.xhtml?project_id=#{project.id}" class="btn btn-primary pull-#{locationvar}" style="border-radius: 0px">More...</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </ui:repeat>
-                                    </div>
-                                </ui:repeat>
-                            </p:selectManyCheckbox>
+                                    </c:if>
+                                    <c:if test="#{clienProjectController.lang == 'FA'}">
+                                        <h2>#{items.titleFa}</h2>
+                                        <br/>
+                                        <ui:repeat value="#{items.projectCollection}" var="project">
+                                            <div class="col-lg-12">
+                                                <div class="panel panel-primary" style="border-radius: 0px">
+                                                    <div class="panel-heading" style="border-radius: 0px">
+                                                        #{project.titleFa}
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        #{project.contentFa}<br/>
+                                                        <a href="#{request.contextPath}/Client/ShowProject.xhtml?project_id=#{project.id}" class="btn btn-primary pull-#{locationvar}" style="border-radius: 0px">More...</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ui:repeat>
+                                    </c:if>
+                                </div>
+                            </ui:repeat>
                         </h:form>
                     </div>
                 </div>

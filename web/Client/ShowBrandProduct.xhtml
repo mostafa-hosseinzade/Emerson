@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition template="LayoutCore.xhtml">
+        <ui:define name="bodyShow">
+            <div class="MainContainer">
+                <h1>Brands</h1>
+                <div class="col-lg-12">
+                    <ui:repeat value="#{main.brands}" var="brands">
+                        <c:if test="#{main.language == 'EN'}">
+                            <div class="col-lg-12">
+                                <h2>#{brands.titleEn}</h2>
+                                <hr/>
+                                <ui:repeat value="#{brands.productCollection}" var="product">
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="panel panel-primary" style="border-radius: 0px">
+                                            <div class="panel-heading" style="border-radius: 0px">
+                                                #{product.titleEn}
+                                            </div>
+                                            <div class="panel-body">
+                                                <h:outputText value="#{product.contentEn}" escape="false"/>
+                                                <p:galleria value="#{product.productImgCollection}" var="image" panelWidth="200" style="width:200px;height: 200px;">
+                                                    <h:graphicImage value="/images/product/#{image.img}" alt="#{image.alt}" title="#{image.alt}" style="height: auto;width: 200px"/>
+                                                </p:galleria>
+                                                <br/>
+                                                <a href="#{request.contextPath}/Client/ShowProduct.xhtml?product_id=#{product.id}" class="btn btn-primary pull-right" style="border-radius: 0px">More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ui:repeat>
+                            </div>
+                        </c:if>
+                        <c:if test="#{main.language == 'FA'}">
+                            <div class="col-lg-12">
+                                <h2>#{brands.titleFa}</h2>
+                                <hr/>
+                                <ui:repeat value="#{brands.productCollection}" var="product">
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="panel panel-primary" style="border-radius: 0px">
+                                            <div class="panel-heading" style="border-radius: 0px">
+                                                #{product.titleFa}
+                                            </div>
+                                            <div class="panel-body">
+                                                <h:outputText value="#{product.contentFa}" escape="false"/>
+                                                <p:galleria value="#{product.productImgCollection}" var="image" panelWidth="200" style="width:200px;height: 200px;">
+                                                    <h:graphicImage value="/images/product/#{image.img}" alt="#{image.alt}" title="#{image.alt}" style="height: auto;width: 200px"/>
+                                                </p:galleria>
+                                                <br/>
+                                                <a href="#{request.contextPath}/Client/ShowProduct.xhtml?product_id=#{product.id}" class="btn btn-primary pull-left" style="border-radius: 0px">اطلاعات بیشتر</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ui:repeat>
+                            </div>
+                        </c:if>
+                    </ui:repeat>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

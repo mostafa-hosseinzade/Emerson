@@ -71,11 +71,11 @@ public class NewsController implements Serializable {
     public void create() throws IOException {
         if (this.file != null) {
             String filename = "";
-            File dir = new File("C:/uploads");
+            File dir = new File("/opt/Emerson/uploads/news");
             if (!dir.exists()) {
                 dir.mkdirs();
             }
-            Path folder = Paths.get("C:/uploads/news");
+            Path folder = Paths.get("/opt/Emerson/uploads/news");
             System.out.println("JsfClass.NewsController.create() : Extention is : " + file);
             String extension = FilenameUtils.getExtension(file.getFileName());
 

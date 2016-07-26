@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition template="LayoutHome.xhtml">
+        <ui:define name="bodyHome">
+            <div class="container-main">
+                <div class="inside">
+                    <div class="row">
+                        <div class="col-lg-12 head-img">
+                            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 text">
+                                <h1>​Emerson returned to iran, this time Piramoon​</h1>
+                                <div class="col-lg-6">
+                                    <p:graphicImage value="../resources/img/logo.png" styleClass="img img-responsive hidden-xs"/>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p:graphicImage value="../resources/img/logo_piramoon.png" style="width: 169px;height: 65px" styleClass="img img-responsive pull-right" />
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 img" style="background-image: url(../resources/img/emerson-process-management-h.jpg);">
+                                <div class="row">
+                                    <div class="col-lg-4 hidden-sm hidden-xs crew">
+                                    </div>
+                                    <div class="col-lg-8">
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" style="color: #585353;padding: 5px;">
+                        <c:if test="#{main.language == 'EN'}">
+                            <h2 >#{main.project.titleEn}</h2>
+                            <p>#{main.project.contentEn}</p>
+                        </c:if>
+                        <c:if test="#{main.language == 'FA'}">
+                            <h2 >#{main.project.titleFa}</h2>
+                            <p>#{main.project.contentFa}</p>
+                        </c:if>
+                    </div>
+                    <div class="col-lg-12" style="text-align: center">
+                        <c:set var="locationcar"  value="#{main.language=='EN' ?'right':'left'}"/>
+                        <p:galleria value="#{main.project.projectImgCollection}" var="image" panelWidth="500" styleClass="pull-#{locationcar}" panelHeight="313" showCaption="true">
+                            <h:graphicImage value="/images/project/#{image.img}" alt="#{image.alt}" title="#{image.alt}" style="width: 100%;height: 100%;"/>
+                        </p:galleria>
+                    </div>
+                </div>
+            </div>
+
+        </ui:define>
+    </ui:composition>    
+</html>
+

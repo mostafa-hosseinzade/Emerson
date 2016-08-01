@@ -1,0 +1,56 @@
+@font-face {
+            font-family: 'B Yekan'; /*a name to be used later*/
+            src: url("#{resource['css/font/BYekan.eot']}"); /* IE9 Compat Modes */
+            src: url("#{resource['css/font/BYekan.eot']}") format('embedded-opentype'), /* IE6-IE8 */
+                 url("#{resource['css/font/BYekan.woff']}") , /* Modern Browsers */
+                 url("#{resource['css/font/BYekan.ttf']}")  /* Safari, Android, iOS */
+            }
+        @font-face {
+            font-family: 'B Koodak'; /*a name to be used later*/
+            src: url("#{resource['css/font/BKoodakBold.eot']}"); /* IE9 Compat Modes */
+            src: url("#{resource['css/font/BKoodakBold.eot']}") format('embedded-opentype'), /* IE6-IE8 */
+                 url("#{resource['css/font/BKoodakBold.woff']}"), /* Modern Browsers */
+                 url("#{resource['css/font/BKoodakBold.ttf']}")  /* Safari, Android, iOS */
+            }
+        @font-face {
+            font-family: 'Koodak'; /*a name to be used later*/
+            src: url("#{resource['css/font/BKoodakBold.eot']}"); /* IE9 Compat Modes */
+            src: url("#{resource['css/font/BKoodakBold.eot']}") format('embedded-opentype'), /* IE6-IE8 */
+                 url("#{resource['css/font/koodak.woff']}"), /* Modern Browsers */
+                 url("#{resource['css/font/BKoodakBold.ttf']}") /* Safari, Android, iOS */
+            }
+        @font-face {
+            font-family: 'BBC Farsi'; /*a name to be used later*/
+            src: url("#{resource['css/font/BKoodakBold.eot']}"); /* IE9 Compat Modes */
+            src: url("#{resource['css/font/BKoodakBold.eot']}") format('embedded-opentype'), /* IE6-IE8 */
+                 url("#{resource['css/font/BBCFarsi.woff']}") , /* Modern Browsers */
+                 url("#{resource['css/font/BKoodakBold.ttf']}") /* Safari, Android, iOS */
+            }
+        @font-face {
+            font-family: 'B Nazanin'; /*a name to be used later*/
+            src: url("#{resource['css/font/BNazanin.eot']}"); /* IE9 Compat Modes */
+            src: url("#{resource['css/font/BNazanin.eot']}") format('embedded-opentype'), /* IE6-IE8 */
+                 url("#{resource['css/font/NAZANINB.woff']}") , /* Modern Browsers */
+                 url("#{resource['css/font/BNazanin.ttf']}") /* Safari, Android, iOS */
+            }
+        @font-face {
+            font-family: 'Nazanin'; /*a name to be used later*/
+            src: url("#{resource['css/font/BNazanin.eot']}"); /* IE9 Compat Modes */
+            src: url("#{resource['css/font/BNazanin.eot']}") format('embedded-opentype'), /* IE6-IE8 */
+                 url("#{resource['css/font/NAZANIN.woff']}"), /* Modern Browsers */
+                 url("#{resource['css/font/BNazanin.ttf']}") /* Safari, Android, iOS */
+            }
+        @font-face {
+            font-family: 'B Zar'; /*a name to be used later*/
+            src: url("#{resource['css/font/BZar.eot']}"); /* IE9 Compat Modes */
+            src: url("#{resource['css/font/BZar.eot']}") format('embedded-opentype'), /* IE6-IE8 */
+                 url("#{resource['css/font/BZar.woff']}"), /* Modern Browsers */
+                 url("#{resource['css/font/BZar.ttf']}") /* Safari, Android, iOS */
+            }       
+        @font-face {
+            font-family: 'B Titr'; /*a name to be used later*/
+            src: url("#{resource['css/font/BTitrBold.eot']}"); /* IE9 Compat Modes */
+            src: url("#{resource['css/font/BTitrBold.eot']}") format('embedded-opentype'), /* IE6-IE8 */
+                 url("#{resource['css/font/BTitrBold.woff']}"), /* Modern Browsers */
+                 url("#{resource['css/font/BTitrBold.ttf']}") /* Safari, Android, iOS */
+            }

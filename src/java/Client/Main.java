@@ -20,14 +20,19 @@ import SessionBean.ServicesCategoryFacade;
 import SessionBean.ServicesFacade;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 
 @ManagedBean(name = "main")
-@SessionScoped
+@ViewScoped
 public class Main implements Serializable {
 
     @ManagedProperty(value = "#{param.lang}")
@@ -78,7 +83,10 @@ public class Main implements Serializable {
     public Services getServices() {
         System.out.println("Client.Main.getServices() : Services Id : " + servicesId);
         if (servicesId != null) {
-            return servicesFacade.find(servicesId);
+            try {
+                return servicesFacade.find(servicesId);
+            } catch (Exception e) {
+            }
         }
         return this.services;
     }
@@ -109,7 +117,6 @@ public class Main implements Serializable {
     }
 
     public String getLanguage() {
-        System.out.println("Client.Main.getTitle() Language is : " + language);
         if (language == null) {
             return "EN";
         }
@@ -137,7 +144,10 @@ public class Main implements Serializable {
 
     public Project getProject() {
         if (project_id != null) {
-            this.project = projectFacade.find(project_id);
+            try {
+                this.project = projectFacade.find(project_id);
+            } catch (Exception e) {
+            }
         }
         return project;
     }
@@ -161,7 +171,10 @@ public class Main implements Serializable {
 
     public Product getProduct() {
         if (this.product_id != null) {
-            this.product = productFacade.find(this.product_id);
+            try {
+                this.product = productFacade.find(this.product_id);
+            } catch (Exception e) {
+            }
         }
         return product;
     }
@@ -233,7 +246,7 @@ public class Main implements Serializable {
         return news;
     }
     ///////////////////
-    
+
     //page section
     private Page page;
     @EJB
@@ -246,7 +259,8 @@ public class Main implements Serializable {
     }
 
     public Page getPage() {
-        if(this.pageId != null){
+        if (this.pageId != null) {
+
             this.page = pageFacade.find(pageId);
         }
         return page;
@@ -255,6 +269,5 @@ public class Main implements Serializable {
     public Integer getPageId() {
         return pageId;
     }
-    
 
 }

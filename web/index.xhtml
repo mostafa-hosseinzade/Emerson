@@ -1,90 +1,162 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-        <h:outputStylesheet name="css/jsfcrud.css"/>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-        <br />
-        <h:link outcome="/Admin/brandEmerson/List" value="Show All BrandEmerson Items"/>
-        <br />
-        <h:link outcome="/Admin/contact/List" value="Show All Contact Items"/>
-        <br />
-        <h:link outcome="/Admin/news/List" value="Show All News Items"/>
-        <br />
-        <h:link outcome="/Admin/newsCategory/List" value="Show All NewsCategory Items"/>
-        <br />
-        <h:link outcome="/Admin/page/List" value="Show All Page Items"/>
-        <br />
-        <h:link outcome="/Admin/product/List" value="Show All Product Items"/>
-        <br />
-        <h:link outcome="/Admin/productImg/List" value="Show All ProductImg Items"/>
-        <br />
-        <h:link outcome="/Admin/servedEmerson/List" value="Show All ServedEmerson Items"/>
-        <br />
-        <h:link outcome="/Admin/services/List" value="Show All Services Items"/>
-        <br />
-        <h:link outcome="/Admin/servicesCategory/List" value="Show All ServicesCategory Items"/>
-        <br />
-        <h:link outcome="/Admin/servicesCategoryImg/List" value="Show All ServicesCategoryImg Items"/>
-        <br />
-        <h:link outcome="/Admin/project/List" value="Show All Project Items"/>
-        <br />
-        <h:link outcome="/Admin/projectCategory/List" value="Show All ProjectCategory Items"/>
-        <br />
-        <h:link outcome="/Admin/projectImg/List" value="Show All ProjectImg Items"/>
-        <br />
-        <h:link outcome="/Admin/city/List" value="Show All City Items"/>
-        <br />
-        <h:link outcome="/Admin/order1/List" value="Show All Order1 Items"/>
-        <br />
-        <h:link outcome="/Admin/province/List" value="Show All Province Items"/>
-    </h:body>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="bodyHome">
+            <div class="container-main">
+                <div class="inside">
+                    <div class="row paddingFirstRow">
 
+                        <div class="col-lg-12 titleSiteStyle" >
+                            <div class="childTitle">
+                                <h1>​Emerson returned to iran, this time Piramoon​</h1>  
+                            </div>
+                        </div>
 
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 center">
+                            <h2>
+                                <c:if test="#{main.language == 'EN'}">
+                                    #{main.coreOffering.titleEn}
+                                </c:if>
+                                <c:if test="#{main.language == 'FA'}">
+                                    #{main.coreOffering.titleFa}
+                                </c:if>
+                            </h2>
+                            <div class='row'>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <a href="#{request.contextPath}/coreoffering/core.xhtml?servicesid=12" >
+                                        <div class="box-offer">
+                                            <h2>Measure <br/>&amp;<br/> Analyze</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <a href="#{request.contextPath}/coreoffering/core.xhtml?servicesid=13" >
+                                        <div class="box-offer">
+                                            <h2>Operate <br/>&amp;<br/> Manage</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <a href="#{request.contextPath}/coreoffering/core.xhtml?servicesid=14" >
+                                        <div class="box-offer">
+                                            <h2>Final Control <br/>&amp;<br/> Regulate</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <a href="#{request.contextPath}/coreoffering/core.xhtml?servicesid=15" >
+                                        <div class="box-offer">
+                                            <h2>Solve <br/>&amp;<br/> Support</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <p>
+                                        <c:if test="#{main.language == 'EN'}">
+                                            <h:outputText escape="false" value="#{main.coreOffering.describtionEn}" />
+                                        </c:if>
+                                        <c:if test="#{main.language == 'FA'}">
+                                            <h:outputText escape="false" value="#{main.coreOffering.describtionFa}" />
+                                        </c:if>
+                                        <br/><br/>
+                                        <p:graphicImage style="width:100%" styleClass="img-responsive" name="img/Process-Management-business.jpg" alt=""/><br/>  
+                                    </p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <c:if test="#{main.language == 'EN'}">
+                                                <h4>Industries Served</h4>
+                                                <p>
+                                                    <a href="#" target="_blank">See All &gt;</a></p>
+                                                <ul class="list-decorated">
+                                                    <c:forEach items="#{main.allServed}"  var="elem">
+                                                        <li>#{elem.titleEn}</li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </c:if>
+                                            <c:if test="#{main.language == 'FA'}">
+                                                <h4>سرویس های ما</h4>
+                                                <p>
+                                                    <a href="#" target="_blank">See All &gt;</a></p>
+                                                <ul class="list-decorated">
+                                                    <c:forEach items="#{main.allServed}"  var="elem">
+                                                        <li>#{elem.titleFa}</li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </c:if>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <c:if test="#{main.language == 'EN'}">
+                                                <h4>Our Brands</h4>
+                                                <p> 
+                                                    <a href="#" target="_blank">See All &gt;</a></p>
+                                                <ul class="list-decorated">
+                                                    <c:forEach items="#{main.allBrand}"  var="elem">
+                                                        <li>#{elem.titleEn}</li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </c:if>
+                                            <c:if test="#{main.language == 'FA'}">
+                                                <h4>برندهای ما</h4>
+                                                <p>
+                                                    <a href="#" target="_blank">See All &gt;</a></p>
+                                                <ul class="list-decorated">
+                                                    <c:forEach items="#{main.allBrand}"  var="elem">
+                                                        <li>#{elem.titleFa}</li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </c:if>
+                                        </div>
+                                    </div>
+                                    <div class="emerson-content-facebook" style="display: none;">Learn more about Emerson Process Management, a global leader in production, processing and distribution automation.</div>
+                                    <div class="emerson-content-linkedin" style="display: none;">Learn more about Emerson Process Management, a global leader in production, processing and distribution automation.</div>
+                                    <div class="emerson-content-twitter" style="display: none;">Learn more about Emerson Process Management, a global leader in production, processing and distribution automation.​</div></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 side">
+                            <p class="head-span"></p>
+                            <div class="show-content-side">
+                                <div class="header">
+                                    <span class="title">Emerson Process Management</span>
+                                </div>
+                                <div class="content">
+                                    <p>Automation, control and optimization technologies and services</p>
+                                </div>
+                                <div class="footer">
+                                    <a href="#" class="btn btn-info">visit Now <b><span class="fa fa-angle-right"></span></b></a>
+                                </div>
+                            </div>
+                            <p style="height: 10px;"></p>
+                            <p class="head-span"></p>
+                            <div class="show-content-side">
+                                <div class="header">
+                                    <span class="title">Contact Us</span>
+                                </div>
+                            </div>
+                            <div class="content vcard"><p class="fn org">Emerson Process Management​</p><p class="adr">
+                                    <span class="street-address">Global Headquarters<br/>8000 Norman Center Drive</span><br/><span class="locality">Bloomington</span>, 
+                                    <span class="region">MN </span> 
+                                    <span class="postal-code">55437</span><br/><span class="country-name">United States</span> </p><p class="tel">+1 952 828 3500</p>
+                                <a href="mailto:infocentral@emersonprocess.com">infocentral@
+                                    emersonprocess.com</a> 
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>           
+        </ui:define>
+    </ui:composition> 
 </html>
-

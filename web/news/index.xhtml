@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="bodyHome">
+            <div class="MainContainer container">
+                <div class="col-lg-12">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Library</a></li>
+                        <li class="active">Data</li>
+                    </ol>
+                </div>
+                <div class="col-lg-12 head-slide">
+                    <div class="img" style="background: url(../images/news_category/#{main.newsCategorySelect == null ? '../resources/img/hero1.jpg' : main.newsCategorySelect.img}) no-repeat">
+                        <div class="col-lg-9 col-md-9 col-xs-12 col-sm-12 text1 pull-left">
+                            <h1 class="pull-left" style="margin-left: 10px;color: white">#{main.newsCategorySelect.titleEn}</h1>
+                            <p class="pull-left" style="padding-left: 10px">The broadest range of measurement and analytical<br/>technologies for process clarity and insight.</p>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 text2 pull-right">
+                            <h:outputText value="#{main.newsCategorySelect.describtionEn}" escape="false" />
+                            <a href="#">Maximizing low-cost fuel use »</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <ui:repeat value="#{main.newsCategorySelect.newsCollection}" var="news">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="panel panel-primary" style="border-radius: 0px">
+                                <div class="panel-heading" style="border-radius: 0px">
+                                    #{news.titleEn}
+                                </div>
+                                <div class="panel-body">
+                                    <h:outputText value="#{news.contentEn}" escape="false" />
+                                    <br/>
+                                    <a href="#{request.contextPath}/news/show.xhtml?news_id=#{news.id}"
+                                       class="btn btn-primary pull-right" style="border-radius: 0px">More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
+

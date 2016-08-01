@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:composition template="/Admin/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListServicesCategoryImgTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:link outcome="/Admin/brandEmerson/List" value="Show All BrandEmerson Items"/>
+            <br />
+            <h:link outcome="/Admin/contact/List" value="Show All Contact Items"/>
+            <br />
+            <h:link outcome="/Admin/news/List" value="Show All News Items"/>
+            <br />
+            <h:link outcome="/Admin/newsCategory/List" value="Show All NewsCategory Items"/>
+            <br />
+            <h:link outcome="/Admin/page/List" value="Show All Page Items"/>
+            <br />
+            <h:link outcome="/Admin/product/List" value="Show All Product Items"/>
+            <br />
+            <h:link outcome="/Admin/productImg/List" value="Show All ProductImg Items"/>
+            <br />
+            <h:link outcome="/Admin/servedEmerson/List" value="Show All ServedEmerson Items"/>
+            <br />
+            <h:link outcome="/Admin/services/List" value="Show All Services Items"/>
+            <br />
+            <h:link outcome="/Admin/servicesCategory/List" value="Show All ServicesCategory Items"/>
+            <br />
+            <h:link outcome="/Admin/servicesCategoryImg/List" value="Show All ServicesCategoryImg Items"/>
+            <br />
+            <h:link outcome="/Admin/project/List" value="Show All Project Items"/>
+            <br />
+            <h:link outcome="/Admin/projectCategory/List" value="Show All ProjectCategory Items"/>
+            <br />
+            <h:link outcome="/Admin/projectImg/List" value="Show All ProjectImg Items"/>
+            <br />
+            <h:link outcome="/Admin/city/List" value="Show All City Items"/>
+            <br />
+            <h:link outcome="/Admin/order1/List" value="Show All Order1 Items"/>
+            <br />
+            <h:link outcome="/Admin/province/List" value="Show All Province Items"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

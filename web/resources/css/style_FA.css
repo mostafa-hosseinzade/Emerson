@@ -8,6 +8,12 @@ and open the template in the editor.
     Author     : administrator
 */
 
+body{
+    font-family: "B Nazanin" !important;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: "B Yekan",arial,tahoma !important;
+}
 .section-social > .social {
     margin-top: 40px;
     font-weight: bold;
@@ -15,11 +21,11 @@ and open the template in the editor.
 }
 
 .main > .side > ul > .active{
- border-right: 4px solid #036EAC;
+    border-right: 4px solid #036EAC;
 }
 
 .head-img > .img  .crew{
-transform: skewX(-29deg);margin-right:-77px;
+    transform: skewX(-29deg);margin-right:-77px;
 }
 
 .head-img > .text > h1{
@@ -32,3 +38,143 @@ transform: skewX(-29deg);margin-right:-77px;
 .navbar-form-head{
     float: left;
 }
+.search-box > .search-icon{
+    position: absolute;
+    left: 10px;top:8px;font-size: 16px
+}
+
+
+.paddingFirstRow{
+    padding-right: 0px;
+}
+
+.titleSiteStyle{
+    position: relative;
+    height: 250px;
+    background-image: url("#{resource['img/emerson-process-management-h.jpg']}");
+    background-position: -11px;
+    background-repeat: no-repeat;
+    background-size: 400px 250px;
+    background-position-x: 15px;
+    padding: 0 15px;
+    /*background-color: rgb(0, 121, 193);*/
+}
+.titleSiteStyle .childTitle{
+    position: relative;
+    background-color: rgb(0, 121, 193);
+    height: 250px;
+    width: 69%;
+}
+.titleSiteStyle .childTitle h1{
+    margin: 0 !important;
+    color: white !important;
+    padding-top: 4.9em !important;
+    padding-right: 5.5em !important;
+    font-size: 1.8em !important;
+}
+.titleSiteStyle .childTitle::after{
+    position: absolute;
+    display: inline-block;
+    width: 0px;
+    height: 0;
+    line-height: 0;
+    border: 85px solid transparent;
+    border-right: 39px solid rgb(0, 121, 193);
+    border-bottom: 165px solid rgb(0, 121, 193);
+    left: -123px;
+    top: 0em;
+    content: "";
+
+}
+
+
+@media screen and (max-width:1024px )and(min-width:768px){
+    .paddingFirstRow{
+        padding-right: 0px;
+    }
+
+    .titleSiteStyle{
+        position: relative;
+        height: 200px;
+        background-image: url("/Emerson/javax.faces.resource/img/emerson-process-management-h.jpg.xhtml");
+        background-position: -11px;
+        background-repeat: no-repeat;
+        background-size: 260px 200px;
+        background-position-x: 15px;
+        /*padding: 0 15px;*/
+    }
+    .titleSiteStyle .childTitle{
+        position: relative;
+        background-color: rgb(0, 121, 193);
+        height: 200px;
+        width: 70%;
+    }
+    .titleSiteStyle .childTitle h1{
+        margin: 0 !important;
+        color: white !important;
+        padding-top: 1.9em !important;
+        padding-right: 0.5em !important;
+        font-size: 1.3em !important;
+    }
+    .titleSiteStyle .childTitle::after{
+        position: absolute;
+        display: inline-block;
+        width: 0px;
+        height: 0;
+        line-height: 0;
+        border: 66px solid transparent;
+        border-right: 33px solid rgb(0, 121, 193);
+        border-bottom: 134px solid rgb(0, 121, 193);
+        left: -98px;
+        top: 0em;
+        content: "";
+        z-index: 0;
+    }
+}
+
+@media screen and (max-width:768px){
+    .paddingFirstRow{
+        padding-right: 0px;
+    }
+
+    .titleSiteStyle{
+        position: relative;
+        height: 200px;
+        background-image: url("/Emerson/javax.faces.resource/img/emerson-process-management-h.jpg.xhtml");
+        background-position: -11px;
+        background-repeat: no-repeat;
+        background-size: 260px 200px;
+        background-position-x: 15px;
+        /*padding: 0 15px;*/
+    }
+    .titleSiteStyle .childTitle{
+        position: relative;
+        background-color: rgb(0, 121, 193);
+        height: 200px;
+        width: 65%;
+    }
+    .titleSiteStyle .childTitle h1{
+        margin: 0 !important;
+        color: white !important;
+        padding-top: 1.9em !important;
+        padding-right: 0.5em !important;
+        font-size: 1.3em !important;
+    }
+    .titleSiteStyle .childTitle::after{
+        position: absolute;
+        display: inline-block;
+        width: 0px;
+        height: 0;
+        line-height: 0;
+        border: 66px solid transparent;
+        border-right: 33px solid rgb(0, 121, 193);
+        border-bottom: 134px solid rgb(0, 121, 193);
+        left: -98px;
+        top: 0em;
+        content: "";
+        z-index: 0;
+    }
+}
+
+
+

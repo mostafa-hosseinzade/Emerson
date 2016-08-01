@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+ <ui:composition template="/template.xhtml">
+        <ui:define name="bodyHome">
+            <div class="MainContainer container">
+                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                    <div class="col-lg-12" style="color: #585353;padding: 5px;">
+                        <c:if test="#{main.language == 'EN'}">
+                            <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                                <h2 >#{main.product.titleEn} </h2>
+                            </div>
+                            <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                                <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal">
+                                    ثبت سفارش
+                                </button>
+                            </div>
+                            <div class="col-lg-12">
+                                <h:outputText value="#{main.product.contentEn}" escape="false" />
+                            </div>
+                        </c:if>
+                        <c:if test="#{main.language == 'FA'}">
+                            <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                                <h2 >#{main.product.titleFa}</h2>
+                            </div>
+                            <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                                <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal">
+                                    ثبت سفارش
+                                </button>
+                            </div>
+                            <div class="col-lg-12">
+                                <h:outputText value="#{main.product.contentFa}" escape="false"/>
+                            </div>
+                        </c:if>
+                    </div>
+                </div>
+                <c:if test="#{not empty main.product.productImgCollection}">
+                    <div class="col-lg-12" style="text-align: center">
+                        <c:set var="locationcar"  value="#{main.language=='EN' ?'right':'left'}"/>
+                        <p:galleria value="#{main.product.productImgCollection}" var="image" panelWidth="500" panelHeight="313" styleClass="pull-#{locationcar}" showCaption="true">
+                            <h:graphicImage value="/images/product/#{image.img}" alt="#{image.alt}" title="#{image.alt}" style="width: 100%;height: 100%;"/>
+                        </p:galleria>
+                    </div>
+                </c:if>
+            </div>
+            <br/>
+            <div class="col-lg-12">
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <h:form id="ShowFormOrder">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Order Product</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <h:inputText class="form-control" value="#{order.order.name}" a:placeholder="Name And Family"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <h:inputText class="form-control" value="#{order.order.company}" a:placeholder="Name Company"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:inputText class="form-control" value="#{order.order.email}" a:placeholder="Email"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:inputText class="form-control" value="#{order.order.phone}" a:placeholder="Phone"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:inputText class="form-control" value="#{order.order.mobile}" a:placeholder="Mobile"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:inputText class="form-control" value="#{order.order.activityCompany}" a:placeholder="Activity Company"/>
+                                    </div>    
+                                    <!--                                    <div class="form-group">
+                                                                            <h:selectOneMenu id="SelectProvince" styleClass="form-control" value="#{order.province}" a:placeholder="Province">
+                                                                                <f:selectItem itemLabel="انتخاب کنید" />
+                                                                                <f:selectItems value="#{order.allProvince}" var="provice" itemValue="#{provice}" itemLabel="#{provice.name}"/>
+                                                                                <f:ajax render="CitySelect" execute="SelectProvince"/>
+                                                                            </h:selectOneMenu>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <h:selectOneMenu  id="CitySelect" styleClass="form-control" value="#{order.order.cityId}" a:placeholder="City">
+                                                                                <f:selectItem itemLabel="انتخاب کنید"/>
+                                                                                <f:selectItems value="#{order.province.cityCollection}" var="city" itemValue="#{city}" itemLabel="#{city.name}"/>
+                                                                            </h:selectOneMenu>
+                                                                        </div>-->
+                                    <div class="form-group">
+                                        <h:inputTextarea class="form-control" value="#{order.order.address}" rows="4" a:placeholder="Address" />
+                                    </div>
+                                    <div class="form-group">
+                                        <h:inputTextarea class="form-control" value="#{order.order.describtion}" rows="4" a:placeholder="Message" />
+                                    </div>
+
+                                    <p:messages style="margin-top: 20px" id="messagesshow"/>
+                                </div>
+                                <div class="modal-footer">
+                                    <h:commandButton action="#{order.insert()}" value="Inserted" styleClass="btn btn-success pull-left">
+                                        <f:param name="product_id" value="#{main.product.id}"/>
+                                        <f:ajax render="@form" execute="ShowFormOrder"> </f:ajax> 
+                                    </h:commandButton>             
+                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </h:form> 
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </ui:define>
+    </ui:composition>    
+</html>
+
+

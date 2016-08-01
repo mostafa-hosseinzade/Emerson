@@ -44,6 +44,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "BrandEmerson.findByTitleEn", query = "SELECT b FROM BrandEmerson b WHERE b.titleEn = :titleEn")})
 public class BrandEmerson implements Serializable {
 
+    
+    
     @OneToMany(mappedBy = "brandId")
     private Collection<Order1> order1Collection;
 

@@ -17,6 +17,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -252,6 +254,14 @@ public class Order1 implements Serializable {
     @Override
     public String toString() {
         return "Entity.Order1[ id=" + id + " ]";
+    }
+    @PrePersist
+    private void PrePersist(){
+        this.createdAt = new Date();
+    }
+    @PreUpdate
+    private void PreUpdate(){
+        this.updatedAt = new Date();
     }
     
 }

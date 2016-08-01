@@ -1,64 +1,315 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title><ui:insert name="title">Default Title</ui:insert></title>
-        <h:outputStylesheet library="css" name="jsfcrud.css"/>
-        <h:outputScript library="js" name="jsfcrud.js"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width,initial-scale = 1"/>
+        <title>#{main.title}</title>
+        <c:if test="#{main.language=='FA'}">
+            <h:outputStylesheet library="css" name="bootstrap.rtl.css" />
+        </c:if>
+        <c:if test="#{main.language=='EN'}">
+            <h:outputStylesheet library="css" name="bootstrap.css"/>
+        </c:if>
+        <h:outputStylesheet library="css" name="font-awesome.min.css"/>
+        <h:outputStylesheet library="css" name="font.css"/>
+        <h:outputStylesheet library="css" name="style.css" />
+        <h:outputStylesheet library="css" name="style_#{main.language}.css" />
     </h:head>
-
     <h:body>
+        <div class="col-lg-12">
+            <div class="container">
+                <table style="width: 100%;direction: ltr!important;text-align: left">
+                    <tr style="width: 100%;direction: ltr!important;text-align: left">
+                        <td >
+                            <p:graphicImage name="img/logo2.png" styleClass="img img-responsive"/>
+                        </td>
+                        <td style="direction: rtl;text-align: right">
+                            <span class="hidden-xs">
+                                <a href="#"><span class="fa fa-facebook icon"></span></a>
+                                <a href="#"><span class="fa fa-twitter icon"></span></a>
+                                <a href="#"><span class="fa fa-linkedin icon"></span></a>
+                                <a href="#"><span class="fa fa-youtube icon"></span></a>
+                            </span>
+                            <span>
+                                <h:form style="display: inline-block">
+                                    <h:outputText value="#{bundle['hello']}" />
+                                    <h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
+                                                     valueChangeListener="#{language.countryLocaleCodeChanged}">
+                                        <f:selectItems value="#{language.countriesInMap}" /> 
+                                    </h:selectOneMenu>
+                                </h:form>
+                                <span><a href="#">EN</a></span><span style="color: #E75424">|</span><span><a href="#">FA</a></span>
+                            </span>
+                        </td>
+                    </tr>
 
-        <p:growl id="growl" life="3000" />
+                </table>
+                <nav class="navbar">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" style="background-color: #ccc;color: #fff;margin-top: 20px;" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="fa fa-reorder"></span>
+                            </button>
+                        </div>
 
-        <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
-                <h:form id="menuForm">
-                    <p:menubar>
-                        <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
-                        <p:menuitem value="BrandEmerson" outcome="/Admin/brandEmerson/List.xhtml" />
-                        <p:menuitem value="Contact" outcome="/Admin/contact/List.xhtml" />
-                        <p:menuitem value="News" outcome="/Admin/news/List.xhtml" />
-                        <p:menuitem value="NewsCategory" outcome="/Admin/newsCategory/List.xhtml" />
-                        <p:menuitem value="Page" outcome="/Admin/page/List.xhtml" />
-                        <p:menuitem value="Product" outcome="/Admin/product/List.xhtml" />
-                        <p:menuitem value="ProductImg" outcome="/Admin/productImg/List.xhtml" />
-                        <p:menuitem value="ServedEmerson" outcome="/Admin/servedEmerson/List.xhtml" />
-                        <p:menuitem value="Services" outcome="/Admin/services/List.xhtml" />
-                        <p:menuitem value="ServicesCategory" outcome="/Admin/servicesCategory/List.xhtml" />
-                        <p:menuitem value="ServicesCategoryImg" outcome="/Admin/servicesCategoryImg/List.xhtml" />
-                        <p:menuitem value="Project" outcome="/Admin/project/List.xhtml" />
-                        <p:menuitem value="ProjectCategory" outcome="/Admin/projectCategory/List.xhtml" />
-                        <p:menuitem value="ProjectImg" outcome="/Admin/projectImg/List.xhtml" />
-                        <p:menuitem value="City" outcome="/Admin/city/List.xhtml" />
-                        <p:menuitem value="Province" outcome="/Admin/province/List.xhtml" />
-                        <p:menuitem value="Order" outcome="/Admin/order1/List.xhtml" />
-                    </p:menubar>
-                    <p:panel style="direction: rtl">
-                        <p:outputLabel for="basic" value="انتخاب تم :" style="margin-top: -20px" /> 
-                        <p:themeSwitcher id="basic" style="width:165px">
-                            <f:selectItem itemLabel="پیشفرض" itemValue="metroui" />
-                            <f:selectItems value="#{themeService.themes}" var="theme" itemLabel="#{theme.displayName}" itemValue="#{theme.name}"/>
-                        </p:themeSwitcher>
-                    </p:panel>
-                </h:form>
-            </p:layoutUnit>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <div class="row">
+                                <c:set var="langvar" value="#{main.language== 'EN'?'right':'left'}"/>
+                                <div class="col-lg-12" style="margin-top: 30px">
+                                    <ul class="nav nav-pills menu">
+                                        <li class="menu-active"><a href="#{request.contextPath}/">Home</a></li>
+                                        <li class="dropdown-parent"><a href="#">Core Offering</a>
+                                            <div class="dropdown-child">
 
-            <p:layoutUnit position="south" size="60">
-                <ui:insert name="footer"/>
-            </p:layoutUnit>
+                                                <a href="#{request.contextPath}/coreoffering/core.xhtml?servicesid=12">
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 img" style="border-bottom:10px solid #3c9eea">
+                                                        <h:graphicImage name="img/1.jpg" style="width: 100%;height: auto" />
+                                                        <p class="head" style="color:#3c9eea">
+                                                            Measure &amp; Analyze
+                                                        </p>
+                                                        <p class="body">
+                                                            The broadest range of measurement and analytical
+                                                            technologies for process clarity and insight.
+                                                        </p>
+                                                    </div>
+                                                </a>
+                                                <a href="#{request.contextPath}/coreoffering/core.xhtml?servicesid=13">
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 img" style="border-bottom:10px solid #f79428">
+                                                        <h:graphicImage name="img/2.jpg" style="width: 100%;height: auto" />
+                                                        <p class="head" style="color:#f79428">
+                                                            Operate &amp; Manage
+                                                        </p>
+                                                        <p class="body">
+                                                            The systems and tools that provide the decision integrity
+                                                            to run your operation at its full potential.
+                                                        </p>
+                                                    </div>
+                                                </a>
+                                                <a href="#{request.contextPath}/coreoffering/core.xhtml?servicesid=14">
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 img" style="border-bottom:10px solid #62bb46">
+                                                        <h:graphicImage name="img/3.jpg" style="width: 100%;height: auto" />
+                                                        <p class="head" style="color:#62bb46">
+                                                            Final Control &amp; Regulate
+                                                        </p>
+                                                        <p class="body">
+                                                            Highly reliable final control technologies to help you
+                                                            regulate and isolate your process with certainty.
+                                                        </p>
+                                                    </div>
+                                                </a>
+                                                <a href="#{request.contextPath}/coreoffering/core.xhtml?servicesid=125">
+                                                    <div class="col-lg-43 col-md-3 col-sm-6 col-xs-12 img" style="border-bottom:10px solid #77776f">
+                                                        <h:graphicImage name="img/4.jpg" style="width: 100%;height: auto" />
+                                                        <p class="head" style="color:#77776f">
+                                                            Solve &amp; Support
+                                                        </p>
+                                                        <p class="body">
+                                                            Expertise and global resources to help you dependably define, execute, and support a strategy throughout the lifecycle of your operation.
+                                                        </p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="dropdown-parent"><a href="#">Piramoon</a>
+                                            <div class="dropdown-child">
+                                                <div class="col-lg-9">
 
-            <p:layoutUnit position="center">
-                <ui:insert name="body"/>
-            </p:layoutUnit>
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                                        <a href="#{request.contextPath}/page.xhtml?pageId=3" style="text-decoration: none">
+                                                            <div class="menu" style="border-bottom: 0px">
+                                                                <h3 class="menu-item" style="color: #136917;">Piramoon palay gheshm</h3>
+                                                                <hr/>
+                                                                <ul style="list-style: none;color:#fff">
+                                                                    <li><h5>Monitoring systems</h5></li>
+                                                                    <li><h5>Energy efficiency systems</h5></li>
+                                                                    <li><h5>Preventive solutions</h5></li>
+                                                                    <li><h5>Peculiar consulting</h5></li>
+                                                                </ul>
+                                                            </div>
+                                                        </a>
+                                                    </div>
 
-        </p:layout>
 
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                        <a href="#{request.contextPath}/page.xhtml?pageId=4" style="text-decoration: none">
+                                                            <div class="menu " style="border-bottom: 0px">
+                                                                <h3 class="menu-item" style="color: #c16311;">Piramoon pardazesh gheshm</h3>
+                                                                <hr />
+                                                                <ul style="list-style: none;color:#fff">
+                                                                    <li><h5>Boundless industry knowledge</h5></li>
+                                                                    <li><h5>Proficient design</h5></li>
+                                                                    <li><h5>Optimized business solutions</h5></li>
+                                                                    <li><h5>Expertise information</h5></li>
+                                                                </ul>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                                        <a href="#{request.contextPath}/page.xhtml?pageId=5" style="text-decoration: none">
+                                                            <div class="menu" style="border-bottom: 0px">
+                                                                <h3 class="menu-item" style="color: #282880">Piramoon system gheshm</h3>
+                                                                <hr/>
+                                                                <ul style="list-style: none;color:#fff">
+                                                                    <li><h5>Meticulously Design</h5></li>
+                                                                    <li><h5>Agile manufacturing</h5></li>
+                                                                    <li><h5>Vigorous Integration</h5></li>
+                                                                    <li><h5>Inclusive Services</h5></li>
+                                                                </ul>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-lg-3 img hidden-md hidden-sm hidden-xs">
+                                                    <h:graphicImage name="img/PersianStarCover.jpg" style="max-width: 100%;height: auto" />
+                                                    <p class="head">
+                                                        Company Almanac
+                                                    </p>
+                                                    <p class="body">
+                                                        PIRAMOON ENGINEERING GROUP
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li ><a href="#{request.contextPath}/product/">Product</a></li>
+                                        <li class="dropdown">
+                                            <a href="#" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
+                                            <ul >
+                                                <li class="menu-item"><a href="#{request.contextPath}/projects/">Map Of Projects</a></li>
+                                                <li class="menu-item"><a href="#">List Of Project</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" role="button" aria-haspopup="true" aria-expanded="false">News</a>
+                                            <ul >
+                                                <ui:repeat value="#{main.newsCategory}" var="news">
+                                                    <li class="menu-item">
+                                                        <a href="#{request.contextPath}/news/?news_category_id=#{news.id}">
+                                                            <c:if test="#{main.language=='EN'}">
+                                                                #{news.titleEn}
+                                                            </c:if>
+                                                            <c:if test="#{main.language=='FA'}">
+                                                                #{news.titleFa}
+                                                            </c:if>
+                                                        </a>
+                                                    </li>
+                                                </ui:repeat>
+                                            </ul>
+                                        </li>
+
+
+                                        <form class="navbar-form navbar-form-head " role="search">
+                                            <div class="form-group">
+                                                <div class="search-box">
+                                                    <input type="text" class="form-control" placeholder="Search" /><span class="search-icon fa fa-search"></span>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+
+        <ui:insert name="bodyHome"/>
+
+        <div class="col-lg-12 footer-special">
+            <div class="container">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <h:form id="form_contact_send">
+                        <h3 style="color: white">Contact</h3>
+                        <div class="form-group">
+                            <h:inputText class="form-control" value="#{Contacts.contact.name}" a:placeholder="Name"/>
+                        </div>
+
+                        <div class="form-group">
+                            <h:inputText class="form-control" value="#{Contacts.contact.phone}" a:placeholder="Mobile*"/>
+                        </div>
+
+                        <div class="form-group">
+                            <h:inputText class="form-control" value="#{Contacts.contact.email}"  a:placeholder="Email*"/>
+                        </div>
+
+                        <div class="form-group">
+                            <h:inputTextarea class="form-control" value="#{Contacts.contact.message}" rows="4" a:placeholder="Message" />
+                        </div>
+                        <div class="mbr-buttons mbr-buttons--right btn-inverse">
+                            <h:commandButton action="#{Contacts.insert()}" style="background-color: #ED5924" value="CONTACT US" class="mbr-buttons__btn btn buttons_special btn-danger">
+                                <f:ajax render="@form" execute="form_contact_send"> </f:ajax> 
+                            </h:commandButton>    
+                        </div>
+
+                        <p:messages style="margin-top: 20px" id="messagesshow"/>
+                    </h:form>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <h3 style="color: white;">Map</h3>
+                    <p:gmap center="31.215442,51.45645446" zoom="8" type="ROADMAP" widgetVar="test10"  style="width:100%;height: 240px;">
+                    </p:gmap>
+                    <c:if test="#{main.language =='EN'}">
+                        <h5 style="color: white;font-weight: bolder;margin-top: 10px;margin-bottom: 5px;">Address :</h5>
+                        <p style="color: white">33 Sattari Tehran Iran </p>
+                    </c:if>
+                    <c:if test="#{main.language =='FA'}">
+                        <h5 style="color: white;font-weight: bolder;margin-top: 10px;margin-bottom: 5px;">آدرس :</h5>
+                        <p style="color: white">ایران تهران اتوبان ستاری پلاک ۳۳ </p>
+                    </c:if>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <c:if test="#{main.language == 'EN'}">
+                        <h3 style="color: white">Piramoon </h3>
+                        <h5 class="menu-item"><i class="fa fa-check"></i> <a href="#{request.contextPath}/page.xhtml?pageId=3">Piramoon PALAY ENGINEERING</a></h5>
+                        <h5 class="menu-item"><i class="fa fa-check"></i> <a href="#{request.contextPath}/page.xhtml?pageId=4">Piramoon PARDAZESH GHESHM</a></h5>
+                        <h5 class="menu-item"><i class="fa fa-check"></i> <a href="#{request.contextPath}/page.xhtml?pageId=5">Piramoon SYSTEM GHESHM</a></h5>
+                    </c:if>
+                    <c:if test="#{main.language == 'FA'}">
+                        <h3 style="color: white">پیرامون </h3>
+                        <h5 class="menu-item"><i class="fa fa-check"></i> <a href="#{request.contextPath}/page.xhtml?pageId=3">مهندسی پیرامون پالای</a></h5>
+                        <h5 class="menu-item"><i class="fa fa-check"></i> <a href="#{request.contextPath}/page.xhtml?pageId=4">پیرامون پردازش قشم</a></h5>
+                        <h5 class="menu-item"><i class="fa fa-check"></i> <a href="#{request.contextPath}/page.xhtml?pageId=5">پیرامون سیستم قشم</a></h5>
+                    </c:if>
+                    <style>
+                        .menu-item{
+                            color: white;
+                        }
+                        .menu-item i{
+                            transition: all 0.2s ease-in-out;
+                            color: #ED5924;
+                        }
+                        .menu-item a{
+                            transition: all 0.2s ease-in-out;
+                            text-decoration: none;
+                            color: white;
+                        }
+                        .menu-item a:hover{
+                            color: #ED5924;
+                        }
+                        .menu-item:hover i{
+                            color: white;   
+                        }
+                    </style>
+                </div>
+            </div>
+        </div>
+
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+        <h:outputScript library="js" name="bootstrap.min.js" target="head" />
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6BRl6KQbNAOr2rERIIUZf2sMMmYoshhw&amp;sensor=false" type="text/javascript"></script>
     </h:body>
-
 </html>

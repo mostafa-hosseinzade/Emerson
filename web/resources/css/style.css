@@ -1,5 +1,17 @@
 
+input.form-control::-webkit-input-placeholder {
+    color:#ED5924;
+}
+input.form-control:focus::-webkit-input-placeholder {
+    color:#628894;
+}
 
+textarea.form-control::-webkit-input-placeholder {
+    color:#ED5924;
+}
+textarea.form-control:focus::-webkit-input-placeholder {
+    color:#628894;
+}
 
 .icon{
     padding: 5px;
@@ -13,16 +25,19 @@
     display: inline-block;
     cursor: pointer;
     text-align: center;
+    transition: all 0.2s ease-in-out;
 }
 .icon:hover{
-    background-color: #117FBF;
+    background-color: #F4F4F4;
+    color: #ED5924;
+
 }
 
 .menu-active{
     color: #014278;
     border: none;
     /* border-bottom: 5px solid #0aa6d6; */
-    border-bottom: 4px solid #036EAC;
+    border-bottom: 4px solid #E85222;
     margin-bottom: 2px;
     background-color: transparent;
 }
@@ -42,7 +57,7 @@
 }
 .dropdown-child{
     margin: 0;
-    margin-top: 8px;
+    margin-top: 5px;
     padding: 0;
     background-color: #ffffff;
     border: 0;
@@ -78,7 +93,9 @@
 
 .search-box{
     background-color: #f4f4f4;
+    position: relative
 }
+
 .search-box input[type=text]{
     border: 0 white;
     background-color: #f4f4f4;
@@ -105,6 +122,7 @@
     padding-left: 15px;
     padding-right: 15px;
     background-color: #ededed;
+    padding-bottom: 30px;
 }
 .container-main .inside{
     margin-right: auto;
@@ -129,7 +147,11 @@
     max-height: 3.3em;
     margin: 0;
     height: auto;
+    margin-top: 40;
     color: white;
+    margin-top: 24px;
+    font-weight: bold;
+    font-size: 2.1em;
 }
 .head-img > .img  .crew{
     height: 190px;
@@ -138,11 +160,11 @@
 .main > .center{
     min-height: 600px;
     box-shadow: 0 0 2px #DEDEDE;
-    width: 62%;
+    /* width: 62%; */
 }
 .main .side{
     min-height: 600px;
-    width: 19%;
+    /* width: 19%; */
     padding: 0px !important;
 }
 @media(max-width:768px){
@@ -162,7 +184,7 @@
 
 @media(max-width:765px){
     .head-img > .text > h1 {
-        font-size: 42px !important;
+
         font-weight: 500 !important;
         line-height: 1.22 !important;
     }
@@ -325,7 +347,7 @@ contact .vcard .org {
 .dropdown-child .menu{
     padding-top: 10px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #616161;
+    border-bottom: 1px solid #fff;
 }
 
 .dropdown-child .menu h5 a{
@@ -339,4 +361,86 @@ contact .vcard .org {
 .dropdown-child .menu h5 a:focus,
 .dropdown-child .menu h5 a:active{
     opacity: 0.8;
+}
+
+.footer-special{
+    background-color: #2F485D;
+    padding-top: 30px;
+}
+
+.col-lg-12.footer-special {}
+/*-------------------------------------------------------------------------*/
+.box-offer{
+    background-color: #004685;
+    border-radius: 0;
+    color:#fff;
+    display: inline-block;
+    vertical-align: central;
+    text-align: center;
+    height: 200px;
+    width:100%;
+    padding-top: 25px;
+    position: relative;
+    margin-bottom: 10px;
+    transition: all .2s ease-in-out;
+}
+.box-offer:hover{
+    border-radius: 0 40px 0 40px;
+}
+.box-offer:after{
+    position: absolute;
+    color: #004685;
+    background: #fff;
+    bottom: 1px;
+    right: 1px;
+    content:'Read more';
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0 2px;
+}
+@media screen and (max-width:926px){
+    *{
+        font-size: 98%
+    }
+    .nav-pills > li {
+        float: none; 
+    }
+    .dropdown-child {
+        position: relative!important;
+    }
+    .navbar-form-head{
+        float: none!important;
+    }
+    
+    
+}
+hr{
+    color:#fff!important
+}
+
+.dropdown > ul{
+    position: absolute;
+    left:0;top:100%;
+    background: #0aa6d6!important;
+    list-style: none!important;
+    padding: 2px 10px 2px 5px!important;
+    width: 150px;
+    display: none;
+    z-index: 99999999
+}
+.dropdown > ul>li>a{
+    line-height: 20px!important;
+    padding: 10px 15px!important;
+    display: block!important
+}
+.dropdown > ul>li>a:hover{
+    
+}
+.dropdown:hover{
+    background-color: #0aa6d6 ;
+    color: #FFFCF2 !important;
+    border-bottom: 4px solid #0aa6d6;
+}
+.dropdown:hover >ul{
+    display: block!important
 }

@@ -4,25 +4,12 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <application>
+        <locale-config>
+            <default-locale>ar</default-locale>
+        </locale-config>
         <resource-bundle>
-            <base-name>/Bundle</base-name>
+            <base-name>/website</base-name>
             <var>bundle</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/BundleProject</base-name>
-            <var>bundleProject</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/Bundle3</base-name>
-            <var>bundle3</var>
         </resource-bundle>
     </application>
 </faces-config>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="bodyHome">
+            <div class="container-main">
+                <div class="inside">
+                    <div class="row paddingFirstRow">
+
+                        <div class="col-lg-12 titleSiteStyle" >
+                            <div class="childTitle">
+                                <h1>​Emerson returned to iran, this time Piramoon​</h1>  
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-12" style="color: #585353;padding: 5px;">
+                        <c:if test="#{main.language == 'EN'}">
+                            <h2 >#{main.page.titleEn}</h2>
+                            <h:outputText value="#{main.page.contentEn}" escape="false"/>
+                        </c:if>
+                        <c:if test="#{main.language == 'FA'}">
+                            <h2 >#{main.project.titleFa}</h2>
+                            <h:outputText value="#{main.page.contentFa}" escape="false"/>
+                        </c:if>
+                    </div>
+                </div>
+            </div>
+
+        </ui:define>
+    </ui:composition>    
+</html>
+

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DiagramSectionEditDlg" widgetVar="DiagramSectionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle4.EditDiagramSectionTitle}">
+            <h:form id="DiagramSectionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{diagramSectionController.selected != null}">
+                        <p:outputLabel value="#{bundle4.EditDiagramSectionLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{diagramSectionController.selected.id}" title="#{bundle4.EditDiagramSectionTitle_id}" required="true" requiredMessage="#{bundle4.EditDiagramSectionRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle4.EditDiagramSectionLabel_titleFa}" for="titleFa" />
+                        <p:inputText id="titleFa" value="#{diagramSectionController.selected.titleFa}" title="#{bundle4.EditDiagramSectionTitle_titleFa}" />
+                        <p:outputLabel value="#{bundle4.EditDiagramSectionLabel_titleEn}" for="titleEn" />
+                        <p:inputText id="titleEn" value="#{diagramSectionController.selected.titleEn}" title="#{bundle4.EditDiagramSectionTitle_titleEn}" />
+                        <p:outputLabel value="#{bundle4.EditDiagramSectionLabel_describtionFa}" for="describtionFa" />
+                        <p:inputText id="describtionFa" value="#{diagramSectionController.selected.describtionFa}" title="#{bundle4.EditDiagramSectionTitle_describtionFa}" />
+                        <p:outputLabel value="#{bundle4.EditDiagramSectionLabel_describtionEn}" for="describtionEn" />
+                        <p:inputText id="describtionEn" value="#{diagramSectionController.selected.describtionEn}" title="#{bundle4.EditDiagramSectionTitle_describtionEn}" />
+                        <p:outputLabel value="#{bundle4.EditDiagramSectionLabel_createdAt}" for="createdAt" />
+                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{diagramSectionController.selected.createdAt}" title="#{bundle4.EditDiagramSectionTitle_createdAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle4.EditDiagramSectionLabel_updatedAt}" for="updatedAt" />
+                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{diagramSectionController.selected.updatedAt}" title="#{bundle4.EditDiagramSectionTitle_updatedAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle4.EditDiagramSectionLabel_parent}" for="parent" />
+                        <p:selectOneMenu id="parent" value="#{diagramSectionController.selected.parent}" >
+                            <f:selectItem itemLabel="#{bundle4.SelectOneMessage}"/>
+                            <f:selectItems value="#{diagramSectionController.itemsAvailableSelectOne}"
+                                           var="parentItem"
+                                           itemValue="#{parentItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="order" for="order" />
+                        <p:inputText id="order" value="#{diagramSectionController.selected.order}" title="order" required="true"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{diagramSectionController.update}" value="#{bundle4.Save}" update="display,:DiagramSectionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DiagramSectionEditDialog');"/>
+                    <p:commandButton value="#{bundle4.Cancel}" onclick="DiagramSectionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

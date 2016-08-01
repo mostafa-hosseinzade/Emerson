@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DiagramPersonEditDlg" widgetVar="DiagramPersonEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle4.EditDiagramPersonTitle}">
+            <h:form id="DiagramPersonEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{diagramPersonController.selected != null}">
+                        <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{diagramPersonController.selected.id}" title="#{bundle4.EditDiagramPersonTitle_id}" required="true" requiredMessage="#{bundle4.EditDiagramPersonRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_titleEn}" for="titleEn" />
+                        <p:inputText id="titleEn" value="#{diagramPersonController.selected.titleEn}" title="#{bundle4.EditDiagramPersonTitle_titleEn}" />
+                        <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_titleFa}" for="titleFa" />
+                        <p:inputText id="titleFa" value="#{diagramPersonController.selected.titleFa}" title="#{bundle4.EditDiagramPersonTitle_titleFa}" />
+                        <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_describtionFa}" for="describtionFa" />
+                        <p:inputText id="describtionFa" value="#{diagramPersonController.selected.describtionFa}" title="#{bundle4.EditDiagramPersonTitle_describtionFa}" />
+                        <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_describtionEn}" for="describtionEn" />
+                        <p:inputText id="describtionEn" value="#{diagramPersonController.selected.describtionEn}" title="#{bundle4.EditDiagramPersonTitle_describtionEn}" />
+                        <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{diagramPersonController.selected.phone}" title="#{bundle4.EditDiagramPersonTitle_phone}" />
+                        <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{diagramPersonController.selected.email}" title="#{bundle4.EditDiagramPersonTitle_email}" />
+                        <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_img}" for="img" />
+                        <p:inputText id="img" value="#{diagramPersonController.selected.img}" title="#{bundle4.EditDiagramPersonTitle_img}" />
+                        <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_work}" for="work" />
+                        <p:inputText id="work" value="#{diagramPersonController.selected.work}" title="#{bundle4.EditDiagramPersonTitle_work}" />
+                        <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_createdAt}" for="createdAt" />
+                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{diagramPersonController.selected.createdAt}" title="#{bundle4.EditDiagramPersonTitle_createdAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_updatedAt}" for="updatedAt" />
+                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{diagramPersonController.selected.updatedAt}" title="#{bundle4.EditDiagramPersonTitle_updatedAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_diagramSectionId}" for="diagramSectionId" />
+                        <p:selectOneMenu id="diagramSectionId" value="#{diagramPersonController.selected.diagramSectionId}" >
+                            <f:selectItem itemLabel="#{bundle4.SelectOneMessage}"/>
+                            <f:selectItems value="#{diagramSectionController.itemsAvailableSelectOne}"
+                                           var="diagramSectionIdItem"
+                                           itemValue="#{diagramSectionIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{diagramPersonController.update}" value="#{bundle4.Save}" update="display,:DiagramPersonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DiagramPersonEditDialog');"/>
+                    <p:commandButton value="#{bundle4.Cancel}" onclick="DiagramPersonEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

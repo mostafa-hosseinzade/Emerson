@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DiagramSectionViewDlg" widgetVar="DiagramSectionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle4.ViewDiagramSectionTitle}">
+            <h:form id="DiagramSectionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{diagramSectionController.selected != null}">
+                        <h:outputText value="#{bundle4.ViewDiagramSectionLabel_id}"/>
+                        <h:outputText value="#{diagramSectionController.selected.id}" title="#{bundle4.ViewDiagramSectionTitle_id}"/>
+                        <h:outputText value="#{bundle4.ViewDiagramSectionLabel_titleFa}"/>
+                        <h:outputText value="#{diagramSectionController.selected.titleFa}" title="#{bundle4.ViewDiagramSectionTitle_titleFa}"/>
+                        <h:outputText value="#{bundle4.ViewDiagramSectionLabel_titleEn}"/>
+                        <h:outputText value="#{diagramSectionController.selected.titleEn}" title="#{bundle4.ViewDiagramSectionTitle_titleEn}"/>
+                        <h:outputText value="#{bundle4.ViewDiagramSectionLabel_describtionFa}"/>
+                        <h:outputText value="#{diagramSectionController.selected.describtionFa}" title="#{bundle4.ViewDiagramSectionTitle_describtionFa}"/>
+                        <h:outputText value="#{bundle4.ViewDiagramSectionLabel_describtionEn}"/>
+                        <h:outputText value="#{diagramSectionController.selected.describtionEn}" title="#{bundle4.ViewDiagramSectionTitle_describtionEn}"/>
+                        <h:outputText value="#{bundle4.ViewDiagramSectionLabel_createdAt}"/>
+                        <h:outputText value="#{diagramSectionController.selected.createdAt}" title="#{bundle4.ViewDiagramSectionTitle_createdAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle4.ViewDiagramSectionLabel_updatedAt}"/>
+                        <h:outputText value="#{diagramSectionController.selected.updatedAt}" title="#{bundle4.ViewDiagramSectionTitle_updatedAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle4.ViewDiagramSectionLabel_parent}"/>
+                        <h:outputText value="#{diagramSectionController.selected.parent}" title="#{bundle4.ViewDiagramSectionTitle_parent}"/>
+                        <h:outputText value="order" />
+                        <h:outputText id="order" value="#{diagramSectionController.selected.order}" title="order" />
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle4.Close}" onclick="DiagramSectionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

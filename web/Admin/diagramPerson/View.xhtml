@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DiagramPersonViewDlg" widgetVar="DiagramPersonViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle4.ViewDiagramPersonTitle}">
+            <h:form id="DiagramPersonViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{diagramPersonController.selected != null}">
+                        <h:outputText value="#{bundle4.ViewDiagramPersonLabel_id}"/>
+                        <h:outputText value="#{diagramPersonController.selected.id}" title="#{bundle4.ViewDiagramPersonTitle_id}"/>
+                        <h:outputText value="#{bundle4.ViewDiagramPersonLabel_titleEn}"/>
+                        <h:outputText value="#{diagramPersonController.selected.titleEn}" title="#{bundle4.ViewDiagramPersonTitle_titleEn}"/>
+                        <h:outputText value="#{bundle4.ViewDiagramPersonLabel_titleFa}"/>
+                        <h:outputText value="#{diagramPersonController.selected.titleFa}" title="#{bundle4.ViewDiagramPersonTitle_titleFa}"/>
+                        <h:outputText value="#{bundle4.ViewDiagramPersonLabel_describtionFa}"/>
+                        <h:outputText value="#{diagramPersonController.selected.describtionFa}" title="#{bundle4.ViewDiagramPersonTitle_describtionFa}"/>
+                        <h:outputText value="#{bundle4.ViewDiagramPersonLabel_describtionEn}"/>
+                        <h:outputText value="#{diagramPersonController.selected.describtionEn}" title="#{bundle4.ViewDiagramPersonTitle_describtionEn}"/>
+                        <h:outputText value="#{bundle4.ViewDiagramPersonLabel_phone}"/>
+                        <h:outputText value="#{diagramPersonController.selected.phone}" title="#{bundle4.ViewDiagramPersonTitle_phone}"/>
+                        <h:outputText value="#{bundle4.ViewDiagramPersonLabel_email}"/>
+                        <h:outputText value="#{diagramPersonController.selected.email}" title="#{bundle4.ViewDiagramPersonTitle_email}"/>
+                        <h:outputText value="#{bundle4.ViewDiagramPersonLabel_img}"/>
+                        <h:outputText value="#{diagramPersonController.selected.img}" title="#{bundle4.ViewDiagramPersonTitle_img}"/>
+                        <h:outputText value="#{bundle4.ViewDiagramPersonLabel_work}"/>
+                        <h:outputText value="#{diagramPersonController.selected.work}" title="#{bundle4.ViewDiagramPersonTitle_work}"/>
+                        <h:outputText value="#{bundle4.ViewDiagramPersonLabel_createdAt}"/>
+                        <h:outputText value="#{diagramPersonController.selected.createdAt}" title="#{bundle4.ViewDiagramPersonTitle_createdAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle4.ViewDiagramPersonLabel_updatedAt}"/>
+                        <h:outputText value="#{diagramPersonController.selected.updatedAt}" title="#{bundle4.ViewDiagramPersonTitle_updatedAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle4.ViewDiagramPersonLabel_diagramSectionId}"/>
+                        <h:outputText value="#{diagramPersonController.selected.diagramSectionId}" title="#{bundle4.ViewDiagramPersonTitle_diagramSectionId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle4.Close}" onclick="DiagramPersonViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

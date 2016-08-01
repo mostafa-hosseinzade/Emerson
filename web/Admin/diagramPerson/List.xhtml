@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/Admin/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle4.ListDiagramPersonTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="DiagramPersonListForm">
+                <p:panel header="#{bundle4.ListDiagramPersonTitle}">
+                    <p:dataTable id="datalist" value="#{diagramPersonController.items}" var="item"
+                                 selectionMode="single" selection="#{diagramPersonController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle4.ListDiagramPersonTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle4.ListDiagramPersonTitle_titleEn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleEn}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle4.ListDiagramPersonTitle_titleFa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleFa}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle4.ListDiagramPersonTitle_describtionFa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.describtionFa}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle4.ListDiagramPersonTitle_describtionEn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.describtionEn}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle4.ListDiagramPersonTitle_phone}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.phone}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle4.ListDiagramPersonTitle_email}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle4.ListDiagramPersonTitle_img}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.img}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle4.ListDiagramPersonTitle_work}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.work}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle4.ListDiagramPersonTitle_createdAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle4.ListDiagramPersonTitle_updatedAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.updatedAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle4.ListDiagramPersonTitle_diagramSectionId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.diagramSectionId}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle4.Create}" actionListener="#{diagramPersonController.prepareCreate}" update=":DiagramPersonCreateForm" oncomplete="PF('DiagramPersonCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle4.View}" update=":DiagramPersonViewForm" oncomplete="PF('DiagramPersonViewDialog').show()" disabled="#{empty diagramPersonController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle4.Edit}" update=":DiagramPersonEditForm" oncomplete="PF('DiagramPersonEditDialog').show()" disabled="#{empty diagramPersonController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle4.Delete}" actionListener="#{diagramPersonController.destroy}" update=":growl,datalist" disabled="#{empty diagramPersonController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

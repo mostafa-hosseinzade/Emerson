@@ -19,6 +19,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -198,7 +200,14 @@ public class DiagramSection implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.DiagramSection[ id=" + id + " ]";
+        return this.titleEn;
     }
-    
+    @PrePersist
+    private void PrePersist(){
+        this.createdAt = new Date();
+    }
+    @PreUpdate
+    private void PreUpdate(){
+        this.updatedAt = new Date();
+    }
 }

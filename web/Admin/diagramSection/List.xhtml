@@ -92,26 +92,39 @@
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle4.Delete}" actionListener="#{diagramSectionController.destroy}" update=":growl,datalist" disabled="#{empty diagramSectionController.selected}"/>
                         </f:facet>
                     </p:dataTable>
-<!--                    
-                    <p:diagram value="#{diagramSectionController.model}" style="height:600px" styleClass="ui-widget-content" />
-
+                    <div style="width: 100%;overflow: scroll">
+                        <p:diagram transient="true" value="#{diagramSectionController.model}"  style="min-height: 600px" styleClass="ui-widget-content" />
+                    </div>
                     <style type="text/css">
                         .ui-diagram-element {   
-                            width:5em; 
-                            height:5em;
-                            line-height:5em;
+                            width:10em; 
+                            height:4em;     
+                            line-height:4em;
                             text-align: center;
                             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
-                            border-radius: 5em;
-                            border: 1px solid #404a4e;
-                            background-color: #404a4e;
-                            color: #cccccc;
+                            border-radius: 4px;
+                            border: 1px solid transparent;
+                            background-color: #98AFC7;
+                            color: #ffffff;
                         }
 
-                        .ui-diagram-element:hover {
-                            background-color: #20282b;
+                        .ui-diagram-success {
+                            background-color: #9CB071;
+                            color: #ffffff;
+                            border-color: #7ab02c;
                         }
-                    </style>-->
+
+                        .ui-diagram-fail {
+                            background-color: #C34A2C;
+                            color: #ffffff;
+                        }
+
+                        .flow-label {
+                            font-size: 24px;
+                            font-weight: bold;
+                            color: #816A51;
+                        }
+                    </style>
 
                 </p:panel>
             </h:form>

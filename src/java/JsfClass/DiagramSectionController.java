@@ -6,6 +6,7 @@ import JsfClass.util.JsfUtil.PersistAction;
 import SessionBean.DiagramSectionFacade;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -25,7 +26,9 @@ import org.primefaces.model.diagram.DefaultDiagramModel;
 import org.primefaces.model.diagram.DiagramModel;
 import org.primefaces.model.diagram.Element;
 import org.primefaces.model.diagram.Connection;
+import org.primefaces.model.diagram.connector.FlowChartConnector;
 import org.primefaces.model.diagram.connector.StraightConnector;
+import org.primefaces.model.diagram.endpoint.BlankEndPoint;
 import org.primefaces.model.diagram.endpoint.DotEndPoint;
 import org.primefaces.model.diagram.endpoint.EndPoint;
 import org.primefaces.model.diagram.endpoint.EndPointAnchor;
@@ -181,69 +184,67 @@ public class DiagramSectionController implements Serializable {
         diagramSections = ejbFacade.findAllByOrder();
         model = new DefaultDiagramModel();
         model.setMaxConnections(-1);
-        List<Element> e = new ArrayList<>();
-        Integer i = 0;
+        DiagramSection OldParent = null;
+        Integer order = 1;
+        FlowChartConnector connector = new FlowChartConnector();
+        connector.setPaintStyle("{strokeStyle:'rgba(0,0,0,0.2)',lineWidth:2}");
+        model.setDefaultConnector(connector);
+        List<String> places = new ArrayList<>();
         for (DiagramSection d : diagramSections) {
+            Element parent = null;
+            order = d.getOrder();
             if (d.getParent() != null) {
-                System.out.println("JsfClass.DiagramSectionController.init() items is : " + d.getParent().getId());
+                for (Element t : model.getElements()) {
+                    if (t.getData() == d.getParent()) {
+                        parent = t;
+                    }
+                }
+                String XParent;
+                String YParent;
+                Integer XChild;
+                Integer YChild;
+                if (OldParent != null && OldParent == d.getParent()) {
+                    XParent = parent.getX().replace("em", "");
+                    YParent = parent.getY().replace("em", "");
+                    XChild = Integer.valueOf(XParent) - 20;
+                    YChild = Integer.valueOf(YParent) + 10;
+                } else {
+                    XParent = parent.getX().replace("em", "");
+                    YParent = parent.getY().replace("em", "");
+                    XChild = Integer.valueOf(XParent) + 20;
+                    YChild = Integer.valueOf(YParent) + 10;
+                }
+
+                OldParent = d.getParent();
+                if (places.contains(XChild + "," + YParent)) {
+                    YChild += YChild + 3;
+                    XChild += XChild+1;
+                }
+
+                places.add(XChild + "," + YParent);
+                Element elm = new Element(d, XChild + "em", YChild + "em");
+                elm.addEndPoint(new BlankEndPoint(EndPointAnchor.TOP));
+                elm.addEndPoint(new BlankEndPoint(EndPointAnchor.BOTTOM));
+                model.addElement(elm);
+                if (parent != null) {
+                    model.connect(new Connection(parent.getEndPoints().get(1), elm.getEndPoints().get(0), connector));
+                }
+            } else {
+                Element elm = new Element(d, "50em", "0em");
+                elm.addEndPoint(new BlankEndPoint(EndPointAnchor.TOP));
+                elm.addEndPoint(new BlankEndPoint(EndPointAnchor.BOTTOM));
+                model.addElement(elm);
+
+                for (Element t : model.getElements()) {
+                    if (t.getData() == d.getParent()) {
+                        parent = t;
+                    }
+                }
+                if (parent != null) {
+                    model.connect(new Connection(parent.getEndPoints().get(1), elm.getEndPoints().get(0), connector));
+                }
             }
-            e.add(new Element(d, i + "em", i + "em"));
-            i += 5;
         }
-
-        Element ceo = new Element("CEO", "25em", "6em");
-        ceo.addEndPoint(createEndPoint(EndPointAnchor.BOTTOM));
-        model.addElement(ceo);
-
-        //CFO
-        Element cfo = new Element("CFO", "10em", "18em");
-        cfo.addEndPoint(createEndPoint(EndPointAnchor.TOP));
-        cfo.addEndPoint(createEndPoint(EndPointAnchor.BOTTOM));
-
-        Element fin = new Element("FIN", "5em", "30em");
-        fin.addEndPoint(createEndPoint(EndPointAnchor.TOP));
-
-        Element pur = new Element("PUR", "20em", "30em");
-        pur.addEndPoint(createEndPoint(EndPointAnchor.TOP));
-
-        model.addElement(cfo);
-        model.addElement(fin);
-        model.addElement(pur);
-
-        //CTO
-        Element cto = new Element("CTO", "40em", "18em");
-        cto.addEndPoint(createEndPoint(EndPointAnchor.TOP));
-        cto.addEndPoint(createEndPoint(EndPointAnchor.BOTTOM));
-
-        Element dev = new Element("DEV", "35em", "30em");
-        dev.addEndPoint(createEndPoint(EndPointAnchor.TOP));
-
-        Element tst = new Element("TST", "50em", "30em");
-        tst.addEndPoint(createEndPoint(EndPointAnchor.TOP));
-
-        model.addElement(cto);
-        model.addElement(dev);
-        model.addElement(tst);
-
-        StraightConnector connector = new StraightConnector();
-        connector.setPaintStyle("{strokeStyle:'#404a4e', lineWidth:3}");
-        connector.setHoverPaintStyle("{strokeStyle:'#20282b'}");
-
-        //connections
-        model.connect(new Connection(ceo.getEndPoints().get(0), cfo.getEndPoints().get(0), connector));
-        model.connect(new Connection(ceo.getEndPoints().get(0), cto.getEndPoints().get(0), connector));
-        model.connect(new Connection(cfo.getEndPoints().get(1), fin.getEndPoints().get(0), connector));
-        model.connect(new Connection(cfo.getEndPoints().get(1), pur.getEndPoints().get(0), connector));
-        model.connect(new Connection(cto.getEndPoints().get(1), dev.getEndPoints().get(0), connector));
-        model.connect(new Connection(cto.getEndPoints().get(1), tst.getEndPoints().get(0), connector));
-    }
-
-    private EndPoint createEndPoint(EndPointAnchor anchor) {
-        DotEndPoint endPoint = new DotEndPoint(anchor);
-        endPoint.setStyle("{fillStyle:'#404a4e'}");
-        endPoint.setHoverStyle("{fillStyle:'#20282b'}");
-
-        return endPoint;
     }
 
     public DiagramModel getModel() {

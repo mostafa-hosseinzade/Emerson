@@ -12,8 +12,6 @@
             <h:form id="DiagramSectionCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{diagramSectionController.selected != null}">
-                        <p:outputLabel value="#{bundle4.CreateDiagramSectionLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{diagramSectionController.selected.id}" title="#{bundle4.CreateDiagramSectionTitle_id}" required="true" requiredMessage="#{bundle4.CreateDiagramSectionRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle4.CreateDiagramSectionLabel_titleFa}" for="titleFa" />
                         <p:inputText id="titleFa" value="#{diagramSectionController.selected.titleFa}" title="#{bundle4.CreateDiagramSectionTitle_titleFa}" />
                         <p:outputLabel value="#{bundle4.CreateDiagramSectionLabel_titleEn}" for="titleEn" />
@@ -22,10 +20,6 @@
                         <p:inputText id="describtionFa" value="#{diagramSectionController.selected.describtionFa}" title="#{bundle4.CreateDiagramSectionTitle_describtionFa}" />
                         <p:outputLabel value="#{bundle4.CreateDiagramSectionLabel_describtionEn}" for="describtionEn" />
                         <p:inputText id="describtionEn" value="#{diagramSectionController.selected.describtionEn}" title="#{bundle4.CreateDiagramSectionTitle_describtionEn}" />
-                        <p:outputLabel value="#{bundle4.CreateDiagramSectionLabel_createdAt}" for="createdAt" />
-                        <p:calendar id="createdAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{diagramSectionController.selected.createdAt}" title="#{bundle4.EditDiagramSectionTitle_createdAt}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle4.CreateDiagramSectionLabel_updatedAt}" for="updatedAt" />
-                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{diagramSectionController.selected.updatedAt}" title="#{bundle4.EditDiagramSectionTitle_updatedAt}"  showOn="button"/>
                         <p:outputLabel value="#{bundle4.CreateDiagramSectionLabel_parent}" for="parent" />
                         <p:selectOneMenu id="parent" value="#{diagramSectionController.selected.parent}" >
                             <f:selectItems value="#{diagramSectionController.itemsAvailableSelectOne}"

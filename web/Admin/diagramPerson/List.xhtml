@@ -73,13 +73,19 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle4.ListDiagramPersonTitle_img}"/>
                             </f:facet>
-                            <h:outputText value="#{item.img}"/>
+                            <h:graphicImage value="/images/person/#{item.img}" style="width: 100px;height: 63px"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle4.ListDiagramPersonTitle_work}"/>
+                                <h:outputText value="workEn"/>
                             </f:facet>
-                            <h:outputText value="#{item.work}"/>
+                            <h:outputText value="#{item.workEn}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="WorkFa"/>
+                            </f:facet>
+                            <h:outputText value="#{item.workFa}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

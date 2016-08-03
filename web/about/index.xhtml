@@ -1,7 +1,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:composition template="/template.xhtml">
         <ui:define name="bodyHome">
             <div class="MainContainer container">
@@ -13,42 +15,59 @@
                     </ol>
                 </div>
                 <div class="col-lg-12">
-                    <div style="width: 100%;overflow: scroll;zoom: 50%">
-                        <p:diagram transient="true" value="#{about.model}"  style="min-height: 1200px" styleClass="ui-widget-content" />
-                    </div>
-                        
+                    <h:outputText value="#{main.language=='EN'? about.page.contentEn:about.page.contentFa}" escape="false"/>
+                </div>
+                <div class="col-lg-12">
+                    <h:form>
+                        <p:tree value="#{about.treeNode}" var="node" orientation="horizontal">
+                            <p:treeNode>
+                                <div style="min-width: 170px;padding: 0 10px;overflow-wrap: break-word;">
+                                    <h:outputText value="#{node.titleEn}" />
+                                    <hr style="margin: 0 "/>
+
+                                    <ui:repeat value="#{node.diagramPersonCollection}" var="item" varStatus="status">
+                                        <span>#{main.language =='EN'? item.workEn:item.workFa}</span> : <p:outputLabel id="btnnode" value="#{main.language == 'EN' ? item.titleEn : item.titleFa}" />
+                                        <br/>
+                                        <p:tooltip for="btnnode" style="min-height: 200px">
+                                            <p:panelGrid columns="2">
+                                                <h:graphicImage rendered="#{not empty item.img}" value="/images/person/#{item.img}" style="width: 200px;height: auto"/> 
+                                                <h:panelGrid columns="1">
+                                                    <h:panelGroup>
+                                                        <span>Name</span> : <span>#{main.language =='EN'? item.titleEn : item.titleFa}</span> 
+                                                    </h:panelGroup>  
+
+                                                    <h:panelGroup>
+                                                        <span>Phone</span> : <span>#{main.language =='EN'? item.phone : item.phone}</span> 
+                                                    </h:panelGroup>
+                                                    <h:panelGroup>
+                                                        <span>Email</span> : <span>#{item.email}</span> 
+                                                    </h:panelGroup>
+                                                    <h:panelGroup>
+                                                        <span>Work</span> : <span>#{main.language =='EN'? item.workEn : item.workFa}</span>   
+                                                    </h:panelGroup>
+                                                </h:panelGrid>
+                                            </p:panelGrid>
+                                        </p:tooltip>
+                                    </ui:repeat>
+                                </div>
+                            </p:treeNode>
+                        </p:tree>     
+                    </h:form>
                     <style type="text/css">
-                        .ui-diagram-element {   
-                            width:10em; 
-                            height:4em;     
-                            line-height:4em;
-                            text-align: center;
-                            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
-                            border-radius: 4px;
-                            border: 1px solid transparent;
-                            background-color: #98AFC7;
-                            color: #ffffff;
+                        .ui-panelgrid td,.ui-panelgrid tr{
+                            background-color: transparent !important;
+                            border: none !important;
+                            color: #ccc;
                         }
-
-                        .ui-diagram-success {
-                            background-color: #9CB071;
-                            color: #ffffff;
-                            border-color: #7ab02c;
-                        }
-
-                        .ui-diagram-fail {
-                            background-color: #C34A2C;
-                            color: #ffffff;
-                        }
-
-                        .flow-label {
-                            font-size: 24px;
-                            font-weight: bold;
-                            color: #816A51;
+                        .ui-treenode-content{
+                            background: linear-gradient(rgb(10, 166, 214) 0%, rgb(3, 110, 172) 100%) !important;
+                            color: white !important;
+                            text-shadow : none;
                         }
                     </style>
 
                 </div>
+
             </div>
         </ui:define>
     </ui:composition>

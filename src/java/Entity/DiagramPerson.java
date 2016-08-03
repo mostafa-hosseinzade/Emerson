@@ -42,10 +42,27 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DiagramPerson.findByPhone", query = "SELECT d FROM DiagramPerson d WHERE d.phone = :phone"),
     @NamedQuery(name = "DiagramPerson.findByEmail", query = "SELECT d FROM DiagramPerson d WHERE d.email = :email"),
     @NamedQuery(name = "DiagramPerson.findByImg", query = "SELECT d FROM DiagramPerson d WHERE d.img = :img"),
-    @NamedQuery(name = "DiagramPerson.findByWork", query = "SELECT d FROM DiagramPerson d WHERE d.work = :work"),
+    @NamedQuery(name = "DiagramPerson.findByWorkEn", query = "SELECT d FROM DiagramPerson d WHERE d.workEn = :workEn"),
+    @NamedQuery(name = "DiagramPerson.findByWorkFa", query = "SELECT d FROM DiagramPerson d WHERE d.workFa = :workFa"),
     @NamedQuery(name = "DiagramPerson.findByCreatedAt", query = "SELECT d FROM DiagramPerson d WHERE d.createdAt = :createdAt"),
     @NamedQuery(name = "DiagramPerson.findByUpdatedAt", query = "SELECT d FROM DiagramPerson d WHERE d.updatedAt = :updatedAt")})
 public class DiagramPerson implements Serializable {
+
+    public String getWorkEn() {
+        return workEn;
+    }
+
+    public void setWorkEn(String workEn) {
+        this.workEn = workEn;
+    }
+
+    public String getWorkFa() {
+        return workFa;
+    }
+
+    public void setWorkFa(String workFa) {
+        this.workFa = workFa;
+    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -77,8 +94,11 @@ public class DiagramPerson implements Serializable {
     @Column(name = "img")
     private String img;
     @Size(max = 255)
-    @Column(name = "work")
-    private String work;
+    @Column(name = "work_en")
+    private String workEn;
+    @Size(max = 255)
+    @Column(name = "work_fa")
+    private String workFa;
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
@@ -158,14 +178,6 @@ public class DiagramPerson implements Serializable {
 
     public void setImg(String img) {
         this.img = img;
-    }
-
-    public String getWork() {
-        return work;
-    }
-
-    public void setWork(String work) {
-        this.work = work;
     }
 
     public Date getCreatedAt() {

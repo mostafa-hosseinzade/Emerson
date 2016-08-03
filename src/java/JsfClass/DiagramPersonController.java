@@ -4,8 +4,15 @@ import Entity.DiagramPerson;
 import JsfClass.util.JsfUtil;
 import JsfClass.util.JsfUtil.PersistAction;
 import SessionBean.DiagramPersonFacade;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -18,6 +25,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.apache.commons.io.FilenameUtils;
+import org.primefaces.model.UploadedFile;
 
 @Named("diagramPersonController")
 @SessionScoped
@@ -27,6 +36,7 @@ public class DiagramPersonController implements Serializable {
     private SessionBean.DiagramPersonFacade ejbFacade;
     private List<DiagramPerson> items = null;
     private DiagramPerson selected;
+    private UploadedFile file;
 
     public DiagramPersonController() {
     }
@@ -55,15 +65,66 @@ public class DiagramPersonController implements Serializable {
         return selected;
     }
 
-    public void create() {
+    public void create() throws IOException {
+         if (this.file != null) {
+            String filename = "";
+            File dir = new File("/opt/Emerson/uploads/person");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            Path folder = Paths.get("/opt/Emerson/uploads/person");
+            String extension = FilenameUtils.getExtension(file.getFileName());
+
+            String name = 1 + "_" + System.currentTimeMillis();
+            Path path = Paths.get(folder.toString(), name + "." + extension);
+            Path outFile = Files.createFile(path);
+            try (InputStream input = file.getInputstream()) {
+                Files.copy(input, outFile, StandardCopyOption.REPLACE_EXISTING);
+                filename += name + "." + extension;
+            }
+            selected.setImg(filename);
+            this.file = null;
+        }
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle4").getString("DiagramPersonCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public void update() {
+    public void update() throws IOException {
+        if (this.file != null) {
+            String filename = "";
+            File dir = new File("/opt/Emerson/uploads/person");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            Path folder = Paths.get("/opt/Emerson/uploads/person");
+            if (selected.getImg() != null) {
+                File f = new File("/opt/Emerson/uploads/person/" + selected.getImg());
+                if (f.exists()) {
+                    f.delete();
+                }
+            }
+            String extension = FilenameUtils.getExtension(file.getFileName());
+            String name = 1 + "_" + System.currentTimeMillis();
+            Path path = Paths.get(folder.toString(), name + "." + extension);
+            Path outFile = Files.createFile(path);
+            try (InputStream input = file.getInputstream()) {
+                Files.copy(input, outFile, StandardCopyOption.REPLACE_EXISTING);
+                filename = name + "." + extension;
+                selected.setImg(filename);
+                this.file = null;
+            }
+        }
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle4").getString("DiagramPersonUpdated"));
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
 
     public void destroy() {
@@ -88,6 +149,12 @@ public class DiagramPersonController implements Serializable {
                 if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
+                    if(selected.getImg() != ""){
+                        File f = new File("/opt/Emerson/uploads/person/"+selected.getImg());
+                        if(f.exists()){
+                            f.delete();
+                        }
+                    }
                     getFacade().remove(selected);
                 }
                 JsfUtil.addSuccessMessage(successMessage);

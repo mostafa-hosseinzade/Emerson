@@ -27,9 +27,13 @@
                         <h:outputText value="#{bundle4.ViewDiagramPersonLabel_email}"/>
                         <h:outputText value="#{diagramPersonController.selected.email}" title="#{bundle4.ViewDiagramPersonTitle_email}"/>
                         <h:outputText value="#{bundle4.ViewDiagramPersonLabel_img}"/>
-                        <h:outputText value="#{diagramPersonController.selected.img}" title="#{bundle4.ViewDiagramPersonTitle_img}"/>
+                        <h:graphicImage value="/images/person/#{diagramPersonController.selected.img}" style="width: 200px;height: 143px"/>
                         <h:outputText value="#{bundle4.ViewDiagramPersonLabel_work}"/>
-                        <h:outputText value="#{diagramPersonController.selected.work}" title="#{bundle4.ViewDiagramPersonTitle_work}"/>
+                        <h:outputText value="#{diagramPersonController.selected.workEn}" title="#{bundle4.ViewDiagramPersonTitle_work}"/>
+                        
+                        <h:outputText value="workFa"/>
+                        <h:outputText value="#{diagramPersonController.selected.workFa}" title="workFa"/>
+                        
                         <h:outputText value="#{bundle4.ViewDiagramPersonLabel_createdAt}"/>
                         <h:outputText value="#{diagramPersonController.selected.createdAt}" title="#{bundle4.ViewDiagramPersonTitle_createdAt}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />

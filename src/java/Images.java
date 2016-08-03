@@ -61,7 +61,7 @@ public class Images extends HttpServlet {
             throws ServletException, IOException {
         String filename = request.getPathInfo().substring(1);
 
-        File file = new File("C:\\opt\\Emerson\\uploads\\", filename);
+        File file = new File("/opt/Emerson/uploads/", filename);
         if (file.exists()) {
             response.setHeader("Content-Type", getServletContext().getMimeType(filename));
             response.setHeader("Content-Length", String.valueOf(file.length()));

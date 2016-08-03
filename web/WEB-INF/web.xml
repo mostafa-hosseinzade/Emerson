@@ -8,12 +8,11 @@
         <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
         <param-value>2</param-value>
     </context-param>
-
     <context-param>
         <param-name>primefaces.DIR</param-name>
         <param-value>RTL</param-value>
     </context-param>
-<!--    <context-param>
+    <!--    <context-param>
         <param-name>primefaces.THEME</param-name>
         <param-value>metroui</param-value>
     </context-param>-->
@@ -34,4 +33,12 @@
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/404.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error/500.xhtml</location>
+    </error-page>
 </web-app>

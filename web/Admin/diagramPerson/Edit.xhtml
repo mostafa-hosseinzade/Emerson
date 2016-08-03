@@ -9,7 +9,7 @@
     <ui:composition>
 
         <p:dialog id="DiagramPersonEditDlg" widgetVar="DiagramPersonEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle4.EditDiagramPersonTitle}">
-            <h:form id="DiagramPersonEditForm">
+            <h:form id="DiagramPersonEditForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{diagramPersonController.selected != null}">
                         <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_id}" for="id" />
@@ -27,9 +27,11 @@
                         <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_email}" for="email" />
                         <p:inputText id="email" value="#{diagramPersonController.selected.email}" title="#{bundle4.EditDiagramPersonTitle_email}" />
                         <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_img}" for="img" />
-                        <p:inputText id="img" value="#{diagramPersonController.selected.img}" title="#{bundle4.EditDiagramPersonTitle_img}" />
-                        <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_work}" for="work" />
-                        <p:inputText id="work" value="#{diagramPersonController.selected.work}" title="#{bundle4.EditDiagramPersonTitle_work}" />
+                        <p:fileUpload id="img" value="#{diagramPersonController.file}" mode="simple" skinSimple="true" />
+                        <p:outputLabel value="workEn" for="workEn" />
+                        <p:inputText id="workEn" value="#{diagramPersonController.selected.workEn}" title="workEn" />
+                        <p:outputLabel value="workFa" for="workFa" />
+                        <p:inputText id="workFa" value="#{diagramPersonController.selected.workFa}" title="workFa" />
                         <p:outputLabel value="#{bundle4.EditDiagramPersonLabel_diagramSectionId}" for="diagramSectionId" />
                         <p:selectOneMenu id="diagramSectionId" value="#{diagramPersonController.selected.diagramSectionId}" >
                             <f:selectItem itemLabel="#{bundle4.SelectOneMessage}"/>
@@ -38,7 +40,7 @@
                                            itemValue="#{diagramSectionIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{diagramPersonController.update}" value="#{bundle4.Save}" update="display,:DiagramPersonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DiagramPersonEditDialog');"/>
+                    <p:commandButton actionListener="#{diagramPersonController.update}" ajax="false" value="#{bundle4.Save}" update="display,:DiagramPersonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DiagramPersonEditDialog');"/>
                     <p:commandButton value="#{bundle4.Cancel}" onclick="DiagramPersonEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

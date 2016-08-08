@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="bodyHome">
+            <p:growl id="growl" life="3000" />
+            <div class="MainContainer container" style="margin-bottom: 50px">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-lg-4 ">
+                            <p></p>
+                        </div>
+                        <div class="col-lg-4 ">
+                            <div class="panel panel-primary">
+                                <h:form >
+                                    <div class="panel-heading">
+                                        Login
+                                    </div>
+                                    <div class="panel-body">
+                                        <label for="username">Username:</label> 
+                                        <h:inputText value="#{loginController.username}"  class="form-control"/>
+                                        <label for="password">Password: </label>
+                                        <h:inputText value="#{loginController.password}" class="form-control" />
+                                    </div>
+                                    <div class="panel-footer">
+                                        <p:commandButton update=":growl" action="#{loginController.login()}" value="Login" class="btn btn-primary" />
+                                    </div>
+                                </h:form> 
+                            </div>
+                        </div>
+                        <style>
+                            .panel-primary{
+                                border-radius: 0px !important;
+                            }
+                            .btn-primary{
+                                border-radius: 0px;
+                            }
+                        </style>
+                        <div class="col-lg-4 ">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
+

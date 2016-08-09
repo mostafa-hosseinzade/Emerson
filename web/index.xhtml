@@ -8,13 +8,14 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/template.xhtml">
         <ui:define name="bodyHome">
+            <c:set var="lang" value="#{language.localeCode == 'en' ? 'EN' : 'FA'}" />
             <div class="container-main">
                 <div class="inside">
                     <div class="row paddingFirstRow">
 
                         <div class="col-lg-12 titleSiteStyle" >
                             <div class="childTitle">
-                                <h1>​Emerson returned to iran, this time Piramoon​</h1>  
+                                <h1>#{Config['header.index.title'.concat(lang)]} </h1>  
                             </div>
                         </div>
 
@@ -22,10 +23,10 @@
                     <div class="row">
                         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 center">
                             <h2>
-                                <c:if test="#{main.language == 'EN'}">
+                                <c:if test="#{lang == 'EN'}">
                                     #{main.coreOffering.titleEn}
                                 </c:if>
-                                <c:if test="#{main.language == 'FA'}">
+                                <c:if test="#{lang == 'FA'}">
                                     #{main.coreOffering.titleFa}
                                 </c:if>
                             </h2>
@@ -63,10 +64,10 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <p>
-                                        <c:if test="#{main.language == 'EN'}">
+                                        <c:if test="#{lang == 'EN'}">
                                             <h:outputText escape="false" value="#{main.coreOffering.describtionEn}" />
                                         </c:if>
-                                        <c:if test="#{main.language == 'FA'}">
+                                        <c:if test="#{lang == 'FA'}">
                                             <h:outputText escape="false" value="#{main.coreOffering.describtionFa}" />
                                         </c:if>
                                         <br/><br/>
@@ -75,7 +76,7 @@
 
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                            <c:if test="#{main.language == 'EN'}">
+                                            <c:if test="#{lang == 'EN'}">
                                                 <h4>Industries Served</h4>
                                                 <p>
                                                     <a href="#" target="_blank">See All &gt;</a></p>
@@ -85,7 +86,7 @@
                                                     </c:forEach>
                                                 </ul>
                                             </c:if>
-                                            <c:if test="#{main.language == 'FA'}">
+                                            <c:if test="#{lang == 'FA'}">
                                                 <h4>سرویس های ما</h4>
                                                 <p>
                                                     <a href="#" target="_blank">See All &gt;</a></p>
@@ -97,7 +98,7 @@
                                             </c:if>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                            <c:if test="#{main.language == 'EN'}">
+                                            <c:if test="#{lang == 'EN'}">
                                                 <h4>Our Brands</h4>
                                                 <p> 
                                                     <a href="#" target="_blank">See All &gt;</a></p>
@@ -107,7 +108,7 @@
                                                     </c:forEach>
                                                 </ul>
                                             </c:if>
-                                            <c:if test="#{main.language == 'FA'}">
+                                            <c:if test="#{lang == 'FA'}">
                                                 <h4>برندهای ما</h4>
                                                 <p>
                                                     <a href="#" target="_blank">See All &gt;</a></p>

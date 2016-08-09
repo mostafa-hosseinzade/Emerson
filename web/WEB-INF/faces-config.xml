@@ -15,5 +15,9 @@
             <base-name>/Bundle4</base-name>
             <var>bundle4</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>/ConfigLang</base-name>
+            <var>Config</var>
+        </resource-bundle>
     </application>
 </faces-config>

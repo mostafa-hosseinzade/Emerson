@@ -5,60 +5,69 @@
  */
 package JsfClass;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.util.AbstractMap;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Properties;
+import javax.annotation.PostConstruct;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
- 
-@ManagedBean(name="language")
+
+@ManagedBean(name = "language")
 @SessionScoped
-public class LanguageBean implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
-	
-	private String localeCode;
-	
-	private static Map<String,Object> countries;
-	static{
-		countries = new LinkedHashMap<String,Object>();
-		countries.put("EN", Locale.ENGLISH); //label, value
-		countries.put("FA", new Locale("ar", "IQ"));
-	}
+public class LanguageBean implements Serializable {
 
-	public Map<String, Object> getCountriesInMap() {
-		return countries;
-	}
+    private static final long serialVersionUID = 1L;
 
-	
-	public String getLocaleCode() {
-		return localeCode;
-	}
+    private String localeCode;
 
+    private static Map<String, Object> countries;
 
-	public void setLocaleCode(String localeCode) {
-		this.localeCode = localeCode;
-	}
+    static {
+        countries = new LinkedHashMap<String, Object>();
+        countries.put("EN", new Locale("EN")); //label, value
+        countries.put("FA", new Locale("FA"));
+    }
 
-	//value change event listener
-	public void countryLocaleCodeChanged(ValueChangeEvent e){
-		
-		String newLocaleValue = e.getNewValue().toString();
-		
-		//loop country map to compare the locale code
-                for (Map.Entry<String, Object> entry : countries.entrySet()) {
-        
-        	   if(entry.getValue().toString().equals(newLocaleValue)){
-        		
-        		FacesContext.getCurrentInstance()
-        			.getViewRoot().setLocale((Locale)entry.getValue());
-        		
-        	  }
-               }
-	}
+    public Map<String, Object> getCountriesInMap() {
+        return countries;
+    }
+
+    public String getLocaleCode() {
+        return localeCode;
+    }
+
+    public void setLocaleCode(String localeCode) {
+        this.localeCode = localeCode;
+    }
+
+    //value change event listener
+    public void countryLocaleCodeChanged(ValueChangeEvent e) {
+
+        String newLocaleValue = e.getNewValue().toString();
+
+        //loop country map to compare the locale code
+        for (Map.Entry<String, Object> entry : countries.entrySet()) {
+
+            if (entry.getValue().toString().equals(newLocaleValue)) {
+
+                FacesContext.getCurrentInstance()
+                        .getViewRoot().setLocale((Locale) entry.getValue());
+
+            }
+        }
+    }
 
 }

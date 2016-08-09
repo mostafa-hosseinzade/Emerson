@@ -12,16 +12,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width,initial-scale = 1"/>
         <title>#{main.title}</title>
-        <c:if test="#{main.language=='FA'}">
-            <h:outputStylesheet library="css" name="bootstrap.rtl.css" />
-        </c:if>
-        <c:if test="#{main.language=='EN'}">
-            <h:outputStylesheet library="css" name="bootstrap.css"/>
-        </c:if>
+        <c:set var="lang" value="#{language.localeCode == 'en' ? 'EN' : 'FA'}" />
+        <h:outputStylesheet library="css" name="#{lang == 'EN' ? 'bootstrap.css' : 'bootstrap.rtl.css'}" />
         <h:outputStylesheet library="css" name="font-awesome.min.css"/>
         <h:outputStylesheet library="css" name="font.css"/>
         <h:outputStylesheet library="css" name="style.css" />
-        <h:outputStylesheet library="css" name="style_#{main.language}.css" />
+        <h:outputStylesheet library="css" name="style_#{lang}.css" />
     </h:head>
     <h:body>
         <div class="col-lg-12">
@@ -40,10 +36,9 @@
                             </span>
                             <span>
                                 <h:form style="display: inline-block">
-                                    <h:outputText value="#{bundle['hello']}" />
                                     <h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
                                                      valueChangeListener="#{language.countryLocaleCodeChanged}">
-                                        <f:selectItems value="#{language.countriesInMap}" /> 
+                                        <f:selectItems value="#{language.countriesInMap}"  /> 
                                     </h:selectOneMenu>
                                 </h:form>
                                 <span><a href="#">EN</a></span><span style="color: #E75424">|</span><span><a href="#">FA</a></span>
@@ -65,70 +60,37 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <div class="row">
-                                <c:set var="langvar" value="#{main.language== 'EN'?'right':'left'}"/>
+                                <c:set var="langvar" value="#{lang== 'EN'?'right':'left'}"/>
                                 <div class="col-lg-12" style="margin-top: 30px">
                                     <ul class="nav nav-pills menu">
-                                        <li class="#{view.viewId eq '/index.xhtml' ? 'menu-active' : ''}"><a href="#{request.contextPath}/">Home</a></li>
-                                        <li class="dropdown-parent #{view.viewId eq '/coreoffering/core.xhtml' ? 'menu-active' : ''}"><a href="#">Core Offering</a>
+                                        <li class="#{view.viewId eq '/index.xhtml' ? 'menu-active' : ''}"><a href="#{request.contextPath}/">#{Config["menu.home".concat(lang)]}</a></li>
+                                        <li class="dropdown-parent #{view.viewId eq '/coreoffering/core.xhtml' ? 'menu-active' : ''}"><a href="#">#{Config["menu.core".concat(lang)]}</a>
                                             <div class="dropdown-child">
-
-                                                <a href="#{request.contextPath}/coreoffering/core.xhtml?servicesid=12">
-                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 img" style="border-bottom:10px solid #3c9eea">
-                                                        <h:graphicImage name="img/1.jpg" style="width: 100%;height: auto" />
-                                                        <p class="head" style="color:#3c9eea">
-                                                            Measure &amp; Analyze
-                                                        </p>
-                                                        <p class="body">
-                                                            The broadest range of measurement and analytical
-                                                            technologies for process clarity and insight.
-                                                        </p>
-                                                    </div>
-                                                </a>
-                                                <a href="#{request.contextPath}/coreoffering/core.xhtml?servicesid=13">
-                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 img" style="border-bottom:10px solid #f79428">
-                                                        <h:graphicImage name="img/2.jpg" style="width: 100%;height: auto" />
-                                                        <p class="head" style="color:#f79428">
-                                                            Operate &amp; Manage
-                                                        </p>
-                                                        <p class="body">
-                                                            The systems and tools that provide the decision integrity
-                                                            to run your operation at its full potential.
-                                                        </p>
-                                                    </div>
-                                                </a>
-                                                <a href="#{request.contextPath}/coreoffering/core.xhtml?servicesid=14">
-                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 img" style="border-bottom:10px solid #62bb46">
-                                                        <h:graphicImage name="img/3.jpg" style="width: 100%;height: auto" />
-                                                        <p class="head" style="color:#62bb46">
-                                                            Final Control &amp; Regulate
-                                                        </p>
-                                                        <p class="body">
-                                                            Highly reliable final control technologies to help you
-                                                            regulate and isolate your process with certainty.
-                                                        </p>
-                                                    </div>
-                                                </a>
-                                                <a href="#{request.contextPath}/coreoffering/core.xhtml?servicesid=125">
-                                                    <div class="col-lg-43 col-md-3 col-sm-6 col-xs-12 img" style="border-bottom:10px solid #77776f">
-                                                        <h:graphicImage name="img/4.jpg" style="width: 100%;height: auto" />
-                                                        <p class="head" style="color:#77776f">
-                                                            Solve &amp; Support
-                                                        </p>
-                                                        <p class="body">
-                                                            Expertise and global resources to help you dependably define, execute, and support a strategy throughout the lifecycle of your operation.
-                                                        </p>
-                                                    </div>
-                                                </a>
+                                                <ui:repeat value="#{main.coreOffering.servicesCollection}" var="items" varStatus="status">
+                                                    <a href="#{request.contextPath}/coreoffering/core.xhtml?servicesid=#{items.id}">
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 img" style="border-bottom:10px solid #3c9eea">
+                                                            <img src="#{request.contextPath}/images/services/#{items.img}" style="width: 100%;height: auto" />
+                                                            <p class="head" style="color:#{status.index == 0 ?
+                                                             '#0079C1' : status.index == 1 ? '#f79428' : status.index == 2 ? '#62bb46' : '#77776f'}">
+                                                                #{lang == 'EN' ? items.titleEn : items.titleFa}
+                                                            </p>
+                                                            <p class="body">
+                                                                <h:outputText value="#{lang == 'EN' ? main.htmlToString(items.contentEn) : main.htmlToString(items.contentFa)}"  />
+                                                            </p>
+                                                        </div>
+                                                    </a>
+                                                </ui:repeat>
+                                                
                                             </div>
                                         </li>
-                                        <li class="dropdown-parent #{view.viewId eq '/page.xhtml' ? 'menu-active' : ''}"><a href="#">Piramoon</a>
+                                        <li class="dropdown-parent #{view.viewId eq '/page.xhtml' ? 'menu-active' : ''}"><a href="#">#{Config["menu.piramoon".concat(lang)]}</a>
                                             <div class="dropdown-child">
                                                 <div class="col-lg-9">
 
                                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
                                                         <a href="#{request.contextPath}/page.xhtml?pageId=3" style="text-decoration: none">
                                                             <div class="menu" style="border-bottom: 0px">
-                                                                <h3 class="menu-item" style="color: #136917;">Piramoon palay gheshm</h3>
+                                                                <h3 class="menu-item" style="color: #136917;">#{Config["menu.piramoon.palay".concat(lang)]}</h3>
                                                                 <hr/>
                                                                 <ul style="list-style: none;color:#fff">
                                                                     <li><h5>Monitoring systems</h5></li>
@@ -144,7 +106,7 @@
                                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                                         <a href="#{request.contextPath}/page.xhtml?pageId=4" style="text-decoration: none">
                                                             <div class="menu " style="border-bottom: 0px">
-                                                                <h3 class="menu-item" style="color: #c16311;">Piramoon pardazesh gheshm</h3>
+                                                                <h3 class="menu-item" style="color: #c16311;">#{Config["menu.piramoon.pardazesh".concat(lang)]}</h3>
                                                                 <hr />
                                                                 <ul style="list-style: none;color:#fff">
                                                                     <li><h5>Boundless industry knowledge</h5></li>
@@ -158,7 +120,7 @@
                                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
                                                         <a href="#{request.contextPath}/page.xhtml?pageId=5" style="text-decoration: none">
                                                             <div class="menu" style="border-bottom: 0px">
-                                                                <h3 class="menu-item" style="color: #282880">Piramoon system gheshm</h3>
+                                                                <h3 class="menu-item" style="color: #282880">#{Config["menu.piramoon.system".concat(lang)]}</h3>
                                                                 <hr/>
                                                                 <ul style="list-style: none;color:#fff">
                                                                     <li><h5>Meticulously Design</h5></li>
@@ -182,24 +144,24 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="#{view.viewId eq '/product/index.xhtml' || view.viewId eq '/product/show.xhtml' ? 'menu-active' : ''}"><a href="#{request.contextPath}/product/">Product</a></li>
+                                        <li class="#{view.viewId eq '/product/index.xhtml' || view.viewId eq '/product/show.xhtml' ? 'menu-active' : ''}"><a href="#{request.contextPath}/product/">#{Config["menu.product".concat(lang)]}</a></li>
                                         <li class="dropdown #{view.viewId eq '/projects/index.xhtml' || view.viewId eq '/projects/show.xhtml' ? 'menu-active' : ''}">
-                                            <a href="#" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
+                                            <a href="#" role="button" aria-haspopup="true" aria-expanded="false">#{Config["menu.project".concat(lang)]}</a>
                                             <ul >
-                                                <li class="menu-item"><a href="#{request.contextPath}/projects/">Map Of Projects</a></li>
-                                                <li class="menu-item"><a href="#">List Of Project</a></li>
+                                                <li class="menu-item"><a href="#{request.contextPath}/projects/">#{Config["menu.project.map".concat(lang)]}</a></li>
+                                                <li class="menu-item"><a href="#">#{Config["menu.project.list".concat(lang)]}</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown #{view.viewId eq '/news/index.xhtml' || view.viewId eq '/news/show.xhtml' ? 'menu-active' : ''}">
-                                            <a href="#" role="button" aria-haspopup="true" aria-expanded="false">News</a>
+                                            <a href="#" role="button" aria-haspopup="true" aria-expanded="false">#{Config["menu.news".concat(lang)]}</a>
                                             <ul >
                                                 <ui:repeat value="#{main.newsCategory}" var="news">
                                                     <li class="menu-item">
                                                         <a href="#{request.contextPath}/news/?news_category_id=#{news.id}">
-                                                            <c:if test="#{main.language=='EN'}">
+                                                            <c:if test="#{lang=='EN'}">
                                                                 #{news.titleEn}
                                                             </c:if>
-                                                            <c:if test="#{main.language=='FA'}">
+                                                            <c:if test="#{lang=='FA'}">
                                                                 #{news.titleFa}
                                                             </c:if>
                                                         </a>
@@ -207,12 +169,12 @@
                                                 </ui:repeat>
                                             </ul>
                                         </li>
-                                        <li class="#{view.viewId eq '/about/index.xhtml' ? 'menu-active' : ''}"><a href="#{request.contextPath}/about/">About Us</a></li>
+                                        <li class="#{view.viewId eq '/about/index.xhtml' ? 'menu-active' : ''}"><a href="#{request.contextPath}/about/">#{Config["menu.about".concat(lang)]}</a></li>
 
                                         <form class="navbar-form navbar-form-head " role="search">
                                             <div class="form-group">
                                                 <div class="search-box">
-                                                    <input type="text" class="form-control" placeholder="Search" /><span class="search-icon fa fa-search"></span>
+                                                    <input type="text" class="form-control" placeholder="#{Config['menu.search'.concat(lang)]}" /><span class="search-icon fa fa-search"></span>
                                                 </div>
                                             </div>
                                         </form>
@@ -235,22 +197,22 @@
                     <h:form id="form_contact_send">
                         <h3 style="color: white">Contact</h3>
                         <div class="form-group">
-                            <h:inputText class="form-control" value="#{Contacts.contact.name}" a:placeholder="Name"/>
+                            <h:inputText class="form-control" value="#{Contacts.contact.name}" a:placeholder="#{Config['contact.name'.concat(lang)]}"/>
                         </div>
 
                         <div class="form-group">
-                            <h:inputText class="form-control" value="#{Contacts.contact.phone}" a:placeholder="Mobile*"/>
+                            <h:inputText class="form-control" value="#{Contacts.contact.phone}" a:placeholder="#{Config['contact.mobile'.concat(lang)]}*"/>
                         </div>
 
                         <div class="form-group">
-                            <h:inputText class="form-control" value="#{Contacts.contact.email}"  a:placeholder="Email*"/>
+                            <h:inputText class="form-control" value="#{Contacts.contact.email}"  a:placeholder="#{Config['contact.email'.concat(lang)]}*"/>
                         </div>
 
                         <div class="form-group">
-                            <h:inputTextarea class="form-control" value="#{Contacts.contact.message}" rows="4" a:placeholder="Message" />
+                            <h:inputTextarea class="form-control" value="#{Contacts.contact.message}" rows="4" a:placeholder="#{Config['contact.message'.concat(lang)]}" />
                         </div>
                         <div class="mbr-buttons mbr-buttons--right btn-inverse">
-                            <h:commandButton action="#{Contacts.insert()}" style="background-color: #ED5924" value="CONTACT US" class="mbr-buttons__btn btn buttons_special btn-danger">
+                            <h:commandButton action="#{Contacts.insert()}" style="background-color: #ED5924" value="#{Config['contact.btn'.concat(lang)]}" class="mbr-buttons__btn btn buttons_special btn-danger">
                                 <f:ajax render="@form" execute="form_contact_send"> </f:ajax> 
                             </h:commandButton>    
                         </div>
@@ -262,23 +224,23 @@
                     <h3 style="color: white;">Map</h3>
                     <p:gmap center="31.215442,51.45645446" zoom="8" type="ROADMAP" widgetVar="test10"  style="width:100%;height: 240px;">
                     </p:gmap>
-                    <c:if test="#{main.language =='EN'}">
+                    <c:if test="#{lang =='EN'}">
                         <h5 style="color: white;font-weight: bolder;margin-top: 10px;margin-bottom: 5px;">Address :</h5>
                         <p style="color: white">33 Sattari Tehran Iran </p>
                     </c:if>
-                    <c:if test="#{main.language =='FA'}">
+                    <c:if test="#{lang =='FA'}">
                         <h5 style="color: white;font-weight: bolder;margin-top: 10px;margin-bottom: 5px;">آدرس :</h5>
                         <p style="color: white">ایران تهران اتوبان ستاری پلاک ۳۳ </p>
                     </c:if>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <c:if test="#{main.language == 'EN'}">
+                    <c:if test="#{lang == 'EN'}">
                         <h3 style="color: white">Piramoon </h3>
                         <h5 class="menu-item"><i class="fa fa-check"></i> <a href="#{request.contextPath}/page.xhtml?pageId=3">Piramoon PALAY ENGINEERING</a></h5>
                         <h5 class="menu-item"><i class="fa fa-check"></i> <a href="#{request.contextPath}/page.xhtml?pageId=4">Piramoon PARDAZESH GHESHM</a></h5>
                         <h5 class="menu-item"><i class="fa fa-check"></i> <a href="#{request.contextPath}/page.xhtml?pageId=5">Piramoon SYSTEM GHESHM</a></h5>
                     </c:if>
-                    <c:if test="#{main.language == 'FA'}">
+                    <c:if test="#{lang == 'FA'}">
                         <h3 style="color: white">پیرامون </h3>
                         <h5 class="menu-item"><i class="fa fa-check"></i> <a href="#{request.contextPath}/page.xhtml?pageId=3">مهندسی پیرامون پالای</a></h5>
                         <h5 class="menu-item"><i class="fa fa-check"></i> <a href="#{request.contextPath}/page.xhtml?pageId=4">پیرامون پردازش قشم</a></h5>

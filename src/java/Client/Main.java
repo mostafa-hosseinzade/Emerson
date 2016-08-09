@@ -9,6 +9,7 @@ import Entity.Project;
 import Entity.ServedEmerson;
 import Entity.Services;
 import Entity.ServicesCategory;
+import JsfClass.LanguageBean;
 import SessionBean.BrandEmersonFacade;
 import SessionBean.NewsCategoryFacade;
 import SessionBean.NewsFacade;
@@ -35,13 +36,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 @ManagedBean(name = "main")
-@ViewScoped
+@SessionScoped
 public class Main implements Serializable {
-
-    @ManagedProperty(value = "#{param.lang}")
-    private String language;
+    
+    @ManagedProperty(value = "#{language.localeCode}")
+    private String language ;
     @ManagedProperty(value = "#{param.servicesid}")
     private Integer servicesId;
     private String title;
@@ -122,10 +125,11 @@ public class Main implements Serializable {
     }
 
     public String getLanguage() {
+        System.out.println("language is : "+language);
         if (language == null) {
             return "EN";
         }
-        if (language == "EN") {
+        if (language.equals("EN") || language.equals("en")) {
             return "EN";
         }
         return "FA";
@@ -273,6 +277,11 @@ public class Main implements Serializable {
 
     public Integer getPageId() {
         return pageId;
+    }
+    
+    public String htmlToString(String html){
+        String doc = Jsoup.parse(html.toString()).text();
+        return doc;
     }
 
 }

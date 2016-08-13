@@ -12,27 +12,23 @@ and open the template in the editor.
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:composition template="/template.xhtml">
         <ui:define name="bodyHome">
+            <c:set var="lang" value="#{language.localeCode == 'en' ? 'EN' : 'FA'}" />
             <div class="container-main">
                 <div class="inside">
                     <div class="row paddingFirstRow">
 
                         <div class="col-lg-12 titleSiteStyle" >
                             <div class="childTitle">
-                                <h1>​Emerson returned to iran, this time Piramoon​</h1>  
+                                 <h1>#{Config['header.index.title'.concat(lang)]} </h1>  
                             </div>
                         </div>
 
                     </div>
                     <div class="col-lg-12" style="color: #585353;padding: 5px;">
-                        <c:if test="#{main.language == 'EN'}">
-                            <h2 >#{main.page.titleEn}</h2>
-                            <h:outputText value="#{main.page.contentEn}" escape="false"/>
-                        </c:if>
-                        <c:if test="#{main.language == 'FA'}">
-                            <h2 >#{main.project.titleFa}</h2>
-                            <h:outputText value="#{main.page.contentFa}" escape="false"/>
-                        </c:if>
+                        <h2 >#{lang == 'EN' ? main.page.titleEn : main.page.titleFa}</h2>
+                        <h:outputText value="#{lang == 'EN' ? main.page.contentEn : main.page.contentFa}" escape="false"/>
                     </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
 

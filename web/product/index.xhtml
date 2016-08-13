@@ -8,6 +8,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
  <ui:composition template="/template.xhtml">
         <ui:define name="bodyHome">
+            <h:outputStylesheet library="css" name="style_measure.css" />
             <div class="MainContainer container" style="margin-bottom: 50px">
                 <div >
                     <c:if test="#{main.language == 'EN'}">
@@ -24,28 +25,37 @@
                 <div>
                     <ui:repeat value="#{main.brands}" var="brands">
                         <c:if test="#{main.language == 'EN'}">
-                            <div class="row">
+                            <div class="col-lg-12">
                                 <h3>#{brands.titleEn}</h3>
                                 <hr/>
                                 <ui:repeat value="#{brands.productCollection}" var="product">
-                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                        <div class="panel panel-primary" style="border-radius: 0px">
-                                            <div class="panel-heading" style="border-radius: 0px">
-                                                #{product.titleEn}
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                        <div class="col-lg-12 show-product">
+
+                                            <div class="col-lg-12">
+                                                <h4 style="text-align: center;background-color: rgba(51, 122, 183, 0.22);padding: 10px;margin-top: 15px;">#{product.titleEn}</h4>
+                                                <!--<p:galleria value="" styleClass="img-responsive" var="image">-->
+                                                <div class="hoverImgProduct">
+                                                    <h:graphicImage value="/images/product/#{product.productImgCollection[0].img}" alt="#{image.alt}" title="#{image.alt}"/>
+                                                    <div class="clearfix"></div>
+                                                </div>
+
+                                                <!--</p:galleria>-->
                                             </div>
-                                            <div class="panel-body">
-                                                <h:graphicImage value="/images/product/#{product.productImgCollection[0].img}" alt="#{image.alt}" title="#{image.alt}" style="width: 100%;padding: 0;border: 1px solid rgba(255,255,255,0.4);margin-bottom: 15px;"/>
-                                                <br/>
-                                                <a href="#{request.contextPath}/product/show.xhtml?product_id=#{product.id}" class="btn btn-primary pull-left" style="border-radius: 0px">More</a>
+                                            <div class="col-lg-9">
+                                                <h:outputText value="#{product.contentEn}" escape="false"/>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <a href="#{request.contextPath}/Client/ShowProduct.xhtml?product_id=#{product.id}" class="btn btn-primary pull-right" style="border-radius: 0px">More</a>
                                             </div>
                                         </div>
+                                        <div class="clearfix"></div>
                                     </div>
-                                    
                                 </ui:repeat>
                             </div>
                         </c:if>
                         <c:if test="#{main.language == 'FA'}">
-                            <div class="row">
+                            <div class="col-lg-12">
                                 <h3>#{brands.titleFa}</h3>
                                 <hr/>
                                 <ui:repeat value="#{brands.productCollection}" var="product">
@@ -60,7 +70,7 @@
                                                     <h:graphicImage value="/images/product/#{image.img}" alt="#{image.alt}" title="#{image.alt}" style="height: auto;width: 200px"/>
                                                 </p:galleria>
                                                 <br/>
-                                                <a href="#{request.contextPath}/product/show.xhtml?product_id=#{product.id}" class="btn btn-primary pull-left" style="border-radius: 0px">اطلاعات بیشتر</a>
+                                                <a href="#{request.contextPath}/Client/ShowProduct.xhtml?product_id=#{product.id}" class="btn btn-primary pull-left" style="border-radius: 0px">اطلاعات بیشتر</a>
                                             </div>
                                         </div>
                                     </div>

@@ -123,3 +123,15 @@
     font-style: italic;
     line-height: 25px;
 }
+.hoverImgProduct img{
+    left: 0;right: 0;top:0;bottom: 0;
+    width: 210px;
+    height: 210px;
+    position: absolute;
+    transform: scale(1);
+    transition: all 5s linear;
+    
+}
+.hoverImgProduct img:hover{
+    transform: scale(1.3);
+}

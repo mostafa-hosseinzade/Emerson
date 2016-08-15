@@ -12,40 +12,26 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
- <ui:composition template="/template.xhtml">
+    <ui:composition template="/template.xhtml">
         <ui:define name="bodyHome">
+            <c:set var="lang" value="#{language.localeCode == 'en' ? 'EN' : 'FA'}" />
             <div class="MainContainer container">
                 <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                     <div class="col-lg-12" style="color: #585353;padding: 5px;">
-                        <c:if test="#{main.language == 'EN'}">
-                            <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                <h2 >#{main.product.titleEn} </h2>
-                            </div>
-                            <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal">
-                                    ثبت سفارش
-                                </button>
-                            </div>
-                            <div class="col-lg-12">
-                                <h:outputText value="#{main.product.contentEn}" escape="false" />
-                            </div>
-                        </c:if>
-                        <c:if test="#{main.language == 'FA'}">
-                            <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                <h2 >#{main.product.titleFa}</h2>
-                            </div>
-                            <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal">
-                                    ثبت سفارش
-                                </button>
-                            </div>
-                            <div class="col-lg-12">
-                                <h:outputText value="#{main.product.contentFa}" escape="false"/>
-                            </div>
-                        </c:if>
+                        <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                            <h2 >#{lang == 'EN' ? main.product.titleEn : main.product.titleFa} </h2>
+                        </div>
+                        <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                            <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal">
+                                #{Config['product.show.btnorder'.concat(lang)]}
+                            </button>
+                        </div>
+                        <div class="col-lg-12">
+                            <h:outputText value="#{lang == 'EN' ? main.product.contentEn : main.product.contentFa}" escape="false" />
+                        </div>
                     </div>
                 </div>
-                <c:if test="#{not empty main.product.productImgCollection}">
+                <c:if test="#{main.product.productImgCollection.size() > 0}">
                     <div class="col-lg-12" style="text-align: center">
                         <c:set var="locationcar"  value="#{main.language=='EN' ?'right':'left'}"/>
                         <p:galleria value="#{main.product.productImgCollection}" var="image" panelWidth="500" panelHeight="313" styleClass="pull-#{locationcar}" showCaption="true">
@@ -63,27 +49,27 @@ and open the template in the editor.
                             <h:form id="ShowFormOrder">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Order Product</h4>
+                                    <h4 class="modal-title" id="myModalLabel">#{Config['product.show.order.titlemodal'.concat(lang)]}</h4>
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <h:inputText class="form-control" value="#{order.order.name}" a:placeholder="Name And Family"/>
+                                        <h:inputText class="form-control" value="#{order.order.name}" a:placeholder="#{Config['product.show.order.NameAndFamily'.concat(lang)]}"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <h:inputText class="form-control" value="#{order.order.company}" a:placeholder="Name Company"/>
+                                        <h:inputText class="form-control" value="#{order.order.company}" a:placeholder="#{Config['product.show.order.NameCompany'.concat(lang)]}"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:inputText class="form-control" value="#{order.order.email}" a:placeholder="Email"/>
+                                        <h:inputText class="form-control" value="#{order.order.email}" a:placeholder="#{Config['product.show.order.Email'.concat(lang)]}"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:inputText class="form-control" value="#{order.order.phone}" a:placeholder="Phone"/>
+                                        <h:inputText class="form-control" value="#{order.order.phone}" a:placeholder="#{Config['product.show.order.Phone'.concat(lang)]}"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:inputText class="form-control" value="#{order.order.mobile}" a:placeholder="Mobile"/>
+                                        <h:inputText class="form-control" value="#{order.order.mobile}" a:placeholder="#{Config['product.show.order.Mobile'.concat(lang)]}"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:inputText class="form-control" value="#{order.order.activityCompany}" a:placeholder="Activity Company"/>
+                                        <h:inputText class="form-control" value="#{order.order.activityCompany}" a:placeholder="#{Config['product.show.order.ActivityCompany'.concat(lang)]}"/>
                                     </div>    
                                     <!--                                    <div class="form-group">
                                                                             <h:selectOneMenu id="SelectProvince" styleClass="form-control" value="#{order.province}" a:placeholder="Province">
@@ -99,20 +85,20 @@ and open the template in the editor.
                                                                             </h:selectOneMenu>
                                                                         </div>-->
                                     <div class="form-group">
-                                        <h:inputTextarea class="form-control" value="#{order.order.address}" rows="4" a:placeholder="Address" />
+                                        <h:inputTextarea class="form-control" value="#{order.order.address}" rows="4" a:placeholder="#{Config['product.show.order.Address'.concat(lang)]}" />
                                     </div>
                                     <div class="form-group">
-                                        <h:inputTextarea class="form-control" value="#{order.order.describtion}" rows="4" a:placeholder="Message" />
+                                        <h:inputTextarea class="form-control" value="#{order.order.describtion}" rows="4" a:placeholder="#{Config['product.show.order.Message'.concat(lang)]}" />
                                     </div>
 
                                     <p:messages style="margin-top: 20px" id="messagesshow"/>
                                 </div>
                                 <div class="modal-footer">
-                                    <h:commandButton action="#{order.insert()}" value="Inserted" styleClass="btn btn-success pull-left">
+                                    <h:commandButton action="#{order.insert()}" value="#{Config['product.show.order.btn'.concat(lang)]}" styleClass="btn btn-success pull-left">
                                         <f:param name="product_id" value="#{main.product.id}"/>
                                         <f:ajax render="@form" execute="ShowFormOrder"> </f:ajax> 
                                     </h:commandButton>             
-                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">#{Config['product.show.order.btnCancel'.concat(lang)]}</button>
                                 </div>
                             </h:form> 
                         </div>

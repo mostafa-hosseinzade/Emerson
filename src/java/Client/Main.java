@@ -42,12 +42,14 @@ import org.jsoup.nodes.Document;
 @ManagedBean(name = "main")
 @SessionScoped
 public class Main implements Serializable {
-    
+    //set language with parameter get
     @ManagedProperty(value = "#{language.localeCode}")
-    private String language ;
-    @ManagedProperty(value = "#{param.servicesid}")
-    private Integer servicesId;
+    private String language;
+
+    //default title
     private String title;
+
+    // many related brand
     private List<String> relatedBrand;
 
     public List<String> getRelatedBrand() {
@@ -63,6 +65,10 @@ public class Main implements Serializable {
         relatedBrand.add("Hytork");
         return relatedBrand;
     }
+
+    // show Core And Services with this id
+    @ManagedProperty(value = "#{param.servicesid}")
+    private Integer servicesId;
 
     public Integer getServicesId() {
         return servicesId;
@@ -82,14 +88,17 @@ public class Main implements Serializable {
     private ServicesFacade servicesFacade;
     @EJB
     private ProjectFacade projectFacade;
-
+    
+    //For Show Info Core and services
     private Services services;
+    //Show All Core In DataBase
     private ServicesCategory CoreOffering;
+    //All services
     private List<ServedEmerson> allServed;
+    //All brand
     private List<BrandEmerson> allBrand;
 
     public Services getServices() {
-        System.out.println("Client.Main.getServices() : Services Id : " + servicesId);
         if (servicesId != null) {
             try {
                 return servicesFacade.find(servicesId);
@@ -125,7 +134,7 @@ public class Main implements Serializable {
     }
 
     public String getLanguage() {
-        System.out.println("language is : "+language);
+        System.out.println("language is : " + language);
         if (language == null) {
             return "EN";
         }
@@ -146,7 +155,7 @@ public class Main implements Serializable {
     public List<BrandEmerson> getAllBrand() {
         return brandEmersonFacade.findAll();
     }
-    // Project Show Code
+    /////////////////// Project Show Code
     @ManagedProperty(value = "#{param.project_id}")
     private Integer project_id;
     private Project project;
@@ -168,9 +177,9 @@ public class Main implements Serializable {
     public void setProject_id(Integer project_id) {
         this.project_id = project_id;
     }
-    /////////////////////
+    ///////////////////////////////////////////
 
-    //Show Brads And Product
+    /////////////////////Show Brads And Product
     private List<BrandEmerson> brands;
     private Product product;
     @ManagedProperty(value = "#{param.product_id}")
@@ -199,9 +208,9 @@ public class Main implements Serializable {
     public List<BrandEmerson> getBrands() {
         return brandEmersonFacade.findAll();
     }
-    /////////////////////
+    ////////////////////////////////////////////////
 
-    // News Code
+    ////////////////////////////////////// News Code
     private List<NewsCategory> newsCategory;
     @EJB
     private NewsCategoryFacade newsCategoryFacade;
@@ -254,9 +263,9 @@ public class Main implements Serializable {
         }
         return news;
     }
-    ///////////////////
+    /////////////////////////////////////////////////////
 
-    //page section
+    /////////////////////////////////////////page section
     private Page page;
     @EJB
     private PageFacade pageFacade;
@@ -278,8 +287,8 @@ public class Main implements Serializable {
     public Integer getPageId() {
         return pageId;
     }
-    
-    public String htmlToString(String html){
+
+    public String htmlToString(String html) {
         String doc = Jsoup.parse(html.toString()).text();
         return doc;
     }

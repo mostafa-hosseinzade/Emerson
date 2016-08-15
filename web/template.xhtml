@@ -38,7 +38,8 @@
                                 <h:form style="display: inline-block">
                                     <h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
                                                      valueChangeListener="#{language.countryLocaleCodeChanged}">
-                                        <f:selectItems value="#{language.countriesInMap}"  /> 
+                                        <f:selectItem itemLabel="#{lang == 'EN' ? 'Choose':'انتخاب کنید'}" />
+                                        <f:selectItems value="#{language.countriesInMap}"   /> 
                                     </h:selectOneMenu>
                                 </h:form>
                                 <span><a href="#">EN</a></span><span style="color: #E75424">|</span><span><a href="#">FA</a></span>

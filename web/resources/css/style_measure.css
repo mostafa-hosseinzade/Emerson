@@ -123,6 +123,19 @@
     font-style: italic;
     line-height: 25px;
 }
+.hoverImgProduct{
+    margin: 0 auto;
+    width: 210px;
+    height: 210px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.hoverImgProduct:hover{
+    overflow: hidden;
+}
+
 .hoverImgProduct img{
     left: 0;right: 0;top:0;bottom: 0;
     width: 210px;

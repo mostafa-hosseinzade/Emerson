@@ -1,8 +1,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
         <ui:define name="bodyHome">
+            <c:set var="lang" value="#{language.localeCode == 'en' ? 'EN' : 'FA'}" />
             <div class="MainContainer container">
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
@@ -11,36 +14,50 @@
                         <li class="active">Data</li>
                     </ol>
                 </div>
-                <div class="col-lg-12 head-slide">
-                    <div class="img" style="background: url(../images/news_category/#{main.newsCategorySelect == null ? '../resources/img/hero1.jpg' : main.newsCategorySelect.img}) no-repeat">
-                        <div class="col-lg-9 col-md-9 col-xs-12 col-sm-12 text1 pull-left">
-                            <h1 class="pull-left" style="margin-left: 10px;color: white">#{main.newsCategorySelect.titleEn}</h1>
-                            <p class="pull-left" style="padding-left: 10px">The broadest range of measurement and analytical<br/>technologies for process clarity and insight.</p>
+                <div class="col-lg-12 head-img">
+                    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 text">
+                        <h1>#{Config['header.index.title'.concat(lang)]}</h1>
+                        <div class="col-lg-6">
+                            <p:graphicImage name="img/logo.png" styleClass="img img-responsive hidden-xs"/>
                         </div>
-
-                        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 text2 pull-right">
-                            <h:outputText value="#{main.newsCategorySelect.describtionEn}" escape="false" />
-                            <a href="#">Maximizing low-cost fuel use »</a>
+                        <div class="col-lg-6">
+                            <p:graphicImage name="img/logo_piramoon.png" style="width: 169px;height: 65px" styleClass="img img-responsive pull-right" />
                         </div>
                     </div>
+                    <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 img" style="background-image: url(../resources/img/emerson-process-management-h.jpg);">
+                        <div class="row">
+                            <div class="col-lg-4 hidden-sm hidden-xs crew">
+                            </div>
+                            <div class="col-lg-8">
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
-                <div class="col-lg-12">
+                <div class="clearfix"></div>
+                <div class="col-lg-12" style="margin-top: 20px">
                     <ui:repeat value="#{main.newsCategorySelect.newsCollection}" var="news">
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <div class="panel panel-primary" style="border-radius: 0px">
                                 <div class="panel-heading" style="border-radius: 0px">
-                                    #{news.titleEn}
+                                    #{lang == 'EN' ? news.titleEn : news.titleFa}
                                 </div>
                                 <div class="panel-body">
-                                    <h:outputText value="#{news.contentEn}" escape="false" />
+                                    <h:outputText value="#{
+                                                  lang == 'EN' ? 
+                                                      (main.htmlToString(news.contentEn).length() gt 50 ? main.htmlToString(news.contentEn).substring(0,47).concat('...') : main.htmlToString(news.contentEn))  
+                                                      :
+                                                      ( main.htmlToString(news.contentFa).length() gt 50 ? main.htmlToString(news.contentFa).substring(0,47).concat('...') : main.htmlToString(news.contentFa) )}"
+                                                  escape="false" />
                                     <br/>
                                     <a href="#{request.contextPath}/news/show.xhtml?news_id=#{news.id}"
-                                       class="btn btn-primary pull-right" style="border-radius: 0px">More</a>
+                                       class="btn btn-primary pull-#{lang == 'EN' ? 'right' : 'left'} " style="border-radius: 0px">#{lang == 'EN' ? 'More' : 'بیشتر'}</a>
                                 </div>
                             </div>
                         </div>
                     </ui:repeat>
                 </div>
+                <div class="clearfix"></div>
             </div>
         </ui:define>
     </ui:composition>

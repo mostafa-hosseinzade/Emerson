@@ -13,12 +13,13 @@ and open the template in the editor.
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:composition template="/template.xhtml">
         <ui:define name="bodyHome">
+            <c:set var="lang" value="#{language.localeCode == 'en' ? 'EN' : 'FA'}" />
             <div class="container-main">
                 <div class="inside">
                     <div class="row">
                         <div class="col-lg-12 head-img">
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 text">
-                                <h1>​Emerson returned to iran, this time Piramoon​</h1>
+                                <h1>#{Config['header.index.title'.concat(lang)]}</h1>
                                 <div class="col-lg-6">
                                     <p:graphicImage name="img/logo.png" styleClass="img img-responsive hidden-xs"/>
                                 </div>
@@ -38,21 +39,17 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="col-lg-12" style="color: #585353;padding: 5px;">
-                        <c:if test="#{main.language == 'EN'}">
-                            <h2 >#{main.project.titleEn}</h2>
-                            <p>#{main.project.contentEn}</p>
-                        </c:if>
-                        <c:if test="#{main.language == 'FA'}">
-                            <h2 >#{main.project.titleFa}</h2>
-                            <p>#{main.project.contentFa}</p>
-                        </c:if>
+                        <h2 >#{lang == 'EN' ? main.project.titleEn : main.project.titleFa}</h2>
+                        <p>#{lang == 'EN' ? main.project.contentEn : main.project.contentFa}</p>
                     </div>
                     <div class="col-lg-12" style="text-align: center">
-                        <c:set var="locationcar"  value="#{main.language=='EN' ?'right':'left'}"/>
-                        <p:galleria value="#{main.project.projectImgCollection}" var="image" panelWidth="500" styleClass="pull-#{locationcar}" panelHeight="313" showCaption="true">
-                            <h:graphicImage value="/images/project/#{image.img}" alt="#{image.alt}" title="#{image.alt}" style="width: 100%;height: 100%;"/>
-                        </p:galleria>
+                        <c:if test="#{main.project.projectImgCollection.size() != 0}" >
+                            <p:galleria value="#{main.project.projectImgCollection}" var="image" panelWidth="500" styleClass="pull-#{lang == 'EN' ? 'right' : 'left'}" panelHeight="313" showCaption="true">
+                                <h:graphicImage value="/images/project/#{image.img}" alt="#{image.alt}" title="#{image.alt}" style="width: 100%;height: 100%;"/>
+                            </p:galleria>
+                        </c:if>
                     </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
 
